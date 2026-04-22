@@ -14,7 +14,7 @@ const { title = "FIRSTHub" } = Astro.props;
 <body class="bg-[#2a2d43] text-white min-h-screen flex flex-col">
 
   <!-- ================================================= -->
-  <!-- HEADER / NAVBAR                                  -->
+  <!-- HEADER / NAVBAR                                   -->
   <!-- ================================================= -->
   <header class="border-b border-white/10">
 
@@ -39,8 +39,14 @@ const { title = "FIRSTHub" } = Astro.props;
             Proyectos
           </a>
 
-          <a href="/docs" class="hover:text-[#ff8c42] transition">
-            Docs
+          <!-- DOCS EXTERNO -->
+          <a
+            href="firsthub-docs.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-[#ff8c42] transition flex items-center gap-1"
+          >
+            Docs 
           </a>
 
           <a href="/equipo" class="hover:text-[#ff8c42] transition">
@@ -53,7 +59,7 @@ const { title = "FIRSTHub" } = Astro.props;
 
         </div>
 
-        <!-- BOTÓN HAMBURGUESA MÓVIL -->
+        <!-- BOTÓN HAMBURGUESA -->
         <button
           id="menu-btn"
           class="md:hidden text-3xl text-[#fbfff1]"
@@ -64,7 +70,7 @@ const { title = "FIRSTHub" } = Astro.props;
 
       </div>
 
-      <!-- MENÚ MÓVIL DESPLEGABLE -->
+      <!-- MENÚ MOBILE -->
       <div
         id="mobile-menu"
         class="hidden md:hidden mt-4 flex flex-col gap-3 text-sm font-medium"
@@ -75,13 +81,19 @@ const { title = "FIRSTHub" } = Astro.props;
         </a>
 
         <a href="/proyectos" class="py-2 border-b border-white/10">
-          proyectos
+          Proyectos
         </a>
 
- 		<a href="/docs/" class="py-2 border-b border-white/10">
-  		  Docs
-		</a>
-		
+        <!-- DOCS EXTERNO MOBILE -->
+        <a
+          href="firsthub-docs.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="py-2 border-b border-white/10"
+        >
+          Docs 
+        </a>
+
         <a href="/equipo" class="py-2 border-b border-white/10">
           Equipo
         </a>
@@ -96,32 +108,29 @@ const { title = "FIRSTHub" } = Astro.props;
 
   </header>
 
-
   <!-- CONTENIDO -->
   <main class="flex-1">
     <slot />
   </main>
 
-
   <!-- FOOTER -->
   <footer class="border-t border-white/10 mt-20">
     <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-white/50">
-      © 2026 FIRSTHub. Built with Astro.
+      © 2026 FIRSTHub. &lt;/ Aprende • Construye • Compite /&gt;
     </div>
   </footer>
 
+  <!-- SCRIPT MENU -->
+  <script>
+    const btn = document.getElementById("menu-btn");
+    const menu = document.getElementById("mobile-menu");
 
-  <!-- SCRIPT MENU HAMBURGUESA -->
-<script>
-  const btn = document.getElementById("menu-btn");
-  const menu = document.getElementById("mobile-menu");
-
-  if (btn && menu) {
-    btn.addEventListener("click", () => {
-      menu.classList.toggle("hidden");
-    });
-  }
-</script>
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    }
+  </script>
 
 </body>
 </html>
