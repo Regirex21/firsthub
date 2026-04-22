@@ -1,90 +1,127 @@
 ---
-/* Importa estilos globales (Tailwind y CSS general) */
 import "../styles/global.css";
 
-/* Recibe el título dinámico de cada página */
 const { title = "FIRSTHub" } = Astro.props;
 ---
 
 <html lang="es">
 <head>
-  <!-- Configuración básica -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Título que aparece en pestaña del navegador -->
   <title>{title}</title>
 </head>
 
-<!-- 
-  BODY GENERAL DEL SITIO
-  bg-[#2a2d43] = fondo principal de marca
-  text-[#fbfff1] = texto claro cálido
--->
-<body class="bg-[#2a2d43] text-[#fbfff1] min-h-screen flex flex-col">
+<body class="bg-[#2a2d43] text-white min-h-screen flex flex-col">
 
-  <!-- ================= HEADER / NAVBAR ================= -->
+  <!-- ================================================= -->
+  <!-- HEADER / NAVBAR                                  -->
+  <!-- ================================================= -->
   <header class="border-b border-white/10">
 
-    <!-- 
-      max-w-6xl = ancho máximo profesional
-      mx-auto = centra contenido
-      px-6 = padding horizontal
-      py-4 = padding vertical
-    -->
-    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav class="max-w-6xl mx-auto px-6 py-4">
 
-      <!-- Logo / Nombre principal -->
-      <a 
-        href="/" 
-        class="text-xl font-bold text-[#fbfff1] hover:text-[#ff8c42] transition"
+      <!-- FILA PRINCIPAL -->
+      <div class="flex items-center justify-between">
+
+        <!-- LOGO -->
+        <a href="/" class="text-2xl font-bold text-[#fbfff1]">
+          FIRSTHub
+        </a>
+
+        <!-- MENÚ DESKTOP -->
+        <div class="hidden md:flex gap-6 text-sm font-medium">
+
+          <a href="/" class="hover:text-[#ff8c42] transition">
+            Inicio
+          </a>
+
+          <a href="/proyectos" class="hover:text-[#ff8c42] transition">
+            Proyectos
+          </a>
+
+          <a href="/docs" class="hover:text-[#ff8c42] transition">
+            Docs
+          </a>
+
+          <a href="/equipo" class="hover:text-[#ff8c42] transition">
+            Equipo
+          </a>
+
+          <a href="/contacto" class="hover:text-[#ff8c42] transition">
+            Contacto
+          </a>
+
+        </div>
+
+        <!-- BOTÓN HAMBURGUESA MÓVIL -->
+        <button
+          id="menu-btn"
+          class="md:hidden text-3xl text-[#fbfff1]"
+          aria-label="Abrir menú"
+        >
+          ☰
+        </button>
+
+      </div>
+
+      <!-- MENÚ MÓVIL DESPLEGABLE -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden mt-4 flex flex-col gap-3 text-sm font-medium"
       >
-        FIRSTHub
-      </a>
 
-      <!-- Menú de navegación -->
-      <div class="flex gap-6 text-sm font-medium">
-
-        <a href="/" class="hover:text-[#ff8c42] transition">
+        <a href="/" class="py-2 border-b border-white/10">
           Inicio
         </a>
 
-        <a href="/proyectos" class="hover:text-[#ff8c42] transition">
-          Proyectos
+        <a href="/proyectos" class="py-2 border-b border-white/10">
+          proyectos
         </a>
 
-        <a href="/docs" class="hover:text-[#48a9a6] transition">
-          Docs
-        </a>
-
-        <a href="/equipo" class="hover:text-[#ff8c42] transition">
+ 		<a href="/docs/" class="py-2 border-b border-white/10">
+  		  Docs
+		</a>
+		
+        <a href="/equipo" class="py-2 border-b border-white/10">
           Equipo
         </a>
 
-        <a href="/contacto" class="hover:text-[#ff8c42] transition">
+        <a href="/contacto" class="py-2">
           Contacto
         </a>
 
       </div>
+
     </nav>
+
   </header>
 
-  <!-- ================= CONTENIDO DE CADA PÁGINA ================= -->
-  <!-- Aquí entra index, projects, about, etc -->
+
+  <!-- CONTENIDO -->
   <main class="flex-1">
     <slot />
   </main>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="border-t border-white/10 mt-16">
 
-    <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-[#48a9a6]">
-
-      <!-- Texto footer -->
-      © 2026 FIRSTHub — &lt;/ Aprende • Construye • Compite /&gt;
-
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 mt-20">
+    <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-white/50">
+      © 2026 FIRSTHub. Built with Astro.
     </div>
   </footer>
+
+
+  <!-- SCRIPT MENU HAMBURGUESA -->
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+
+  if (btn && menu) {
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  }
+</script>
 
 </body>
 </html>
