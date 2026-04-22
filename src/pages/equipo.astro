@@ -1,0 +1,89 @@
+---
+/* Importa layout principal */
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<!-- ================================================= -->
+<!-- PÁGINA TEAM                                       -->
+<!-- Muestra a las personas detrás de FIRSTHub         -->
+<!-- ================================================= -->
+<MainLayout title="Team | FIRSTHub">
+
+  <!-- HERO -->
+  <section class="max-w-6xl mx-auto px-6 pt-12 pb-12 text-center">
+
+    <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+      Las personas construyen el impacto
+    </p>
+
+    <h1 class="text-5xl md:text-7xl font-bold mt-4 text-[#fbfff1]">
+      Equipo
+    </h1>
+
+    <p class="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mt-6 leading-relaxed">
+      FIRSTHub es impulsado por estudiantes, líderes y miembros de la comunidad
+      comprometidos con crecimiento real, aprendizaje y excelencia.
+    </p>
+
+  </section>
+
+
+  <!-- GRID DE MIEMBROS -->
+  <section class="max-w-6xl mx-auto px-6 pb-16 grid md:grid-cols-2 gap-6">
+
+    <!-- ============================================== -->
+    <!-- REX -->
+    <div class="p-8 rounded-2xl bg-[#313553] border border-white/10">
+
+      <p class="text-sm text-[#48a9a6] uppercase tracking-widest">
+        Founder
+      </p>
+
+      <h2 class="text-3xl font-bold mt-3 text-[#fbfff1]">
+        Rex
+      </h2>
+
+      <p class="mt-4 text-white/70 leading-relaxed">
+        Head Coach de FRC, mentor FTC y estudiante de desarrollo de software.
+        Enfocado en liderazgo técnico, sistemas y crecimiento competitivo.
+      </p>
+
+      <a
+        href="/Equipo/rex"
+        class="inline-block mt-6 border border-[#ff8c42] text-[#ff8c42] px-5 py-3 rounded-xl font-semibold transition duration-300 hover:bg-[#ff8c42] hover:text-[#2a2d43]"
+      >
+        Ver Perfil
+      </a>
+
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- JAY -->
+    <div class="p-8 rounded-2xl bg-[#313553] border border-white/10">
+
+      <p class="text-sm text-[#48a9a6] uppercase tracking-widest">
+        CO-FOUNDER
+      </p>
+
+      <h2 class="text-3xl font-bold mt-3 text-[#fbfff1]">
+        Jay
+      </h2>
+
+      <p class="mt-4 text-white/70 leading-relaxed">
+        Miembro clave de FIRSTHub, colaborando en crecimiento,
+        operación, ideas y desarrollo futuro del proyecto.
+      </p>
+
+      <a
+        href="/Equipo/jay"
+        class="inline-block mt-6 border border-[#48a9a6] text-[#48a9a6] px-5 py-3 rounded-xl font-semibold transition duration-300 hover:bg-[#48a9a6] hover:text-[#2a2d43]"
+      >
+        Ver Perfil
+      </a>S
+
+    </div>
+
+  </section>
+
+</MainLayout>

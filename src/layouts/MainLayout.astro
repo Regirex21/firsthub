@@ -1,0 +1,90 @@
+---
+/* Importa estilos globales (Tailwind y CSS general) */
+import "../styles/global.css";
+
+/* Recibe el título dinámico de cada página */
+const { title = "FIRSTHub" } = Astro.props;
+---
+
+<html lang="es">
+<head>
+  <!-- Configuración básica -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Título que aparece en pestaña del navegador -->
+  <title>{title}</title>
+</head>
+
+<!-- 
+  BODY GENERAL DEL SITIO
+  bg-[#2a2d43] = fondo principal de marca
+  text-[#fbfff1] = texto claro cálido
+-->
+<body class="bg-[#2a2d43] text-[#fbfff1] min-h-screen flex flex-col">
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="border-b border-white/10">
+
+    <!-- 
+      max-w-6xl = ancho máximo profesional
+      mx-auto = centra contenido
+      px-6 = padding horizontal
+      py-4 = padding vertical
+    -->
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo / Nombre principal -->
+      <a 
+        href="/" 
+        class="text-xl font-bold text-[#fbfff1] hover:text-[#ff8c42] transition"
+      >
+        FIRSTHub
+      </a>
+
+      <!-- Menú de navegación -->
+      <div class="flex gap-6 text-sm font-medium">
+
+        <a href="/" class="hover:text-[#ff8c42] transition">
+          Inicio
+        </a>
+
+        <a href="/proyectos" class="hover:text-[#ff8c42] transition">
+          Proyectos
+        </a>
+
+        <a href="/docs" class="hover:text-[#48a9a6] transition">
+          Docs
+        </a>
+
+        <a href="/equipo" class="hover:text-[#ff8c42] transition">
+          Equipo
+        </a>
+
+        <a href="/contacto" class="hover:text-[#ff8c42] transition">
+          Contacto
+        </a>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================= CONTENIDO DE CADA PÁGINA ================= -->
+  <!-- Aquí entra index, projects, about, etc -->
+  <main class="flex-1">
+    <slot />
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-white/10 mt-16">
+
+    <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-[#48a9a6]">
+
+      <!-- Texto footer -->
+      © 2026 FIRSTHub — &lt;/ Aprende • Construye • Compite /&gt;
+
+    </div>
+  </footer>
+
+</body>
+</html>

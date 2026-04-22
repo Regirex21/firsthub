@@ -1,5 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
 
-// https://astro.build/config
-export default defineConfig({});
+import tailwindcss from '@tailwindcss/vite';
+
+export default defineConfig({
+  integrations: [
+    starlight({
+      title: 'FIRSTHub Docs'
+    })
+  ],
+
+  vite: {
+    plugins: [tailwindcss()]
+  }
+});

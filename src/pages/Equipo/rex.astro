@@ -1,0 +1,234 @@
+---
+/* Layout principal */
+import MainLayout from "../../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Regina Servín | FIRSTHub">
+   
+  <!-- ================================================= -->
+  <!-- HERO PERSONAL                                     -->
+  <!-- ================================================= -->
+  <section class="max-w-6xl mx-auto px-6 pt-24 pb-14 grid md:grid-cols-2 gap-12 items-center">
+
+    <!-- COLUMNA IZQUIERDA: TODO TU CONTENIDO ORIGINAL -->
+    <div>
+
+      <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+        Founder • Coach • Builder
+      </p>
+
+      <h1 class="text-5xl md:text-7xl font-bold mt-4 text-[#fbfff1]">
+        Regina Servín
+      </h1>
+
+      <p class="text-xl md:text-2xl text-[#48a9a6] mt-4 font-semibold">
+        FIRSTHub Founder | FRC Head Coach | FTC Programming Coach
+      </p>
+
+      <p class="text-lg text-white/70 max-w-4xl mt-6 leading-relaxed">
+        Líder joven enfocada en robótica competitiva, desarrollo técnico y creación
+        de sistemas que ayudan a equipos a crecer más rápido. Especializada en
+        capacitación, estructura organizacional, programación de robots y mentoría.
+      </p>
+
+      <!-- Botones -->
+      <div class="mt-10 flex flex-col md:flex-row gap-4">
+
+        <a
+          href="https://github.com/Regirex21"
+          target="_blank"
+          class="border border-[#48a9a6] text-[#48a9a6] px-6 py-3 rounded-xl font-semibold transition duration-300 hover:bg-[#48a9a6] hover:text-[#2a2d43]"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/regina-servín/"
+          target="_blank"
+          class="border border-[#ff8c42] text-[#ff8c42] px-6 py-3 rounded-xl font-semibold transition duration-300 hover:bg-[#ff8c42] hover:text-[#2a2d43]"
+        >
+          LinkedIn
+        </a>
+
+        <a
+          href="https://www.instagram.com/rex.rar/"
+          target="_blank"
+          class="border border-white/20 text-[#fbfff1] px-6 py-3 rounded-xl font-semibold transition duration-300 hover:bg-white/10"
+        >
+          Instagram
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- COLUMNA DERECHA: FOTO -->
+    <!-- Guarda tu imagen en /public/images/rex.jpg -->
+    <div class="flex justify-center md:justify-end">
+
+      <img
+        src="/images/rex.jpg"
+        alt="Regina Servín"
+        class="w-72 h-72 md:w-96 md:h-96 object-cover rounded-3xl border border-white/10 shadow-2xl"
+      />
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================================= -->
+  <!-- SOBRE REGINA                                      -->
+  <!-- ================================================= -->
+  <section class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-12">
+
+    <div>
+      <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+        Sobre Mí
+      </p>
+
+      <h2 class="text-4xl font-bold mt-4 text-[#fbfff1]">
+        Liderazgo con ejecución real.
+      </h2>
+
+      <p class="text-white/70 mt-6 leading-relaxed text-lg">
+        Mi enfoque combina dirección estratégica con trabajo técnico.
+        No solo coordino equipos: construyo procesos, entreno personas
+        y participo activamente en el desarrollo competitivo.
+      </p>
+
+      <p class="text-white/70 mt-4 leading-relaxed text-lg">
+        Creo en crear estructuras sólidas, documentar conocimiento y elevar
+        el nivel de cada equipo mediante disciplina, sistemas y cultura.
+      </p>
+    </div>
+
+    <div class="p-8 rounded-2xl bg-[#313553] border border-white/10">
+
+      <p class="text-sm uppercase tracking-widest text-[#48a9a6]">
+        Enfoque Actual
+      </p>
+
+      <ul class="mt-6 space-y-4 text-white/80">
+        <li>• Robótica competitiva FIRST</li>
+        <li>• Liderazgo técnico juvenil</li>
+        <li>• Sistemas de capacitación</li>
+        <li>• Programación de robots</li>
+        <li>• Desarrollo de proyectos digitales</li>
+        <li>• Organización de equipos de alto rendimiento</li>
+      </ul>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================================= -->
+  <!-- EXPERIENCIA FIRST                                -->
+  <!-- ================================================= -->
+  <section class="max-w-6xl mx-auto px-6 py-12">
+
+    <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+      Experiencia
+    </p>
+
+    <h2 class="text-4xl font-bold mt-4 text-[#fbfff1]">
+      Roles Activos en FIRST Robotics
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-10">
+
+      <!-- Card -->
+      <div class="p-6 rounded-2xl bg-[#313553] border border-white/10">
+        <h3 class="text-2xl font-semibold">ARIA STEAMEX 11040</h3>
+        <p class="text-[#48a9a6] mt-2">FRC Head Coach • CDMX</p>
+        <p class="mt-4 text-white/70">
+          Dirección general, estructura operativa, estrategia y desarrollo del equipo.
+        </p>
+      </div>
+
+      <!-- Card -->
+      <div class="p-6 rounded-2xl bg-[#313553] border border-white/10">
+        <h3 class="text-2xl font-semibold">Lobos Negros Delta 31983</h3>
+        <p class="text-[#48a9a6] mt-2">FTC Programming Coach • CDMX</p>
+        <p class="mt-4 text-white/70">
+          Capacitación técnica y programación competitiva.
+        </p>
+      </div>
+
+      <!-- Card -->
+      <div class="p-6 rounded-2xl bg-[#313553] border border-white/10">
+        <h3 class="text-2xl font-semibold">Desert Robotics 9060</h3>
+        <p class="text-[#48a9a6] mt-2">FRC Mentor • Tecmilenio Hermosillo</p>
+        <p class="mt-4 text-white/70">
+          Mentoría y apoyo estratégico para crecimiento del equipo.
+        </p>
+      </div>
+
+      <!-- Card -->
+      <div class="p-6 rounded-2xl bg-[#313553] border border-white/10">
+        <h3 class="text-2xl font-semibold">Project STEAMEX</h3>
+        <p class="text-[#48a9a6] mt-2">Asesor General • Nacional</p>
+        <p class="mt-4 text-white/70">
+          Soporte integral para múltiples equipos de la familia STEAMex tanto en FTC como en FRC.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================================= -->
+  <!-- SKILLS                                            -->
+  <!-- ================================================= -->
+  <section class="max-w-6xl mx-auto px-6 py-12">
+
+    <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+      Skills
+    </p>
+
+    <h2 class="text-4xl font-bold mt-4 text-[#fbfff1]">
+      Capacidades Principales
+    </h2>
+
+    <div class="flex flex-wrap gap-3 mt-8">
+
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">Java</span>
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">Python</span>
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">Git</span>
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">WPILib</span>
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">HTML</span>
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">CSS</span>
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">Electrónica</span>
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">Leadership</span>
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">Project Management</span>
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">Recruitment</span>
+      <span class="px-4 py-2 rounded-xl bg-[#313553]">Training Systems</span>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================================= -->
+  <!-- FRASE FINAL                                       -->
+  <!-- ================================================= -->
+  <section class="max-w-6xl mx-auto px-6 py-16 text-center">
+
+    <h2 class="text-3xl md:text-5xl font-bold text-[#fbfff1]">
+        Construir equipos fuertes comienza con construir sistemas fuertes.
+    </h2>
+
+    <p class="mt-6 text-white/70 text-lg">
+        FIRSTHub es una extensión de esa filosofía.
+    </p>
+
+    <p class="mt-1 text-sm uppercase text-[#48a9a6]">
+        Sic Parvis Magna
+    </p>
+
+  </section>
+
+</MainLayout>

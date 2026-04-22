@@ -1,11 +1,150 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+/* Importa el layout principal del sitio */
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!-- 
+  Página principal / Home
+  Usa el MainLayout para heredar navbar, footer y estilos globales
+-->
+<MainLayout title="FIRSTHub">
+
+  <!-- ================================================= -->
+  <!-- HERO PRINCIPAL                                    -->
+  <!-- Primera sección que ve el usuario                 -->
+  <!-- ================================================= -->
+  <section class="max-w-6xl mx-auto px-6 pt-12 pb-12  text-center">
+
+    <!-- Slogan de marca -->
+    <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+      &lt;/ Aprende • Construye • Compite /&gt;
+    </p>
+
+    <!-- Título principal -->
+    <h1 class="text-5xl md:text-7xl font-bold mt-4 text-[#fbfff1]">
+      FIRSTHub
+    </h1>
+
+    <!-- Descripción corta -->
+    <p class="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mt-6 leading-relaxed">
+      Democratizando el acceso a recursos de FTC y FRC para estudiantes,
+      mentores y voluntarios. Creado por FIRST Alumni para impulsar
+      crecimiento técnico, liderazgo y comunidad.
+    </p>
+
+    <!-- Botones principales -->
+    <div class="mt-10 flex flex-col md:flex-row gap-4 justify-center">
+
+     <!-- CTA principal Docs -->
+	<a
+  		href="/docs"
+  		class="border border-[#ff8c42] text-[#ff8c42] px-6 py-3 rounded-xl font-semibold transition duration-300 ease-in-out hover:bg-[#ff8c42] hover:text-[#2a2d43]">
+  		Explorar Docs
+	</a>
+
+	<!-- CTA secundario Projects -->
+	<a
+  		href="/projects"
+  		class="border border-[#48a9a6] text-[#fbfff1] px-6 py-3 rounded-xl transition duration-300 hover:bg-[#48a9a6] hover:text-[#2a2d43]">
+  		Ver Proyectos
+	</a>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================================= -->
+  <!-- MISIÓN Y VISIÓN                                   -->
+  <!-- Refuerza propósito de la organización             -->
+  <!-- ================================================= -->
+  <section class="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-12">
+
+    <!-- MISIÓN -->
+    <div>
+
+      <p class="text-[#ff8c42] font-semibold uppercase tracking-widest">
+        Nuestra Misión
+      </p>
+
+      <h2 class="text-4xl font-bold mt-4 text-[#fbfff1]">
+        Democratizar el acceso al conocimiento en FIRST.
+      </h2>
+
+      <p class="text-white/70 mt-6 text-lg leading-relaxed">
+        Queremos que cualquier estudiante, mentor o voluntario pueda acceder
+        a recursos de calidad, guía técnica y apoyo comunitario sin importar
+        su contexto.
+      </p>
+
+    </div>
+
+    <!-- VISIÓN -->
+    <div>
+
+      <p class="text-[#ff8c42] font-semibold uppercase tracking-widest">
+        Nuestra Visión
+      </p>
+
+      <h2 class="text-4xl font-bold mt-4 text-[#fbfff1]">
+        Construir una comunidad más fuerte y preparada.
+      </h2>
+
+      <p class="text-white/70 mt-6 text-lg leading-relaxed">
+        Aspiramos a elevar el nivel técnico, humano y competitivo de los equipos
+        mediante colaboración, mentoría y aprendizaje continuo.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================================= -->
+  <!-- TARJETAS DE VALOR                                 -->
+  <!-- Qué ofrece FIRSTHub                              -->
+  <!-- ================================================= -->
+  <section class="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-6">
+
+    <!-- Card 1 -->
+    <div class="p-6 rounded-2xl bg-[#313553] border border-white/10">
+
+      <h3 class="text-xl font-semibold text-[#fbfff1]">
+        Capacitación
+      </h3>
+
+      <p class="mt-3 text-white/70 leading-relaxed">
+        Manuales, sistemas de entrenamiento y rutas de aprendizaje.
+      </p>
+
+    </div>
+
+    <!-- Card 2 -->
+    <div class="p-6 rounded-2xl bg-[#313553] border border-white/10">
+
+      <h3 class="text-xl font-semibold text-[#fbfff1]">
+        Competencia
+      </h3>
+
+      <p class="mt-3 text-white/70 leading-relaxed">
+        Recursos reales para FRC y FTC orientados a rendimiento.
+      </p>
+
+    </div>
+
+    <!-- Card 3 -->
+    <div class="p-6 rounded-2xl bg-[#313553] border border-white/10">
+
+      <h3 class="text-xl font-semibold text-[#fbfff1]">
+        Proyectos
+      </h3>
+
+      <p class="mt-3 text-white/70 leading-relaxed">
+        Software, herramientas y mejoras construidas por el equipo.
+      </p>
+
+    </div>
+
+  </section>
+
+</MainLayout>
