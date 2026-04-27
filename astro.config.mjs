@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
+import SpeedInsights from "@vercel/speed-insights/astro"
 
 export default defineConfig({
   site: "http://localhost:4321",
