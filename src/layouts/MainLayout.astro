@@ -24,9 +24,16 @@ const { title = "FIRSTHub" } = Astro.props;
       <div class="flex items-center justify-between">
 
         <!-- LOGO -->
-        <a href="/" class="text-2xl font-bold text-[#fbfff1]">
-          FIRSTHub
-        </a>
+<a
+  href="/"
+  class="flex items-center gap-3 text-2xl font-bold text-[#fbfff1] hover:opacity-90 transition"
+>
+  <img
+    src="/images/firsthub_logo.svg"
+    alt="FIRSTHub Logo"
+    class="h-12 w-auto"
+  />
+</a>
 
         <!-- MENÚ DESKTOP -->
         <div class="hidden md:flex gap-6 text-sm font-medium">
@@ -115,7 +122,7 @@ const { title = "FIRSTHub" } = Astro.props;
   <!-- FOOTER -->
   <footer class="border-t border-white/10 mt-20">
     <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-white/50">
-      © 2026 FIRSTHub. &lt;/ Aprende • Construye • Compite /&gt;
+      ©2026.      &lt;/ Aprende • Construye • Compite /&gt;
     </div>
   </footer>
 
