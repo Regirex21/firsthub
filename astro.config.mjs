@@ -4,7 +4,7 @@ import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "http://localhost:4321",
+  site: "https://firsthub.dev",
   integrations: [
     starlight({
       title: "FIRSTHub Docs"

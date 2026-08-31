@@ -3,17 +3,15 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import SpeedInsights from "@vercel/speed-insights/astro"
 import Analytics from '@vercel/analytics/astro'
-
 ---
+
 <!-- 
   Página principal / Home
-  Usa el MainLayout para heredar navbar, footer y estilos globales
 -->
 <MainLayout title="FIRSTHub">
 
   <!-- ================================================= -->
   <!-- HERO PRINCIPAL                                    -->
-  <!-- Primera sección que ve el usuario                 -->
   <!-- ================================================= -->
   <section class="max-w-6xl mx-auto px-6 pt-12 pb-12  text-center">
 
@@ -39,7 +37,7 @@ import Analytics from '@vercel/analytics/astro'
 
      <!-- CTA principal Docs -->
 	<a
-  		href="https://firsthub-docs.vercel.app"
+  		href="/docs"
   		class="border border-[#ff8c42] text-[#ff8c42] px-6 py-3 rounded-xl font-semibold transition duration-300 ease-in-out hover:bg-[#ff8c42] hover:text-[#2a2d43]">
   		Explorar Docs
 	</a>
