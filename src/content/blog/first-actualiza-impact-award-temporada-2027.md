@@ -4,10 +4,10 @@ resumen: "Nuevo orden de premiación, cambios al formulario de aplicación y má
 fecha: 2026-09-08
 categoria: frc
 autor:
-  nombre: Nick
+  nombre: Rex
 tags: ["impact-award", "temporada-2027", "premios", "frc"]
 destacado: false
-borrador: true
+borrador: false
 ---
 
 FIRST anunció una serie de cambios al **FIRST Impact Award**, el premio más importante de FRC, que entran en vigor para la temporada 2027. Los cambios tocan tres áreas: el orden en el que se presenta el premio durante los playoffs, el formulario de aplicación, y el reconocimiento que reciben los equipos que aplican. Aquí te explicamos cada uno.
