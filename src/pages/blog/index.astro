@@ -21,7 +21,8 @@ const posts = await getPosts();
 /* La entrada marcada como destacada encabeza la página;
    si no hay ninguna, se usa la más reciente */
 const destacado = posts.find((p) => p.data.destacado) ?? posts[0];
-const resto = posts.filter((p) => p.id !== destacado?.id);
+const resto =
+  posts.length > 1 ? posts.filter((p) => p.id !== destacado?.id) : posts;
 
 const tags = tagsDe(posts);
 const conteo = Object.fromEntries(
