@@ -1,0 +1,111 @@
+---
+/* ================================================= */
+/* PÁGINA POR PROGRAMA: /blog/categoria/ftc, /frc,   */
+/* /general — enlaces limpios para compartir y para  */
+/* que Google indexe cada sección por separado       */
+/* ================================================= */
+import MainLayout from "../../../layouts/MainLayout.astro";
+import PostCard from "../../../components/PostCard.astro";
+import {
+  getPosts,
+  CATEGORIAS,
+  CATEGORIAS_LISTA,
+  type Categoria,
+  type Post,
+} from "../../../lib/blog";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return CATEGORIAS_LISTA.map((categoria) => ({
+    params: { categoria },
+    props: {
+      categoria,
+      posts: posts.filter((p) => p.data.categoria === categoria),
+    },
+  }));
+}
+
+interface Props {
+  categoria: Categoria;
+  posts: Post[];
+}
+
+const { categoria, posts } = Astro.props;
+const c = CATEGORIAS[categoria];
+---
+
+<MainLayout
+  title={`${c.etiqueta} | Blog de FIRSTHub`}
+  description={c.descripcion}
+>
+
+  <!-- HERO -->
+  <section class="max-w-6xl mx-auto px-6 pt-12 pb-10 text-center">
+
+    <nav class="flex items-center justify-center gap-2 text-sm text-white/40">
+      <a href="/blog" class="hover:text-[#ff8c42] transition">Blog</a>
+      <span aria-hidden="true">/</span>
+      <span>{c.etiqueta}</span>
+    </nav>
+
+    <h1
+      class="text-5xl md:text-7xl font-bold mt-6"
+      style={`color:${c.color}`}
+    >
+      {c.etiqueta}
+    </h1>
+
+    <p class="text-sm uppercase tracking-widest text-white/40 mt-3">
+      {c.nombre}
+    </p>
+
+    <p class="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mt-6 leading-relaxed">
+      {c.descripcion}
+    </p>
+
+  </section>
+
+
+  <!-- OTROS PROGRAMAS -->
+  <section class="max-w-6xl mx-auto px-6 pb-8 flex flex-wrap justify-center gap-3">
+
+    <a
+      href="/blog"
+      class="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/60 transition duration-300 hover:text-white"
+    >
+      Todas
+    </a>
+
+    {CATEGORIAS_LISTA.map((otra) => (
+      <a
+        href={`/blog/categoria/${otra}`}
+        class="rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest transition duration-300 hover:brightness-125"
+        style={
+          otra === categoria
+            ? `color:${CATEGORIAS[otra].color};border-color:${CATEGORIAS[otra].color}59;background-color:${CATEGORIAS[otra].color}1f;`
+            : "color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.15);"
+        }
+      >
+        {CATEGORIAS[otra].etiqueta}
+      </a>
+    ))}
+
+  </section>
+
+
+  <!-- ENTRADAS -->
+  {posts.length > 0 ? (
+    <section class="max-w-6xl mx-auto px-6 pb-20 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post) => <PostCard post={post} />)}
+    </section>
+  ) : (
+    <section class="max-w-3xl mx-auto px-6 pb-24 text-center">
+      <div class="rounded-2xl border border-dashed border-white/15 bg-[#313553] p-12">
+        <p class="text-white/70">
+          Todavía no hay entradas en {c.etiqueta}. Pronto habrá.
+        </p>
+      </div>
+    </section>
+  )}
+
+</MainLayout>

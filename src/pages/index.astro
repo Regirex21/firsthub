@@ -1,8 +1,11 @@
 ---
 /* Importa el layout principal del sitio */
 import MainLayout from "../layouts/MainLayout.astro";
-import SpeedInsights from "@vercel/speed-insights/astro"
-import Analytics from '@vercel/analytics/astro'
+import PostCard from "../components/PostCard.astro";
+import { getPosts } from "../lib/blog";
+
+/* Las tres entradas más recientes del blog */
+const ultimas = (await getPosts()).slice(0, 3);
 ---
 
 <!-- 
@@ -146,5 +149,46 @@ import Analytics from '@vercel/analytics/astro'
     </div>
 
   </section>
+
+
+  <!-- ================================================= -->
+  <!-- ÚLTIMAS DEL BLOG                                  -->
+  <!-- Noticias, traducciones e insights recientes       -->
+  <!-- ================================================= -->
+  {ultimas.length > 0 && (
+    <section class="max-w-6xl mx-auto px-6 py-12">
+
+      <div class="flex flex-wrap items-end justify-between gap-4">
+
+        <div>
+          <p class="text-[#ff8c42] font-semibold uppercase tracking-widest">
+            Del blog
+          </p>
+
+          <h2 class="text-4xl font-bold mt-4 text-[#fbfff1]">
+            Lo último de la comunidad.
+          </h2>
+
+          <p class="text-white/70 mt-4 text-lg leading-relaxed max-w-2xl">
+            Newsletters traducidos al español, cambios de reglas y aprendizajes
+            de equipos, en FTC, FRC y todo lo que cruza los dos programas.
+          </p>
+        </div>
+
+        <a
+          href="/blog"
+          class="border border-[#ff8c42] text-[#ff8c42] px-5 py-2.5 rounded-xl font-semibold transition duration-300 hover:bg-[#ff8c42] hover:text-[#2a2d43]"
+        >
+          Ver todo el blog
+        </a>
+
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {ultimas.map((post) => <PostCard post={post} />)}
+      </div>
+
+    </section>
+  )}
 
 </MainLayout>

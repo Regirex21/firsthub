@@ -1,0 +1,72 @@
+---
+/* Tarjeta de entrada usada en el índice del blog,
+   en las páginas de categoría y en el home */
+import CategoriaBadge from "./CategoriaBadge.astro";
+import { formatoFechaCorta, tiempoLectura, type Post } from "../lib/blog";
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { titulo, resumen, fecha, categoria, tags, autor, fuente } = post.data;
+const minutos = tiempoLectura(post.body);
+---
+
+<article
+  class="group flex h-full flex-col rounded-2xl border border-white/10 bg-[#313553] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/25"
+  data-categoria={categoria}
+  data-tags={tags.join("|")}
+>
+
+  <!-- CABECERA: categoría + fecha -->
+  <div class="flex items-center justify-between gap-3">
+    <CategoriaBadge categoria={categoria} />
+    <time
+      datetime={fecha.toISOString()}
+      class="text-xs text-white/40 whitespace-nowrap"
+    >
+      {formatoFechaCorta(fecha)}
+    </time>
+  </div>
+
+  <!-- TÍTULO -->
+  <h3 class="mt-4 text-xl font-semibold leading-snug text-[#fbfff1]">
+    <a
+      href={`/blog/${post.id}`}
+      class="transition duration-300 group-hover:text-[#ff8c42]"
+    >
+      {titulo}
+    </a>
+  </h3>
+
+  <!-- RESUMEN -->
+  <p class="mt-3 flex-1 leading-relaxed text-white/70">
+    {resumen}
+  </p>
+
+  <!-- ETIQUETAS -->
+  {tags.length > 0 && (
+    <div class="mt-5 flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span class="rounded-md bg-white/5 px-2 py-1 text-[11px] text-white/50">
+          #{tag}
+        </span>
+      ))}
+    </div>
+  )}
+
+  <!-- PIE: autor, lectura y aviso de traducción -->
+  <div
+    class="mt-5 flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs text-white/40"
+  >
+    <span class="truncate">{autor.nombre}</span>
+    <span class="flex items-center gap-2 whitespace-nowrap">
+      {fuente?.traduccion && (
+        <span class="text-[#48a9a6]">Traducción</span>
+      )}
+      <span>{minutos} min</span>
+    </span>
+  </div>
+
+</article>

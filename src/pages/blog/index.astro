@@ -1,0 +1,302 @@
+---
+/* ================================================= */
+/* ÍNDICE DEL BLOG                                   */
+/* Entrada destacada + filtros por programa y        */
+/* etiqueta + grid de todas las entradas             */
+/* ================================================= */
+import MainLayout from "../../layouts/MainLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import CategoriaBadge from "../../components/CategoriaBadge.astro";
+import {
+  getPosts,
+  tagsDe,
+  formatoFecha,
+  tiempoLectura,
+  CATEGORIAS,
+  CATEGORIAS_LISTA,
+} from "../../lib/blog";
+
+const posts = await getPosts();
+
+/* La entrada marcada como destacada encabeza la página;
+   si no hay ninguna, se usa la más reciente */
+const destacado = posts.find((p) => p.data.destacado) ?? posts[0];
+const resto = posts.filter((p) => p.id !== destacado?.id);
+
+const tags = tagsDe(posts);
+const conteo = Object.fromEntries(
+  CATEGORIAS_LISTA.map((c) => [c, posts.filter((p) => p.data.categoria === c).length])
+);
+---
+
+<MainLayout
+  title="Blog | FIRSTHub"
+  description="Noticias, newsletters traducidos al español e insights sobre FTC, FRC y el ecosistema FIRST."
+>
+
+  <!-- ================================================= -->
+  <!-- HERO                                              -->
+  <!-- ================================================= -->
+  <section class="max-w-6xl mx-auto px-6 pt-12 pb-10 text-center">
+
+    <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+      Noticias • Traducciones • Insights
+    </p>
+
+    <h1 class="text-5xl md:text-7xl font-bold mt-4 text-[#fbfff1]">
+      Blog
+    </h1>
+
+    <p class="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mt-6 leading-relaxed">
+      Newsletters de FIRST traducidos al español, análisis de reglas,
+      anuncios de temporada y aprendizajes de la comunidad. Todo en un solo lugar.
+    </p>
+
+  </section>
+
+
+  {posts.length === 0 ? (
+
+    <!-- ESTADO VACÍO -->
+    <section class="max-w-3xl mx-auto px-6 pb-24 text-center">
+      <div class="rounded-2xl border border-dashed border-white/15 bg-[#313553] p-12">
+        <h2 class="text-2xl font-semibold text-[#fbfff1]">
+          Todavía no hay entradas publicadas
+        </h2>
+        <p class="mt-4 text-white/70 leading-relaxed">
+          Agrega un archivo <code class="text-[#ff8c42]">.md</code> en
+          <code class="text-[#ff8c42]">src/content/blog/</code> y aparecerá aquí
+          en el siguiente despliegue.
+        </p>
+      </div>
+    </section>
+
+  ) : (
+
+    <>
+
+      <!-- ================================================= -->
+      <!-- ENTRADA DESTACADA                                 -->
+      <!-- ================================================= -->
+      <section class="max-w-6xl mx-auto px-6 pb-12">
+
+        <a
+          href={`/blog/${destacado.id}`}
+          class="group block rounded-2xl border border-white/10 bg-[#313553] p-8 md:p-12 transition duration-300 hover:-translate-y-1 hover:border-[#ff8c42]/50"
+        >
+
+          <div class="flex flex-wrap items-center gap-3">
+            <CategoriaBadge categoria={destacado.data.categoria} tamano="md" />
+            <span class="text-xs uppercase tracking-widest text-white/40">
+              Destacado
+            </span>
+          </div>
+
+          <h2 class="mt-6 text-3xl md:text-5xl font-bold leading-tight text-[#fbfff1] transition duration-300 group-hover:text-[#ff8c42]">
+            {destacado.data.titulo}
+          </h2>
+
+          <p class="mt-5 max-w-3xl text-lg leading-relaxed text-white/70">
+            {destacado.data.resumen}
+          </p>
+
+          <p class="mt-8 text-sm text-white/40">
+            {destacado.data.autor.nombre} · {formatoFecha(destacado.data.fecha)} ·
+            {" "}{tiempoLectura(destacado.body)} min de lectura
+          </p>
+
+        </a>
+
+      </section>
+
+
+      <!-- ================================================= -->
+      <!-- FILTROS                                           -->
+      <!-- ================================================= -->
+      <section class="max-w-6xl mx-auto px-6 pb-8">
+
+        <!-- POR PROGRAMA -->
+        <div class="flex flex-wrap items-center gap-3" id="filtros-categoria">
+
+          <button
+            type="button"
+            data-filtro="todas"
+            aria-pressed="true"
+            class="filtro-cat rounded-full border border-[#fbfff1]/60 bg-[#fbfff1]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#fbfff1] transition duration-300"
+          >
+            Todas
+            <span class="ml-1 text-white/40">{posts.length}</span>
+          </button>
+
+          {CATEGORIAS_LISTA.map((cat) => (
+            <button
+              type="button"
+              data-filtro={cat}
+              aria-pressed="false"
+              class="filtro-cat rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/60 transition duration-300 hover:text-white"
+              style={`--c:${CATEGORIAS[cat].color}`}
+            >
+              {CATEGORIAS[cat].etiqueta}
+              <span class="ml-1 text-white/30">{conteo[cat]}</span>
+            </button>
+          ))}
+
+        </div>
+
+        <!-- POR ETIQUETA -->
+        {tags.length > 0 && (
+          <div class="mt-4 flex flex-wrap items-center gap-2" id="filtros-tag">
+            <span class="text-xs uppercase tracking-widest text-white/30 mr-1">
+              Temas
+            </span>
+            {tags.map((tag) => (
+              <button
+                type="button"
+                data-tag={tag}
+                aria-pressed="false"
+                class="filtro-tag rounded-md border border-transparent bg-white/5 px-2.5 py-1 text-[11px] text-white/50 transition duration-300 hover:text-white"
+              >
+                #{tag}
+              </button>
+            ))}
+          </div>
+        )}
+
+      </section>
+
+
+      <!-- ================================================= -->
+      <!-- GRID DE ENTRADAS                                  -->
+      <!-- ================================================= -->
+      <section
+        id="grid-posts"
+        class="max-w-6xl mx-auto px-6 pb-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        {resto.map((post) => <PostCard post={post} />)}
+      </section>
+
+      <!-- SIN RESULTADOS AL FILTRAR -->
+      <p
+        id="sin-resultados"
+        class="hidden max-w-6xl mx-auto px-6 pb-8 text-center text-white/50"
+      >
+        No hay entradas con esa combinación de filtros.
+      </p>
+
+
+      <!-- ================================================= -->
+      <!-- SUSCRIPCIÓN / RSS                                 -->
+      <!-- ================================================= -->
+      <section class="max-w-6xl mx-auto px-6 pb-20">
+
+        <div class="rounded-2xl border border-white/10 bg-[#313553] p-8 text-center">
+
+          <h2 class="text-2xl md:text-3xl font-bold text-[#fbfff1]">
+            No te pierdas ninguna noticia
+          </h2>
+
+          <p class="mt-4 text-white/70 leading-relaxed">
+            Sigue el blog por RSS o entra a la comunidad de WhatsApp
+            para recibir cada publicación.
+          </p>
+
+          <div class="mt-8 flex flex-col md:flex-row gap-4 justify-center">
+
+            <a
+              href="/blog/rss.xml"
+              class="border border-[#ff8c42] text-[#ff8c42] px-6 py-3 rounded-xl font-semibold transition duration-300 hover:bg-[#ff8c42] hover:text-[#2a2d43]"
+            >
+              Suscribirse por RSS
+            </a>
+
+            <a
+              href="/contacto"
+              class="border border-[#48a9a6] text-[#fbfff1] px-6 py-3 rounded-xl transition duration-300 hover:bg-[#48a9a6] hover:text-[#2a2d43]"
+            >
+              Unirse a la comunidad
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </>
+
+  )}
+
+  <!-- ================================================= -->
+  <!-- FILTRADO EN EL NAVEGADOR                          -->
+  <!-- Sin recargar la página: se muestran u ocultan     -->
+  <!-- las tarjetas según programa y etiqueta            -->
+  <!-- ================================================= -->
+  <script>
+    const grid = document.getElementById("grid-posts");
+
+    if (grid) {
+      const tarjetas = Array.from(grid.children) as HTMLElement[];
+      const botonesCat = Array.from(
+        document.querySelectorAll<HTMLButtonElement>(".filtro-cat")
+      );
+      const botonesTag = Array.from(
+        document.querySelectorAll<HTMLButtonElement>(".filtro-tag")
+      );
+      const vacio = document.getElementById("sin-resultados");
+
+      let categoria = "todas";
+      let tag: string | null = null;
+
+      const ACTIVO_CAT = ["border-[#fbfff1]/60", "bg-[#fbfff1]/10", "text-[#fbfff1]"];
+      const INACTIVO_CAT = ["border-white/15", "text-white/60"];
+      const ACTIVO_TAG = ["bg-white/15", "text-white"];
+      const INACTIVO_TAG = ["bg-white/5", "text-white/50"];
+
+      function pintar() {
+        for (const boton of botonesCat) {
+          const activo = boton.dataset.filtro === categoria;
+          boton.setAttribute("aria-pressed", String(activo));
+          boton.classList.remove(...ACTIVO_CAT, ...INACTIVO_CAT);
+          boton.classList.add(...(activo ? ACTIVO_CAT : INACTIVO_CAT));
+        }
+
+        for (const boton of botonesTag) {
+          const activo = boton.dataset.tag === tag;
+          boton.setAttribute("aria-pressed", String(activo));
+          boton.classList.remove(...ACTIVO_TAG, ...INACTIVO_TAG);
+          boton.classList.add(...(activo ? ACTIVO_TAG : INACTIVO_TAG));
+        }
+
+        let visibles = 0;
+        for (const tarjeta of tarjetas) {
+          const suCategoria = tarjeta.dataset.categoria ?? "";
+          const susTags = (tarjeta.dataset.tags ?? "").split("|").filter(Boolean);
+          const pasaCategoria = categoria === "todas" || suCategoria === categoria;
+          const pasaTag = tag === null || susTags.includes(tag);
+          const visible = pasaCategoria && pasaTag;
+          tarjeta.classList.toggle("hidden", !visible);
+          if (visible) visibles++;
+        }
+
+        vacio?.classList.toggle("hidden", visibles > 0);
+      }
+
+      for (const boton of botonesCat) {
+        boton.addEventListener("click", () => {
+          categoria = boton.dataset.filtro ?? "todas";
+          pintar();
+        });
+      }
+
+      for (const boton of botonesTag) {
+        boton.addEventListener("click", () => {
+          tag = boton.dataset.tag === tag ? null : (boton.dataset.tag ?? null);
+          pintar();
+        });
+      }
+
+      pintar();
+    }
+  </script>
+
+</MainLayout>

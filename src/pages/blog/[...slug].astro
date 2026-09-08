@@ -1,0 +1,196 @@
+---
+/* ================================================= */
+/* ENTRADA INDIVIDUAL DEL BLOG                       */
+/* ================================================= */
+import { render } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import CategoriaBadge from "../../components/CategoriaBadge.astro";
+import PostCard from "../../components/PostCard.astro";
+import {
+  getPosts,
+  formatoFecha,
+  tiempoLectura,
+  CATEGORIAS,
+  type Post,
+} from "../../lib/blog";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      /* Ordenadas de más nueva a más vieja: la siguiente en el
+         array es la anterior en el tiempo */
+      anterior: posts[i + 1] ?? null,
+      siguiente: posts[i - 1] ?? null,
+      relacionadas: posts
+        .filter((p) => p.id !== post.id && p.data.categoria === post.data.categoria)
+        .slice(0, 3),
+    },
+  }));
+}
+
+interface Props {
+  post: Post;
+  anterior: Post | null;
+  siguiente: Post | null;
+  relacionadas: Post[];
+}
+
+const { post, anterior, siguiente, relacionadas } = Astro.props;
+const { titulo, resumen, fecha, categoria, tags, autor, fuente } = post.data;
+const { Content } = await render(post);
+const c = CATEGORIAS[categoria];
+---
+
+<MainLayout
+  title={`${titulo} | FIRSTHub`}
+  description={resumen}
+  tipo="article"
+>
+
+  <!-- ================================================= -->
+  <!-- CABECERA DE LA ENTRADA                            -->
+  <!-- ================================================= -->
+  <article>
+
+    <header
+      class="border-b border-white/10"
+      style={`background:linear-gradient(180deg, ${c.color}14 0%, transparent 100%)`}
+    >
+      <div class="max-w-3xl mx-auto px-6 pt-10 pb-12">
+
+        <!-- MIGA DE PAN -->
+        <nav class="flex items-center gap-2 text-sm text-white/40">
+          <a href="/blog" class="hover:text-[#ff8c42] transition">Blog</a>
+          <span aria-hidden="true">/</span>
+          <a
+            href={`/blog/categoria/${categoria}`}
+            class="hover:text-[#ff8c42] transition"
+          >
+            {c.etiqueta}
+          </a>
+        </nav>
+
+        <div class="mt-6">
+          <CategoriaBadge categoria={categoria} tamano="md" enlace={true} />
+        </div>
+
+        <h1 class="mt-6 text-4xl md:text-5xl font-bold leading-tight text-[#fbfff1]">
+          {titulo}
+        </h1>
+
+        <p class="mt-5 text-lg leading-relaxed text-white/70">
+          {resumen}
+        </p>
+
+        <!-- METADATOS -->
+        <div class="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/40">
+          <span class="text-[#fbfff1]/80">{autor.nombre}</span>
+          {autor.rol && <span>· {autor.rol}</span>}
+          <span aria-hidden="true">·</span>
+          <time datetime={fecha.toISOString()}>{formatoFecha(fecha)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{tiempoLectura(post.body)} min de lectura</span>
+        </div>
+
+      </div>
+    </header>
+
+
+    <div class="max-w-3xl mx-auto px-6 py-12">
+
+      <!-- AVISO DE FUENTE ORIGINAL -->
+      {fuente && (
+        <aside
+          class="mb-10 rounded-2xl border border-white/10 bg-[#313553] p-5"
+        >
+          <p class="text-xs uppercase tracking-widest text-[#48a9a6]">
+            {fuente.traduccion ? "Traducción · Fuente original" : "Fuente original"}
+          </p>
+          <a
+            href={fuente.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-2 inline-block text-[#fbfff1] underline decoration-white/20 underline-offset-4 transition hover:text-[#ff8c42] hover:decoration-[#ff8c42]"
+          >
+            {fuente.titulo} ↗
+          </a>
+          {fuente.traduccion && (
+            <p class="mt-2 text-sm leading-relaxed text-white/50">
+              Esta entrada es una traducción al español hecha por FIRSTHub.
+              El documento oficial es el original en inglés.
+            </p>
+          )}
+        </aside>
+      )}
+
+      <!-- CUERPO -->
+      <div class="prosa">
+        <Content />
+      </div>
+
+      <!-- ETIQUETAS -->
+      {tags.length > 0 && (
+        <div class="mt-12 flex flex-wrap gap-2 border-t border-white/10 pt-8">
+          {tags.map((tag) => (
+            <span class="rounded-md bg-white/5 px-3 py-1.5 text-xs text-white/50">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <!-- NAVEGACIÓN ENTRE ENTRADAS -->
+      <nav class="mt-10 grid gap-4 md:grid-cols-2">
+
+        {anterior ? (
+          <a
+            href={`/blog/${anterior.id}`}
+            class="rounded-2xl border border-white/10 bg-[#313553] p-5 transition duration-300 hover:-translate-y-1 hover:border-white/25"
+          >
+            <p class="text-xs uppercase tracking-widest text-white/40">
+              Entrada anterior
+            </p>
+            <p class="mt-2 font-semibold text-[#fbfff1]">{anterior.data.titulo}</p>
+          </a>
+        ) : <div></div>}
+
+        {siguiente && (
+          <a
+            href={`/blog/${siguiente.id}`}
+            class="rounded-2xl border border-white/10 bg-[#313553] p-5 text-right transition duration-300 hover:-translate-y-1 hover:border-white/25"
+          >
+            <p class="text-xs uppercase tracking-widest text-white/40">
+              Entrada siguiente
+            </p>
+            <p class="mt-2 font-semibold text-[#fbfff1]">{siguiente.data.titulo}</p>
+          </a>
+        )}
+
+      </nav>
+
+    </div>
+
+  </article>
+
+
+  <!-- ================================================= -->
+  <!-- RELACIONADAS                                      -->
+  <!-- ================================================= -->
+  {relacionadas.length > 0 && (
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+
+      <h2 class="text-2xl font-bold text-[#fbfff1]">
+        Más de {c.etiqueta}
+      </h2>
+
+      <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {relacionadas.map((p) => <PostCard post={p} />)}
+      </div>
+
+    </section>
+  )}
+
+</MainLayout>

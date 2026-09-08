@@ -3,16 +3,53 @@ import "../styles/global.css";
 import SpeedInsights from "@vercel/speed-insights/astro"
 import Analytics from '@vercel/analytics/astro'
 
+const {
+  title = "FIRSTHub",
+  description = "Democratizando el acceso a recursos de FTC y FRC para estudiantes, mentores y voluntarios.",
+  /* "website" para páginas normales, "article" para entradas del blog */
+  tipo = "website",
+} = Astro.props;
 
-const { title = "FIRSTHub" } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://firsthub.dev");
+
+/* Marca el enlace del menú que corresponde a la página actual */
+const ruta = Astro.url.pathname;
+const enlaces = [
+  { href: "/", texto: "Inicio" },
+  { href: "/blog", texto: "Blog" },
+  { href: "/proyectos", texto: "Proyectos" },
+  { href: "/docs", texto: "Docs" },
+  { href: "/equipo", texto: "Equipo" },
+  { href: "/contacto", texto: "Contacto" },
+];
+const esActivo = (href: string) =>
+  href === "/" ? ruta === "/" : ruta === href || ruta.startsWith(href + "/");
 ---
 
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>{title}</title>
+
+  <!-- SEO / REDES SOCIALES -->
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:site_name" content="FIRSTHub" />
+  <meta property="og:type" content={tipo} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- RSS DEL BLOG -->
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title="Blog de FIRSTHub"
+    href="/blog/rss.xml"
+  />
 </head>
 
 <body class="bg-[#2a2d43] text-white min-h-screen flex flex-col">
@@ -30,43 +67,31 @@ const { title = "FIRSTHub" } = Astro.props;
       <div class="flex items-center justify-between">
 
         <!-- LOGO -->
-<a
-  href="/"
-  class="flex items-center gap-3 text-2xl font-bold text-[#fbfff1] hover:opacity-90 transition"
->
-  <img
-    src="/images/firsthub_logo.svg"
-    alt="FIRSTHub Logo"
-    class="h-12 w-auto"
-  />
-</a>
+        <a
+          href="/"
+          class="flex items-center gap-3 text-2xl font-bold text-[#fbfff1] hover:opacity-90 transition"
+        >
+          <img
+            src="/images/firsthub_logo.svg"
+            alt="FIRSTHub Logo"
+            class="h-12 w-auto"
+          />
+        </a>
 
         <!-- MENÚ DESKTOP -->
         <div class="hidden md:flex gap-6 text-sm font-medium">
-
-          <a href="/" class="hover:text-[#ff8c42] transition">
-            Inicio
-          </a>
-
-          <a href="/proyectos" class="hover:text-[#ff8c42] transition">
-            Proyectos
-          </a>
-
-          <!-- DOCS EXTERNO -->
-          <a
-  href="/docs"
->
-  Docs
-</a>
-
-          <a href="/equipo" class="hover:text-[#ff8c42] transition">
-            Equipo
-          </a>
-
-          <a href="/contacto" class="hover:text-[#ff8c42] transition">
-            Contacto
-          </a>
-
+          {enlaces.map((enlace) => (
+            <a
+              href={enlace.href}
+              aria-current={esActivo(enlace.href) ? "page" : undefined}
+              class:list={[
+                "transition hover:text-[#ff8c42]",
+                esActivo(enlace.href) ? "text-[#ff8c42]" : "",
+              ]}
+            >
+              {enlace.texto}
+            </a>
+          ))}
         </div>
 
         <!-- BOTÓN HAMBURGUESA -->
@@ -85,31 +110,19 @@ const { title = "FIRSTHub" } = Astro.props;
         id="mobile-menu"
         class="hidden md:hidden mt-4 flex flex-col gap-3 text-sm font-medium"
       >
-
-        <a href="/" class="py-2 border-b border-white/10">
-          Inicio
-        </a>
-
-        <a href="/proyectos" class="py-2 border-b border-white/10">
-          Proyectos
-        </a>
-
-        <!-- DOCS EXTERNO MOBILE -->
-        <a
-          href="/docs"
-          class="py-2 border-b border-white/10"
-        >
-          Docs
-        </a>
-
-        <a href="/equipo" class="py-2 border-b border-white/10">
-          Equipo
-        </a>
-
-        <a href="/contacto" class="py-2">
-          Contacto
-        </a>
-
+        {enlaces.map((enlace, i) => (
+          <a
+            href={enlace.href}
+            aria-current={esActivo(enlace.href) ? "page" : undefined}
+            class:list={[
+              "py-2",
+              i < enlaces.length - 1 ? "border-b border-white/10" : "",
+              esActivo(enlace.href) ? "text-[#ff8c42]" : "",
+            ]}
+          >
+            {enlace.texto}
+          </a>
+        ))}
       </div>
 
     </nav>
@@ -123,8 +136,16 @@ const { title = "FIRSTHub" } = Astro.props;
 
   <!-- FOOTER -->
   <footer class="border-t border-white/10 mt-20">
-    <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-white/50">
-      ©2026.      &lt;/ Aprende • Construye • Compite /&gt;
+    <div
+      class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/50"
+    >
+      <span>©2026.      &lt;/ Aprende • Construye • Compite /&gt;</span>
+      <a
+        href="/blog/rss.xml"
+        class="hover:text-[#ff8c42] transition"
+      >
+        RSS del blog
+      </a>
     </div>
   </footer>
 
