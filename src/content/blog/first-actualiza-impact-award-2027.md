@@ -6,7 +6,7 @@ categoria: frc
 autor:
   nombre: Rex
 tags: ["impact-award", "temporada-2027", "premios", "frc"]
-destacado: false
+destacado: true
 borrador: false
 ---
 
