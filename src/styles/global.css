@@ -55,15 +55,20 @@
   --default-font-family: var(--font-sans);
 }
 
-/* Variables CSS personalizadas */
+/* Variables CSS personalizadas
+   Los valores de texto y fondo son los mismos que usa el sitio en las
+   clases de Tailwind (bg-[#2a2d43], text-[#fbfff1], tarjetas #313553).
+   Antes eran la paleta clara del scaffold inicial, lo que dejaba el
+   <html> en blanco debajo de un <body> oscuro: se veía como destello
+   al hacer overscroll en móvil y antes del primer pintado. */
 :root {
   --color-primary: #e70000;
   --color-secondary: #0b1f3f;
   --color-accent: #ffcd00;
-  --color-text: #1a1a1a;
-  --color-text-light: #666666;
-  --color-bg: #ffffff;
-  --color-bg-alt: #f5f5f5;
+  --color-text: #fbfff1;
+  --color-text-light: rgba(255, 255, 255, 0.7);
+  --color-bg: #2a2d43;
+  --color-bg-alt: #313553;
 }
 
 /* Estilos base */

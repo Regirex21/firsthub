@@ -1,7 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.firsthub.dev" }],
+      "destination": "https://firsthub.dev/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/docs",        "destination": "https://firsthub-docs.vercel.app/docs" },
+    { "source": "/docs/",       "destination": "https://firsthub-docs.vercel.app/docs/" },
     { "source": "/docs/:path*", "destination": "https://firsthub-docs.vercel.app/docs/:path*" }
   ]
 }
