@@ -7,7 +7,7 @@ autor:
   nombre: Nick
 tags: ["systemcore", "frc", "temporada-2027", "reglas"]
 destacado: false
-borrador: true
+borrador: false
 ---
 
 En agosto de 2026, FIRST publicó la "Parte 1" de su adelanto de reglas de robot y evento para la temporada 2027. No es el Game Manual completo —eso llega hasta kickoff—, pero adelanta varios cambios que los equipos van a querer tener en el radar desde ahora, la mayoría conectados directamente con la llegada de Systemcore como nuevo control system.
