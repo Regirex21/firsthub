@@ -1,16 +1,16 @@
 ---
 titulo: "Systemcore: la historia completa de por qué el roboRIO desaparece (1/3)"
-resumen: "FRC despide al roboRIO en 2027. Esta es la guía completa de Systemcore: qué es, quién lo hizo, sus especificaciones de hardware, y por qué FIRST decidió reemplazar el control system después de más de una década."
+resumen: "FRC despide al roboRIO en la temporada 2027-2028. Esta es la guía completa de Systemcore: qué es, quién lo hizo, sus especificaciones de hardware, y por qué FIRST decidió reemplazar el control system después de más de una década."
 fecha: 2026-09-09
 categoria: frc
 autor:
-  nombre: Nick
+  nombre: Rex
 tags: ["systemcore", "serie-systemcore", "frc", "temporada-2027", "control-system"]
 destacado: true
 borrador: false
 ---
 
-Para la temporada 2027, FRC va a competir con un "cerebro" distinto al que ha usado por más de una década. El roboRIO —el controlador de National Instruments que prácticamente todo equipo de FRC conoce— será reemplazado por **Systemcore**, un dispositivo diseñado específicamente para FIRST.
+Para la temporada 2027-2028, FRC va a competir con un "cerebro" distinto al que ha usado por más de una década. El roboRIO —el controlador de National Instruments que prácticamente todo equipo de FRC conoce— será reemplazado por **Systemcore**, un dispositivo diseñado específicamente para FIRST.
 
 Esta es la primera nota de una serie de tres sobre Systemcore. Aquí cubrimos qué es, de dónde salió, y por qué FIRST decidió hacer un cambio de esta magnitud. En la [segunda nota](/blog/systemcore-cronologia-oficial-first) recorremos la cronología completa de anuncios oficiales, y en la [tercera](/blog/systemcore-codigo-wpilib-que-falta-por-saber) cubrimos los cambios de código en WPILib y todo lo que todavía no se sabe.
 
@@ -59,7 +59,7 @@ En la siguiente nota de la serie recorremos, anuncio por anuncio, cómo se fue c
 
 ## Una nota importante
 
-Systemcore sigue en fase de pruebas Alpha/Beta al momento de escribir esto. Los detalles de hardware, software y reglas pueden seguir cambiando antes de kickoff 2027. Todo lo descrito aquí refleja lo que FIRST ha confirmado públicamente hasta la fecha de esta publicación — consulta siempre las fuentes oficiales para la información más reciente:
+Systemcore sigue en fase de pruebas Alpha/Beta al momento de escribir esto. Los detalles de hardware, software y reglas pueden seguir cambiando antes del kickoff de la temporada 2027-2028. Todo lo descrito aquí refleja lo que FIRST ha confirmado públicamente hasta la fecha de esta publicación — consulta siempre las fuentes oficiales para la información más reciente:
 
 - [Introducing the Future Mobile Robot Controller — FIRST Community Blog (nov. 2024)](https://community.firstinspires.org/introducing-the-future-mobile-robot-controller)
 - [Updates on the Future Robot Controller — FIRST Community Blog (mar. 2025)](https://community.firstinspires.org/march-updates-on-the-future-robot-controller)

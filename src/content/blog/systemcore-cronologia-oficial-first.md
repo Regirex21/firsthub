@@ -4,7 +4,7 @@ resumen: "Desde la convocatoria de propuestas en 2023 hasta el adelanto de regla
 fecha: 2026-09-09
 categoria: frc
 autor:
-  nombre: Nick
+  nombre: Rex
 tags: ["systemcore", "serie-systemcore", "frc", "temporada-2027", "control-system"]
 destacado: false
 borrador: false
@@ -42,13 +42,13 @@ FIRST reporta que los equipos Alpha llevaron Systemcore a numerosos eventos de f
 
 FIRST publica el desglose más completo hasta ahora, mostrando los cinco componentes que tendrá el nuevo sistema de control para FIRST Tech Challenge: Systemcore, MotionCore, el nuevo motor **FIRST A301**, un paquete de batería tipo herramienta eléctrica de 18V, y una aplicación de escritorio como estación de conducción temporal. Se confirma que Systemcore lleva más de **1,000 partidos de competencia** jugados en fuera de temporada con retroalimentación positiva, y se detallan varios cambios de conectores derivados de la primera oleada Alpha (se elimina el conector Weidmueller de alimentación, los puertos CAN pasan a Molex SL de 2 pines). También se confirma el calendario de adopción: FRC en la temporada 2027, FIRST Tech Challenge en 2027-28, con transición legal hasta al menos 2030-31.
 
-## Agosto 2026 — Primer adelanto de reglas para 2027
+## Agosto 2026 — Primer adelanto de reglas para la temporada 2027-2028
 
-FIRST publica la "Parte 1" de su adelanto de reglas para la temporada 2027, con cambios que no son exclusivos de Systemcore pero sí están conectados a la transición: CANivore será legal para agregar buses CAN adicionales a Systemcore durante 2027 como medida temporal (mientras se termina la compatibilidad CAN-FD nativa), límite de 18 motores por robot, y varios ajustes menores a la lista de hardware legal. Cubrimos estos cambios con más detalle en nuestra nota sobre [los cambios de reglas para FRC 2027](/blog/frc-2027-systemcore-y-cambios-de-reglas).
+FIRST publica la "Parte 1" de su adelanto de reglas para la temporada 2027-2028, con cambios que no son exclusivos de Systemcore pero sí están conectados a la transición: CANivore será legal para agregar buses CAN adicionales a Systemcore durante la temporada 2027-2028 como medida temporal (mientras se termina la compatibilidad CAN-FD nativa), límite de 18 motores por robot, y varios ajustes menores a la lista de hardware legal. Cubrimos estos cambios con más detalle en nuestra nota sobre [los cambios de reglas para FRC 2027-2028](/blog/frc-2027-systemcore-y-cambios-de-reglas).
 
 ## Lo que viene
 
-FIRST ha dicho que compartirá más actualizaciones conforme se acerque la temporada 2027 — incluyendo, eventualmente, precio, fecha de venta y los detalles finales del Kit of Parts. En la [tercera nota de esta serie](/blog/systemcore-codigo-wpilib-que-falta-por-saber) cubrimos los cambios de código en WPILib y todo lo que, a la fecha de esta publicación, sigue sin confirmarse.
+FIRST ha dicho que compartirá más actualizaciones conforme se acerque la temporada 2027-2028 — incluyendo, eventualmente, precio, fecha de venta y los detalles finales del Kit of Parts. En la [tercera nota de esta serie](/blog/systemcore-codigo-wpilib-que-falta-por-saber) cubrimos los cambios de código en WPILib y todo lo que, a la fecha de esta publicación, sigue sin confirmarse.
 
 ## Fuentes
 
