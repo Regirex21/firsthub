@@ -21,8 +21,11 @@ const posts = await getPosts();
 /* La entrada marcada como destacada encabeza la página;
    si no hay ninguna, se usa la más reciente */
 const destacado = posts.find((p) => p.data.destacado) ?? posts[0];
-const resto =
-  posts.length > 1 ? posts.filter((p) => p.id !== destacado?.id) : posts;
+
+/* La destacada no se repite en el grid: se filtra desde su propia sección,
+   junto con las demás. Así los contadores de los filtros y lo que se ve en
+   pantalla siempre cuadran, incluso cuando solo hay una entrada. */
+const resto = posts.filter((p) => p.id !== destacado?.id);
 
 const tags = tagsDe(posts);
 const conteo = Object.fromEntries(
@@ -79,7 +82,12 @@ const conteo = Object.fromEntries(
       <!-- ================================================= -->
       <!-- ENTRADA DESTACADA                                 -->
       <!-- ================================================= -->
-      <section class="max-w-6xl mx-auto px-6 pb-12">
+      <section
+        id="seccion-destacada"
+        class="max-w-6xl mx-auto px-6 pb-12"
+        data-categoria={destacado.data.categoria}
+        data-tags={destacado.data.tags.join("|")}
+      >
 
         <a
           href={`/blog/${destacado.id}`}
@@ -236,7 +244,13 @@ const conteo = Object.fromEntries(
     const grid = document.getElementById("grid-posts");
 
     if (grid) {
-      const tarjetas = Array.from(grid.children) as HTMLElement[];
+      /* La entrada destacada vive fuera del grid pero sí cuenta para los
+         filtros, así que se filtra junto con las tarjetas */
+      const destacada = document.getElementById("seccion-destacada");
+      const tarjetas = [
+        ...(destacada ? [destacada] : []),
+        ...Array.from(grid.children),
+      ] as HTMLElement[];
       const botonesCat = Array.from(
         document.querySelectorAll<HTMLButtonElement>(".filtro-cat")
       );

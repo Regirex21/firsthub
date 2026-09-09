@@ -34,13 +34,41 @@ export const CATEGORIAS_LISTA = Object.keys(CATEGORIAS) as Categoria[];
 
 export type Post = CollectionEntry<"blog">;
 
+/* Se avisa una sola vez por build, aunque getPosts() se llame desde
+   varias páginas */
+let borradoresAvisados = false;
+
 /* Entradas publicadas, de la más reciente a la más antigua.
-   Los borradores solo aparecen al correr `astro dev`. */
+   Los borradores solo aparecen al correr `astro dev`.
+
+   Un `borrador: true` deja la entrada fuera del sitio publicado sin
+   ningún otro síntoma: el archivo existe, el build pasa y la entrada
+   simplemente no está. Por eso se avisa por consola en cada build de
+   producción, con el nombre de cada archivo excluido — el aviso sale
+   en el log de Vercel. */
 export async function getPosts(): Promise<Post[]> {
-  const posts = await getCollection("blog", ({ data }) =>
-    import.meta.env.PROD ? data.borrador !== true : true
-  );
-  return posts.sort(
+  const todas = await getCollection("blog");
+
+  if (import.meta.env.PROD) {
+    const borradores = todas.filter((post) => post.data.borrador === true);
+
+    if (borradores.length > 0 && !borradoresAvisados) {
+      borradoresAvisados = true;
+      console.warn(
+        `\n[blog] ${borradores.length} entrada(s) con "borrador: true" NO se publican en este build:\n` +
+          borradores.map((post) => `        - ${post.id}`).join("\n") +
+          `\n        Cambia borrador a false en el front-matter para publicarlas.\n`
+      );
+    }
+
+    return ordenar(todas.filter((post) => post.data.borrador !== true));
+  }
+
+  return ordenar(todas);
+}
+
+function ordenar(posts: Post[]): Post[] {
+  return [...posts].sort(
     (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf()
   );
 }

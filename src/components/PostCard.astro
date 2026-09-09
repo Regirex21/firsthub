@@ -9,7 +9,8 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { titulo, resumen, fecha, categoria, tags, autor, fuente } = post.data;
+const { titulo, resumen, fecha, categoria, tags, autor, fuente, borrador } =
+  post.data;
 const minutos = tiempoLectura(post.body);
 ---
 
@@ -21,7 +22,16 @@ const minutos = tiempoLectura(post.body);
 
   <!-- CABECERA: categoría + fecha -->
   <div class="flex items-center justify-between gap-3">
-    <CategoriaBadge categoria={categoria} />
+    <div class="flex items-center gap-2">
+      <CategoriaBadge categoria={categoria} />
+      {/* Solo puede verse en `npm run dev`: en producción las entradas con
+          borrador: true ni siquiera llegan al build */}
+      {borrador && (
+        <span class="rounded-full border border-[#ffcd00]/50 bg-[#ffcd00]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-[#ffcd00]">
+          Borrador
+        </span>
+      )}
+    </div>
     <time
       datetime={fecha.toISOString()}
       class="text-xs text-white/40 whitespace-nowrap"
