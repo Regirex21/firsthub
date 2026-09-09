@@ -33,6 +33,26 @@ const esActivo = (href: string) =>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>{title}</title>
 
+  <!-- TIPOGRAFÍA
+       Las dos fuentes del sitio se auto-hospedan (ver global.css).
+       Se precargan solo los subconjuntos latinos, que son los que
+       usa todo el contenido en español: el navegador los pide de
+       inmediato en vez de esperar a descargar el CSS. -->
+  <link
+    rel="preload"
+    href="/fonts/inter-latin-wght-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  />
+  <link
+    rel="preload"
+    href="/fonts/space-grotesk-latin-wght-normal.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  />
+
   <!-- SEO / REDES SOCIALES -->
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
