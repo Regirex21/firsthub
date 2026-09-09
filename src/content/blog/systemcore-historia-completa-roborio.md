@@ -7,7 +7,7 @@ autor:
   nombre: Nick
 tags: ["systemcore", "serie-systemcore", "frc", "temporada-2027", "control-system"]
 destacado: true
-borrador: true
+borrador: false
 ---
 
 Para la temporada 2027, FRC va a competir con un "cerebro" distinto al que ha usado por más de una década. El roboRIO —el controlador de National Instruments que prácticamente todo equipo de FRC conoce— será reemplazado por **Systemcore**, un dispositivo diseñado específicamente para FIRST.

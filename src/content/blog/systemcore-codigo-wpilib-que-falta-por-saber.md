@@ -7,7 +7,7 @@ autor:
   nombre: Nick
 tags: ["systemcore", "serie-systemcore", "frc", "temporada-2027", "wpilib", "control-system"]
 destacado: false
-borrador: true
+borrador: false
 ---
 
 Cerramos la serie de Systemcore con la parte más técnica: qué cambia realmente en el código que escriben los programadores del equipo, y qué preguntas siguen sin respuesta oficial. Si te perdiste las notas anteriores, empieza por [la historia completa de por qué el roboRIO desaparece](/blog/systemcore-historia-completa-roborio) y [la cronología oficial de anuncios](/blog/systemcore-cronologia-oficial-first).
