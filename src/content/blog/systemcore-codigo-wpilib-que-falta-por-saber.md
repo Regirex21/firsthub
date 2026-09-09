@@ -39,7 +39,7 @@ Como Systemcore tiene una arquitectura de hardware distinta al roboRIO, varias f
 - Analog Trigger
 - Soporte para motores/controladores Nidec Brushless, Servo y Jaguar
 
-Si tu robot usa alguno de estos, es buen momento para empezar a investigar el reemplazo recomendado antes de que llegue el kickoff de la temporada 2027-2028.
+Si tu robot usa alguno de estos, es buen momento para empezar a investigar el reemplazo recomendado antes de que llegue el kickoff.
 
 ## Cambios de estilo y APIs
 
@@ -50,9 +50,9 @@ Si tu robot usa alguno de estos, es buen momento para empezar a investigar el re
 
 ## CAN: lo que sí funciona hoy (en Alpha) y lo que todavía no
 
-Systemcore soporta múltiples buses CAN nativos, pero al momento de esta publicación, las versiones Alpha reportan que **los buses CAN de MotionCore todavía no son compatibles** — solo funcionan los buses CAN nativos de Systemcore y los CANivore. Como mencionamos en nuestra nota sobre [los cambios de reglas 2027-2028](/blog/frc-2027-systemcore-y-cambios-de-reglas), el uso de CANivore para agregar buses adicionales será legal como medida temporal durante la temporada 2027-2028, hasta que Systemcore tenga soporte CAN-FD nativo completo.
+Systemcore soporta múltiples buses CAN nativos, pero al momento de esta publicación, las versiones Alpha reportan que **los buses CAN de MotionCore todavía no son compatibles** — solo funcionan los buses CAN nativos de Systemcore y los CANivore. Como mencionamos en nuestra nota sobre [los cambios de reglas 2027](/blog/frc-2027-systemcore-y-cambios-de-reglas), el uso de CANivore para agregar buses adicionales será legal como medida temporal durante la temporada 2027, hasta que Systemcore tenga soporte CAN-FD nativo completo. Para la temporada 2028 esa excepción desaparece.
 
-También está confirmado (aunque no implementado todavía en todas las librerías) que **el sistema de coordenadas de campo cambiará en la temporada 2027-2028** — algo a tener en cuenta si tu equipo tiene código de autónomo o de swerve que asume el sistema de coordenadas actual.
+También está confirmado (aunque no implementado todavía en todas las librerías) que **el sistema de coordenadas de campo cambiará en la temporada 2027** — algo a tener en cuenta si tu equipo tiene código de autónomo o de swerve que asume el sistema de coordenadas actual.
 
 ## Lo que FIRST todavía NO ha confirmado
 
@@ -60,12 +60,12 @@ Siendo honestos sobre los huecos: al momento de escribir esta nota, varias pieza
 
 - **Precio exacto de Systemcore.** FIRST solo ha dicho que la meta es que cueste menos que un roboRIO nuevo.
 - **Fecha exacta de venta al público.** Se ha mencionado informalmente en la comunidad una ventana cercana a octubre de 2026, pero esto **no ha sido confirmado directamente por FIRST** en un blog oficial — trátalo como rumor hasta que aparezca en una fuente oficial.
-- **Detalles finales del Kit of Parts de la temporada 2027-2028** que incluirán Systemcore.
+- **Detalles finales del Kit of Parts de la temporada 2027** que incluirán Systemcore.
 - **El texto exacto de la regla** que retira al roboRIO como controlador legal — eso se confirma normalmente hasta el Game Manual y el Team Update 00 en kickoff.
 
 ## Qué puede hacer tu equipo mientras tanto
 
-- **No inviertas en un roboRIO nuevo** salvo que lo necesites para terminar la temporada 2026 o algún proyecto de verano — con WPILib 2027 apuntando exclusivamente a Systemcore, ese dinero rinde más guardado para la temporada 2027-2028.
+- **No inviertas en un roboRIO nuevo** salvo que lo necesites para terminar la temporada 2026 o algún proyecto de verano — con WPILib 2027 apuntando exclusivamente a Systemcore, ese dinero rinde más guardado para la temporada 2027.
 - **Revisa el repositorio de pruebas en GitHub** (`wpilibsuite/SystemcoreTesting`) para ver el progreso real, sin esperar al siguiente blog oficial.
 - Si tu equipo programa en **Python**, empieza a familiarizarte con snake_case ahora — es un cambio de hábito, no solo de sintaxis.
 - Si usas **NetworkTables v3** en algo (dashboards personalizados, herramientas de scouting), planea la migración a v4 con tiempo.
@@ -73,7 +73,7 @@ Siendo honestos sobre los huecos: al momento de escribir esta nota, varias pieza
 
 ## Una nota importante
 
-Esta nota refleja el estado de WPILib 2027 y Systemcore en fase Alpha, a la fecha de esta publicación. Es software y hardware de prueba: varios detalles pueden cambiar antes del kickoff de la temporada 2027-2028. Antes de tomar decisiones importantes, confirma siempre con las fuentes oficiales:
+Esta nota refleja el estado de WPILib 2027 y Systemcore en fase Alpha, a la fecha de esta publicación. Es software y hardware de prueba: varios detalles pueden cambiar antes del kickoff del 9 de enero de 2027. Antes de tomar decisiones importantes, confirma siempre con las fuentes oficiales:
 
 - [New for 2027 — WPILib Changelog](https://docs.wpilib.org/en/2027/docs/yearly-overview/yearly-changelog.html)
 - [Systemcore Introduction — WPILib Docs](https://docs.wpilib.org/en/2027/docs/software/systemcore-info/systemcore-introduction.html)

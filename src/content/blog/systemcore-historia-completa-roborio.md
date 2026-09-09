@@ -1,6 +1,6 @@
 ---
 titulo: "Systemcore: la historia completa de por qué el roboRIO desaparece (1/3)"
-resumen: "FRC despide al roboRIO en la temporada 2027-2028. Esta es la guía completa de Systemcore: qué es, quién lo hizo, sus especificaciones de hardware, y por qué FIRST decidió reemplazar el control system después de más de una década."
+resumen: "FRC despide al roboRIO en la temporada 2027. Esta es la guía completa de Systemcore: qué es, quién lo hizo, sus especificaciones de hardware, y por qué FIRST decidió reemplazar el control system después de más de una década."
 fecha: 2026-09-09
 categoria: frc
 autor:
@@ -10,7 +10,7 @@ destacado: true
 borrador: false
 ---
 
-Para la temporada 2027-2028, FRC va a competir con un "cerebro" distinto al que ha usado por más de una década. El roboRIO —el controlador de National Instruments que prácticamente todo equipo de FRC conoce— será reemplazado por **Systemcore**, un dispositivo diseñado específicamente para FIRST.
+Para la temporada 2027 —la que arranca con el kickoff del 9 de enero de 2027—, FRC va a competir con un "cerebro" distinto al que ha usado por más de una década. El roboRIO —el controlador de National Instruments que prácticamente todo equipo de FRC conoce— será reemplazado por **Systemcore**, un dispositivo diseñado específicamente para FIRST.
 
 Esta es la primera nota de una serie de tres sobre Systemcore. Aquí cubrimos qué es, de dónde salió, y por qué FIRST decidió hacer un cambio de esta magnitud. En la [segunda nota](/blog/systemcore-cronologia-oficial-first) recorremos la cronología completa de anuncios oficiales, y en la [tercera](/blog/systemcore-codigo-wpilib-que-falta-por-saber) cubrimos los cambios de código en WPILib y todo lo que todavía no se sabe.
 
@@ -52,14 +52,16 @@ Junto con Systemcore, FIRST desarrolló un segundo dispositivo llamado **MotionC
 ## Panorama general de fechas
 
 - **FRC** empieza a usar Systemcore de forma oficial en la temporada 2027 (kickoff: 9 de enero de 2027).
-- **FIRST Tech Challenge** lo adopta un año después, en la temporada 2027-28.
+- **FIRST Tech Challenge** lo adopta un año después, en la temporada 2027-2028.
 - Habrá un **período de transición hasta al menos la temporada 2030-31**, en el que el sistema anterior (y un enfoque híbrido) seguirán siendo legales, para que los equipos puedan migrar a su propio ritmo.
+
+Una aclaración que vale la pena, porque se presta a confusión: FIRST nombra las temporadas de FRC con **un solo año** y las de FIRST Tech Challenge con **dos**. La temporada 2027 de FRC es la que arranca en enero de 2027, no la que está corriendo ahora; cuando FIRST habla de esa misma temporada desde el lado de FTC, a veces la escribe como 2026-27.
 
 En la siguiente nota de la serie recorremos, anuncio por anuncio, cómo se fue construyendo todo esto desde noviembre de 2024 hasta hoy — incluyendo qué equipos latinoamericanos ya han probado Systemcore de primera mano.
 
 ## Una nota importante
 
-Systemcore sigue en fase de pruebas Alpha/Beta al momento de escribir esto. Los detalles de hardware, software y reglas pueden seguir cambiando antes del kickoff de la temporada 2027-2028. Todo lo descrito aquí refleja lo que FIRST ha confirmado públicamente hasta la fecha de esta publicación — consulta siempre las fuentes oficiales para la información más reciente:
+Systemcore sigue en fase de pruebas Alpha/Beta al momento de escribir esto. Los detalles de hardware, software y reglas pueden seguir cambiando antes del kickoff del 9 de enero de 2027. Todo lo descrito aquí refleja lo que FIRST ha confirmado públicamente hasta la fecha de esta publicación — consulta siempre las fuentes oficiales para la información más reciente:
 
 - [Introducing the Future Mobile Robot Controller — FIRST Community Blog (nov. 2024)](https://community.firstinspires.org/introducing-the-future-mobile-robot-controller)
 - [Updates on the Future Robot Controller — FIRST Community Blog (mar. 2025)](https://community.firstinspires.org/march-updates-on-the-future-robot-controller)

@@ -1,6 +1,6 @@
 ---
-titulo: "FIRST actualiza el Impact Award para la temporada 2027-2028: todo lo que cambia"
-resumen: "FIRST rediseñó a fondo el proceso del Impact Award: nuevas preguntas de ensayo, glosario actualizado, orden de premiación y más reconocimiento para los equipos que aplican. Guía completa de los cambios para la temporada 2027-2028."
+titulo: "FIRST actualiza el Impact Award para la temporada 2027: todo lo que cambia"
+resumen: "FIRST rediseñó a fondo el proceso del Impact Award: nuevas preguntas de ensayo, glosario actualizado, orden de premiación y más reconocimiento para los equipos que aplican. Guía completa de los cambios para la temporada 2027 de FRC."
 fecha: 2026-09-08
 categoria: frc
 autor:
@@ -67,10 +67,12 @@ Estos ya los cubrimos en nuestro post de Instagram, pero para que quede todo en 
 - **Reconocimiento en ceremonias:** los equipos que apliquen al Impact Award —no solo quienes ganan— podrán ser reconocidos durante las ceremonias, algo que antes solo existía para el Leadership Award y el Woodie Flowers Finalist.
 - **Preguntas de feedback simplificadas:** los jueces ahora responden solo dos preguntas de retroalimentación por equipo: qué fue memorable del equipo, y sobre qué les hubiera gustado escuchar más.
 
-## Fechas para la temporada 2027-2028
+## Fechas para la temporada 2027
 
 - **Apertura de sumisión:** jueves 29 de octubre de 2026, 12pm ET
 - **Cierre de sumisión:** jueves 11 de febrero de 2027, 3pm ET
+
+Es la temporada que arranca con el kickoff del 9 de enero de 2027 — FIRST nombra las temporadas de FRC con un solo año.
 
 ## ¿Qué significa esto para tu equipo?
 
@@ -82,7 +84,7 @@ Estos ya los cubrimos en nuestro post de Instagram, pero para que quede todo en 
 
 ## Una nota importante
 
-Los criterios, formularios y formato de los premios de FIRST **cambian cada temporada**. Esta nota refleja los anuncios hechos por FIRST para la temporada 2027-2028; antes de preparar tu aplicación, confirma siempre los detalles vigentes en las fuentes oficiales:
+Los criterios, formularios y formato de los premios de FIRST **cambian cada temporada**. Esta nota refleja los anuncios hechos por FIRST para la temporada 2027; antes de preparar tu aplicación, confirma siempre los detalles vigentes en las fuentes oficiales:
 
 - [FIRST Impact Award Refresh — FIRST Community Blog](https://community.firstinspires.org/2026-first-impact-award-refresh)
 - [Award Order & Playoff Updates — FIRST Community Blog](https://community.firstinspires.org/2026-award-order-and-playoff-updates)
