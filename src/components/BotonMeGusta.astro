@@ -13,16 +13,19 @@
 
 interface Props {
   slug: string;
+  pregunta?: string;
 }
 
-const { slug } = Astro.props;
+const { slug, pregunta = "¿Te sirvió esta entrada?" } = Astro.props;
 ---
 
 <div
-  class="boton-me-gusta"
+  class="boton-me-gusta mt-12 flex items-center justify-between gap-4 border-t border-white/10 pt-8"
   data-me-gusta={slug}
   hidden
 >
+  <p class="text-sm text-white/40">{pregunta}</p>
+
   <button
     type="button"
     aria-pressed="false"
@@ -51,6 +54,13 @@ const { slug } = Astro.props;
 </div>
 
 <style>
+  /* El contenedor es flex, y una clase de utilidad le gana al
+     display:none del atributo [hidden]. Sin esta regla el bloque
+     seguiría visible cuando la API no responde. */
+  .boton-me-gusta[hidden] {
+    display: none !important;
+  }
+
   /* Cuando está marcado, el corazón se rellena */
   .boton-me-gusta[data-activo="si"] button {
     border-color: rgba(255, 140, 66, 0.6);
