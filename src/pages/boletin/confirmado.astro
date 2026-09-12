@@ -1,0 +1,73 @@
+---
+/* ================================================= */
+/* PASO 2 DEL BOLETÍN                                */
+/* Brevo manda aquí cuando la persona hace clic en   */
+/* el enlace del correo de confirmación. Se          */
+/* configura en los ajustes del formulario, en       */
+/* "Página de confirmación después de hacer clic en  */
+/* el enlace de confirmación del e-mail".            */
+/* Sin esto, Brevo enseña una página suya sin        */
+/* diseño, que es lo que se veía antes.              */
+/* ================================================= */
+import MainLayout from "../../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Suscripción confirmada | FIRSTHub"
+  description="Ya estás suscrito al boletín de FIRSTHub."
+>
+
+  <section class="max-w-2xl mx-auto px-6 pt-20 pb-24 text-center">
+
+    <p class="text-xs uppercase tracking-widest text-[#48a9a6] font-semibold">
+      Boletín semanal
+    </p>
+
+    <h1 class="mt-5 text-4xl md:text-5xl font-bold text-[#fbfff1]">
+      Ya estás dentro
+    </h1>
+
+    <p class="mt-6 text-lg text-white/70 leading-relaxed">
+      Suscripción confirmada. Cada semana te llega un correo con noticias de FTC
+      y FRC traducidas al español, cambios de reglas y lo que va aprendiendo la
+      comunidad. Un correo, sin relleno.
+    </p>
+
+    <div
+      class="mt-10 rounded-2xl border border-white/10 bg-[#313553] p-6 text-left"
+    >
+      <p class="text-sm text-white/60 leading-relaxed">
+        Ese buzón no recibe respuestas. Si quieres escribirnos —una corrección,
+        una colaboración, una duda— estamos en Instagram como
+        <a
+          href="https://www.instagram.com/_firsthub/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[#48a9a6] underline decoration-white/20 underline-offset-4 transition hover:text-[#ff8c42]"
+        >@_firsthub</a>
+        o en la
+        <a
+          href="/contacto"
+          class="text-[#48a9a6] underline decoration-white/20 underline-offset-4 transition hover:text-[#ff8c42]"
+        >comunidad de WhatsApp</a>.
+      </p>
+    </div>
+
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/blog"
+        class="border border-[#ff8c42] bg-[#ff8c42] text-[#2a2d43] px-6 py-3 rounded-xl font-semibold transition duration-300 hover:bg-transparent hover:text-[#ff8c42]"
+      >
+        Leer el blog
+      </a>
+      <a
+        href="/docs"
+        class="border border-white/15 text-white/70 px-6 py-3 rounded-xl transition duration-300 hover:border-white/40 hover:text-white"
+      >
+        Explorar la documentación
+      </a>
+    </div>
+
+  </section>
+
+</MainLayout>

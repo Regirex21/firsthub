@@ -1,0 +1,60 @@
+---
+/* ================================================= */
+/* PASO 1 DEL BOLETÍN                                */
+/* Brevo manda aquí justo después de enviar el       */
+/* formulario. Se configura en los ajustes del       */
+/* formulario, en "Página de confirmación después de */
+/* enviar el formulario".                            */
+/* ================================================= */
+import MainLayout from "../../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Revisa tu correo | FIRSTHub"
+  description="Te enviamos un correo para confirmar tu suscripción al boletín de FIRSTHub."
+>
+
+  <section class="max-w-2xl mx-auto px-6 pt-20 pb-24 text-center">
+
+    <p class="text-xs uppercase tracking-widest text-[#48a9a6] font-semibold">
+      Falta un paso
+    </p>
+
+    <h1 class="mt-5 text-4xl md:text-5xl font-bold text-[#fbfff1]">
+      Revisa tu correo
+    </h1>
+
+    <p class="mt-6 text-lg text-white/70 leading-relaxed">
+      Te acabamos de enviar un mensaje con un enlace de confirmación. Ábrelo y
+      dale clic, y con eso quedas suscrito al boletín.
+    </p>
+
+    <div
+      class="mt-10 rounded-2xl border border-white/10 bg-[#313553] p-6 text-left"
+    >
+      <p class="text-sm text-white/60 leading-relaxed">
+        <span class="text-[#ff8c42] font-semibold">¿No llegó?</span>
+        Puede tardar un par de minutos. Si pasado ese rato sigue sin aparecer,
+        busca en la carpeta de spam o promociones: el correo sale de
+        <span class="text-[#fbfff1]">noticias@mail.firsthub.dev</span>.
+      </p>
+    </div>
+
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/blog"
+        class="border border-[#ff8c42] text-[#ff8c42] px-6 py-3 rounded-xl font-semibold transition duration-300 hover:bg-[#ff8c42] hover:text-[#2a2d43]"
+      >
+        Volver al blog
+      </a>
+      <a
+        href="/"
+        class="border border-white/15 text-white/70 px-6 py-3 rounded-xl transition duration-300 hover:border-white/40 hover:text-white"
+      >
+        Ir al inicio
+      </a>
+    </div>
+
+  </section>
+
+</MainLayout>
