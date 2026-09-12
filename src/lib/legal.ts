@@ -4,11 +4,14 @@
 /* contacto y la fecha de última actualización.      */
 /* ================================================= */
 
-/* La ley pide identificar a la persona responsable del
-   tratamiento de datos. "FIRSTHub" no bastaría, porque no es
-   una entidad legal: es un proyecto personal. Si algún día se
-   constituye como asociación civil, aquí va la asociación. */
-export const RESPONSABLE = "Regina Servín Núñez";
+/* Quién responde por el tratamiento de datos. Se publican
+   solo las iniciales por decisión de la responsable; el aviso
+   dice que los datos completos de identificación se dan a
+   quien los pida por correo, que es lo que mantiene el aviso
+   utilizable para ejercer derechos ARCO o presentar una queja.
+   Si algún día el proyecto se constituye como asociación
+   civil, aquí va el nombre de la asociación. */
+export const RESPONSABLE = "RS";
 
 /* Cómo se describe a quien está detrás del proyecto. Se usa
    en los términos de uso para dejar claro que FIRSTHub lo
