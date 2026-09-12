@@ -3,7 +3,12 @@
 /* TÉRMINOS DE USO                                   */
 /* ================================================= */
 import MainLayout from "../layouts/MainLayout.astro";
-import { CORREO_CONTACTO, ACTUALIZADO, LICENCIA } from "../lib/legal";
+import {
+  CORREO_CONTACTO,
+  ACTUALIZADO,
+  LICENCIA,
+  ROL_RESPONSABLE,
+} from "../lib/legal";
 ---
 
 <MainLayout
@@ -33,10 +38,16 @@ import { CORREO_CONTACTO, ACTUALIZADO, LICENCIA } from "../lib/legal";
       <h2>Qué es FIRSTHub</h2>
 
       <p>
-        FIRSTHub es un proyecto comunitario e independiente que traduce, resume y
-        explica en español recursos sobre los programas de robótica de FIRST, para
-        que estudiantes, mentores y voluntarios de habla hispana puedan acceder a
-        ellos.
+        FIRSTHub es un <strong>proyecto no oficial</strong>, creado y mantenido por
+        un {ROL_RESPONSABLE}. Traduce, resume y explica en español recursos sobre
+        los programas de robótica de <em>FIRST</em>, para que estudiantes, mentores
+        y voluntarios de habla hispana puedan acceder a ellos.
+      </p>
+
+      <p>
+        No es una empresa ni una organización constituida: es trabajo de la
+        comunidad, hecho desde dentro de la comunidad y sin relación comercial con
+        nadie.
       </p>
 
       <h2>FIRSTHub no es FIRST</h2>
@@ -54,7 +65,35 @@ import { CORREO_CONTACTO, ACTUALIZADO, LICENCIA } from "../lib/legal";
       </p>
 
       <p>
-        Nada de lo publicado en este sitio es comunicación oficial de <em>FIRST</em>.
+        <strong>FIRSTHub tampoco forma parte de <em>FIRST</em> como
+        organización.</strong> No es una división, un programa, un socio, un
+        proveedor ni un representante de <em>FIRST</em>. Que quien escribe aquí
+        participe en los programas de <em>FIRST</em> como coach, mentor y
+        voluntario no convierte este sitio en material oficial ni le da voz en
+        nombre de la organización.
+      </p>
+
+      <p>
+        Nada de lo publicado aquí es comunicación oficial de <em>FIRST</em>.
+      </p>
+
+      <h2>Independiente de cualquier equipo</h2>
+
+      <p>
+        FIRSTHub tampoco representa ni habla en nombre de ningún equipo de robótica
+        en particular. Quien escribe aquí participa en equipos —es de ahí de donde
+        sale lo que sabe— pero el contenido no es material de esos equipos, no
+        refleja sus posturas y ningún equipo recibe trato preferente en lo que se
+        publica o se deja de publicar.
+      </p>
+
+      <p>
+        Eso no significa que trabajemos en aislamiento, al contrario:
+        <strong>FIRSTHub está abierto a colaborar</strong> con equipos, mentores,
+        voluntarios, organizaciones y otros proyectos que quieran traducir,
+        revisar, aportar material o construir algo en conjunto. Si tu equipo tiene
+        algo que valga la pena compartir con la comunidad hispanohablante,
+        <a href="/contacto">escríbenos</a>.
       </p>
 
       <h2>Las traducciones no sustituyen al documento oficial</h2>
