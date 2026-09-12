@@ -8,7 +8,7 @@
    tratamiento de datos. "FIRSTHub" no bastaría, porque no es
    una entidad legal: es un proyecto personal. Si algún día se
    constituye como asociación civil, aquí va la asociación. */
-export const RESPONSABLE = "Regina Servín Nuñez";
+export const RESPONSABLE = "Regina Servín Núñez";
 
 /* Cómo se describe a quien está detrás del proyecto. Se usa
    en los términos de uso para dejar claro que FIRSTHub lo
