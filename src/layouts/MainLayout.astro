@@ -20,6 +20,7 @@ const enlaces = [
   { href: "/proyectos", texto: "Proyectos" },
   { href: "/docs", texto: "Docs" },
   { href: "/equipo", texto: "Equipo" },
+  { href: "/voluntarios", texto: "Voluntarios" },
   { href: "/contacto", texto: "Contacto" },
 ];
 const esActivo = (href: string) =>
@@ -160,12 +161,31 @@ const esActivo = (href: string) =>
       class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/50"
     >
       <span>©2026.      &lt;/ Aprende • Construye • Compite /&gt;</span>
-      <a
-        href="/blog/rss.xml"
-        class="hover:text-[#ff8c42] transition"
-      >
-        RSS del blog
-      </a>
+
+      <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+        <a href="/privacidad" class="hover:text-[#ff8c42] transition">
+          Privacidad
+        </a>
+        <a href="/terminos" class="hover:text-[#ff8c42] transition">
+          Términos
+        </a>
+        <a href="/licencia" class="hover:text-[#ff8c42] transition">
+          Licencia
+        </a>
+        <a href="/blog/rss.xml" class="hover:text-[#ff8c42] transition">
+          RSS del blog
+        </a>
+      </nav>
+    </div>
+
+    <!-- Deslinde: aparece en todas las páginas del sitio -->
+    <div
+      class="max-w-6xl mx-auto px-6 pb-8 text-xs leading-relaxed text-white/30"
+    >
+      FIRSTHub es un proyecto comunitario independiente. No está afiliado,
+      patrocinado ni respaldado por <em>FIRST</em>. Las traducciones no
+      sustituyen a la documentación oficial: ante cualquier diferencia, manda el
+      documento original.
     </div>
   </footer>
 

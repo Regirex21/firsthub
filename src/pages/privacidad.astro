@@ -1,0 +1,182 @@
+---
+/* ================================================= */
+/* AVISO DE PRIVACIDAD                               */
+/* Describe únicamente los datos que el sitio        */
+/* realmente recoge hoy. Si se añade algo que        */
+/* recoja datos (comentarios, formularios, cookies), */
+/* hay que actualizar esta página en el mismo cambio.*/
+/* ================================================= */
+import MainLayout from "../layouts/MainLayout.astro";
+import { RESPONSABLE, CORREO_CONTACTO, ACTUALIZADO } from "../lib/legal";
+---
+
+<MainLayout
+  title="Aviso de privacidad | FIRSTHub"
+  description="Qué datos personales recoge FIRSTHub, para qué los usa y cómo ejercer tus derechos ARCO."
+>
+
+  <section class="max-w-3xl mx-auto px-6 pt-12 pb-10">
+
+    <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+      Legal
+    </p>
+
+    <h1 class="text-4xl md:text-5xl font-bold mt-4 text-[#fbfff1]">
+      Aviso de privacidad
+    </h1>
+
+    <p class="mt-4 text-sm text-white/40">
+      Última actualización: {ACTUALIZADO}
+    </p>
+
+  </section>
+
+  <section class="max-w-3xl mx-auto px-6 pb-20">
+    <div class="prosa">
+
+      <h2>Quién es responsable de tus datos</h2>
+
+      <p>
+        {RESPONSABLE}, responsable del proyecto FIRSTHub (<a href="https://firsthub.dev">firsthub.dev</a>),
+        es quien trata los datos personales que se describen aquí. Para cualquier
+        asunto relacionado con este aviso, el contacto es
+        <a href={`mailto:${CORREO_CONTACTO}`}>{CORREO_CONTACTO}</a>.
+      </p>
+
+      <p>
+        Este aviso se emite conforme a la Ley Federal de Protección de Datos
+        Personales en Posesión de los Particulares.
+      </p>
+
+      <h2>Qué datos recogemos y para qué</h2>
+
+      <p>
+        FIRSTHub recoge lo mínimo para funcionar. Esto es todo, sin excepciones:
+      </p>
+
+      <h3>Si te suscribes al boletín</h3>
+
+      <p>
+        Guardamos <strong>tu dirección de correo electrónico</strong>, y solo eso.
+        La usamos para mandarte el boletín del blog: noticias, traducciones y
+        anuncios relacionados con FIRST. No la usamos para nada más, no la
+        vendemos y no la compartimos con terceros con fines comerciales.
+      </p>
+
+      <p>
+        La suscripción es de doble confirmación: después de escribir tu correo
+        recibes un mensaje con un enlace, y solo quedas suscrito si le das clic.
+        Cada correo que te enviamos lleva un enlace para darte de baja, y al
+        hacerlo tu dirección se elimina de la lista.
+      </p>
+
+      <p>
+        El envío lo opera <strong>Brevo</strong> como encargado del tratamiento,
+        que almacena la lista de suscriptores en sus servidores y registra si
+        abriste el correo o hiciste clic en algún enlace, para que podamos saber
+        si el boletín le sirve a alguien.
+      </p>
+
+      <h3>Cuando navegas el sitio</h3>
+
+      <p>
+        Usamos <strong>Vercel Web Analytics</strong> y <strong>Speed Insights</strong>
+        para saber qué páginas se leen y qué tan rápido cargan. Estas herramientas
+        <strong>no usan cookies</strong> y no guardan identificadores que permitan
+        reconocerte entre visitas o entre sitios: la visita se identifica con un
+        valor derivado de la petición que se descarta a las 24 horas. Los datos
+        que vemos son agregados —páginas vistas, país, tipo de dispositivo,
+        navegador— y no se pueden asociar a una persona.
+      </p>
+
+      <p>
+        Como el sitio está alojado en <strong>Vercel</strong>, su infraestructura
+        registra de forma temporal datos técnicos de las peticiones, incluida la
+        dirección IP, para operar el servicio y protegerlo de abusos. Nosotros no
+        consultamos ni conservamos esos registros.
+      </p>
+
+      <h3>Cuando das "me gusta" a una entrada</h3>
+
+      <p>
+        Tu navegador genera un identificador aleatorio y lo guarda localmente, solo
+        para que la misma persona no sume el mismo voto varias veces. Ese
+        identificador no se asocia a tu nombre, tu correo ni tu dirección IP, no
+        permite identificarte y no se comparte con nadie. Lo único que se guarda
+        del lado del servidor es un contador por entrada.
+      </p>
+
+      <h3>Lo que no hacemos</h3>
+
+      <ul>
+        <li>No usamos cookies de publicidad ni de seguimiento.</li>
+        <li>No vendemos, rentamos ni intercambiamos datos personales.</li>
+        <li>No creamos perfiles de comportamiento ni tomamos decisiones automatizadas sobre nadie.</li>
+        <li>No recogemos datos personales sensibles.</li>
+      </ul>
+
+      <h2>Menores de edad</h2>
+
+      <p>
+        Buena parte de la comunidad de FIRST son estudiantes menores de edad. Por
+        eso el sitio está diseñado para recoger lo menos posible: navegar FIRSTHub
+        y leer la documentación no requiere dar ningún dato.
+      </p>
+
+      <p>
+        El boletín sí pide un correo electrónico. Si eres menor de edad, suscríbete
+        con el conocimiento de tu madre, padre o tutor. Si eres madre, padre o
+        tutor y quieres que eliminemos la dirección de un menor a tu cargo,
+        escríbenos a <a href={`mailto:${CORREO_CONTACTO}`}>{CORREO_CONTACTO}</a> y
+        la borramos sin pedir explicaciones.
+      </p>
+
+      <h2>Tus derechos ARCO</h2>
+
+      <p>
+        Puedes pedir en cualquier momento el <strong>acceso</strong> a tus datos,
+        su <strong>rectificación</strong> si son incorrectos, su
+        <strong>cancelación</strong>, u <strong>oponerte</strong> a que los usemos.
+        También puedes revocar tu consentimiento.
+      </p>
+
+      <p>
+        Para ejercerlos, escribe a
+        <a href={`mailto:${CORREO_CONTACTO}`}>{CORREO_CONTACTO}</a> desde la
+        dirección sobre la que preguntas, diciendo qué quieres que hagamos.
+        Respondemos en un plazo máximo de 20 días hábiles. No cobramos por esto.
+      </p>
+
+      <p>
+        Para el caso más común —dejar de recibir el boletín— no hace falta
+        escribir: el enlace de baja va al pie de cada correo y es inmediato.
+      </p>
+
+      <h2>Cuánto tiempo conservamos los datos</h2>
+
+      <p>
+        Tu correo permanece en la lista mientras sigas suscrito. Cuando te das de
+        baja o pides la cancelación, se elimina. Los datos agregados de analítica
+        no caducan porque no están asociados a ninguna persona.
+      </p>
+
+      <h2>Servicios de terceros</h2>
+
+      <p>
+        El sitio enlaza a WhatsApp, Instagram, YouTube y a la documentación oficial
+        de FIRST. Esos servicios tienen sus propios avisos de privacidad y
+        FIRSTHub no controla lo que hagan con tus datos una vez que sales de aquí.
+      </p>
+
+      <h2>Cambios a este aviso</h2>
+
+      <p>
+        Si cambiamos lo que recogemos o para qué, actualizamos esta página y la
+        fecha de arriba. Cuando el cambio sea importante, lo anunciaremos también
+        en el boletín.
+      </p>
+
+    </div>
+  </section>
+
+</MainLayout>

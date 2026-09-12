@@ -194,32 +194,94 @@ const conteo = Object.fromEntries(
 
 
       <!-- ================================================= -->
-      <!-- COMUNIDAD                                         -->
-      <!-- Aquí irá el registro al boletín por correo        -->
+      <!-- BOLETÍN POR CORREO                                -->
+      <!-- El formulario publica directo en Brevo. Doble     -->
+      <!-- confirmación: al enviar, Brevo manda un correo    -->
+      <!-- con un enlace y el contacto entra a la lista      -->
+      <!-- "Boletín FIRSTHub" solo hasta que le da clic.     -->
+      <!-- El campo email_address_check es una trampa para   -->
+      <!-- bots: va oculto y tiene que llegar vacío.         -->
       <!-- ================================================= -->
       <section class="max-w-6xl mx-auto px-6 pb-20">
 
-        <div class="rounded-2xl border border-white/10 bg-[#313553] p-8 text-center">
+        <div class="rounded-2xl border border-white/10 bg-[#313553] p-8 md:p-10 text-center">
 
-          <h2 class="text-2xl md:text-3xl font-bold text-[#fbfff1]">
+          <p class="text-xs uppercase tracking-widest text-[#48a9a6]">
+            Boletín semanal
+          </p>
+
+          <h2 class="mt-4 text-2xl md:text-3xl font-bold text-[#fbfff1]">
             No te pierdas ninguna noticia
           </h2>
 
-          <p class="mt-4 text-white/70 leading-relaxed">
-            Entra a la comunidad de FIRSTHub y entérate de cada publicación,
-            traducción y anuncio de temporada.
+          <p class="mt-4 max-w-2xl mx-auto text-white/70 leading-relaxed">
+            Cada semana: noticias de FTC y FRC traducidas al español, cambios de
+            reglas y lo que va aprendiendo la comunidad. Un correo, sin relleno.
           </p>
 
-          <div class="mt-8 flex justify-center">
+          <form
+            action="https://a5c737a2.sibforms.com/serve/MUIFALc7ZX8v_6tv_P0RLIPdWaUL5FMg6ZweTP-PBK9Bg2Psyv-taXoNx8uzu1DpYgCcbTTL3cVj-d9fIRPJudK6xm9HGEkXpWLbp_j_o2552JArJrJkN0r9lfr6VhVETI-ECyZsrZ1YWxBXR5MVY1v-1nhagIvmvwfJj0Z8YqOPodk3TYnIjo6GSLjZi4xo8ZwaRrXqLez90Xycow=="
+            method="POST"
+            class="mt-8 flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto"
+          >
 
+            <label for="boletin-email" class="sr-only">
+              Tu correo electrónico
+            </label>
+
+            <input
+              id="boletin-email"
+              type="email"
+              name="EMAIL"
+              required
+              autocomplete="email"
+              placeholder="tu@correo.com"
+              class="flex-1 rounded-xl border border-white/15 bg-[#2a2d43] px-4 py-3 text-[#fbfff1] placeholder-white/30 transition duration-300 focus:border-[#ff8c42] focus:outline-none"
+            />
+
+            <!-- Trampa para bots: invisible para las personas -->
+            <input
+              type="text"
+              name="email_address_check"
+              value=""
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+              class="hidden"
+            />
+
+            <input type="hidden" name="locale" value="es" />
+            <input type="hidden" name="html_type" value="simple" />
+
+            <button
+              type="submit"
+              class="rounded-xl border border-[#ff8c42] bg-[#ff8c42] px-6 py-3 font-semibold text-[#2a2d43] transition duration-300 hover:bg-transparent hover:text-[#ff8c42]"
+            >
+              Suscribirme
+            </button>
+
+          </form>
+
+          <p class="mt-4 text-xs text-white/40">
+            Te llegará un correo para confirmar. Puedes darte de baja cuando
+            quieras. Solo guardamos tu correo, y solo para esto:
+            <a
+              href="/privacidad"
+              class="underline decoration-white/20 underline-offset-4 transition hover:text-[#ff8c42]"
+            >
+              aviso de privacidad
+            </a>.
+          </p>
+
+          <p class="mt-6 text-sm text-white/50">
+            ¿Prefieres el chat?
             <a
               href="/contacto"
-              class="border border-[#ff8c42] text-[#ff8c42] px-6 py-3 rounded-xl font-semibold transition duration-300 hover:bg-[#ff8c42] hover:text-[#2a2d43]"
+              class="text-[#48a9a6] underline decoration-white/20 underline-offset-4 transition hover:text-[#ff8c42]"
             >
-              Unirse a la comunidad
+              Únete a la comunidad de WhatsApp
             </a>
-
-          </div>
+          </p>
 
         </div>
 

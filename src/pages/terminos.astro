@@ -1,0 +1,126 @@
+---
+/* ================================================= */
+/* TÉRMINOS DE USO                                   */
+/* ================================================= */
+import MainLayout from "../layouts/MainLayout.astro";
+import { CORREO_CONTACTO, ACTUALIZADO, LICENCIA } from "../lib/legal";
+---
+
+<MainLayout
+  title="Términos de uso | FIRSTHub"
+  description="Condiciones de uso del contenido de FIRSTHub y su relación con la documentación oficial de FIRST."
+>
+
+  <section class="max-w-3xl mx-auto px-6 pt-12 pb-10">
+
+    <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+      Legal
+    </p>
+
+    <h1 class="text-4xl md:text-5xl font-bold mt-4 text-[#fbfff1]">
+      Términos de uso
+    </h1>
+
+    <p class="mt-4 text-sm text-white/40">
+      Última actualización: {ACTUALIZADO}
+    </p>
+
+  </section>
+
+  <section class="max-w-3xl mx-auto px-6 pb-20">
+    <div class="prosa">
+
+      <h2>Qué es FIRSTHub</h2>
+
+      <p>
+        FIRSTHub es un proyecto comunitario e independiente que traduce, resume y
+        explica en español recursos sobre los programas de robótica de FIRST, para
+        que estudiantes, mentores y voluntarios de habla hispana puedan acceder a
+        ellos.
+      </p>
+
+      <h2>FIRSTHub no es FIRST</h2>
+
+      <p>
+        <strong>
+          FIRSTHub no está afiliado, patrocinado, avalado ni respaldado por
+          <em>FIRST</em> (For Inspiration and Recognition of Science and
+          Technology).
+        </strong>
+        Los nombres <em>FIRST</em>, <em>FIRST</em> Robotics Competition,
+        <em>FIRST</em> Tech Challenge y sus logotipos pertenecen a sus
+        respectivos titulares, y aquí se mencionan únicamente para identificar los
+        programas de los que trata el contenido.
+      </p>
+
+      <p>
+        Nada de lo publicado en este sitio es comunicación oficial de <em>FIRST</em>.
+      </p>
+
+      <h2>Las traducciones no sustituyen al documento oficial</h2>
+
+      <p>
+        Esta es la regla más importante del sitio, y vale la pena leerla dos veces
+        si compites.
+      </p>
+
+      <p>
+        Cuando FIRSTHub traduce o resume una regla, un Team Update, un manual o un
+        anuncio, <strong>el documento válido sigue siendo el original en inglés
+        publicado por <em>FIRST</em></strong>. Si hay cualquier diferencia entre lo
+        que dice esta página y lo que dice el documento oficial, manda el oficial.
+        Las traducciones se hacen con cuidado, pero pueden contener errores y las
+        reglas cambian durante la temporada.
+      </p>
+
+      <p>
+        No uses FIRSTHub como única fuente para decidir algo que afecte la
+        legalidad de tu robot, tu inscripción o tu participación en un evento.
+        Verifica siempre contra la documentación oficial.
+      </p>
+
+      <h2>Uso del contenido</h2>
+
+      <p>
+        El contenido original de FIRSTHub se puede reutilizar bajo la licencia
+        {LICENCIA.siglas}. Las condiciones y los límites están explicados en la
+        <a href="/licencia">página de licencia</a>.
+      </p>
+
+      <h2>Sin garantías</h2>
+
+      <p>
+        El contenido se ofrece "tal cual", con la mejor intención y sin garantía de
+        que esté completo, actualizado o libre de errores. FIRSTHub no se hace
+        responsable de daños derivados del uso de la información publicada,
+        incluidas decisiones técnicas, de competencia o de inscripción tomadas a
+        partir de ella.
+      </p>
+
+      <h2>Enlaces a otros sitios</h2>
+
+      <p>
+        Enlazamos con frecuencia a documentación oficial, foros y recursos de la
+        comunidad. No controlamos esos sitios ni respondemos por su contenido.
+      </p>
+
+      <h2>Errores y correcciones</h2>
+
+      <p>
+        Si encuentras un error —una traducción imprecisa, una regla desactualizada,
+        un dato equivocado— escríbenos a
+        <a href={`mailto:${CORREO_CONTACTO}`}>{CORREO_CONTACTO}</a>. Corregir es
+        parte del proyecto, no una molestia.
+      </p>
+
+      <h2>Cambios a estos términos</h2>
+
+      <p>
+        Podemos actualizar estos términos. Los cambios se publican en esta página
+        con una fecha nueva.
+      </p>
+
+    </div>
+  </section>
+
+</MainLayout>

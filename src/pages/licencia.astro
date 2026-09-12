@@ -1,0 +1,144 @@
+---
+/* ================================================= */
+/* LICENCIA DEL CONTENIDO                            */
+/* ================================================= */
+import MainLayout from "../layouts/MainLayout.astro";
+import { CORREO_CONTACTO, ACTUALIZADO, LICENCIA } from "../lib/legal";
+---
+
+<MainLayout
+  title="Licencia del contenido | FIRSTHub"
+  description="Bajo qué licencia se puede reutilizar el contenido original de FIRSTHub y qué material no está cubierto."
+>
+
+  <section class="max-w-3xl mx-auto px-6 pt-12 pb-10">
+
+    <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+      Legal
+    </p>
+
+    <h1 class="text-4xl md:text-5xl font-bold mt-4 text-[#fbfff1]">
+      Licencia del contenido
+    </h1>
+
+    <p class="mt-4 text-sm text-white/40">
+      Última actualización: {ACTUALIZADO}
+    </p>
+
+  </section>
+
+  <section class="max-w-3xl mx-auto px-6 pb-20">
+
+    <div
+      class="rounded-2xl border border-white/10 bg-[#313553] p-6 md:p-8"
+    >
+      <p class="text-xs uppercase tracking-widest text-[#48a9a6]">
+        En corto
+      </p>
+      <p class="mt-3 text-lg leading-relaxed text-[#fbfff1]">
+        Puedes copiar, traducir, adaptar y usar el contenido original de FIRSTHub,
+        incluso en materiales de tu equipo, siempre que des crédito y compartas el
+        resultado bajo la misma licencia.
+      </p>
+      <p class="mt-4 text-sm text-white/50">
+        {LICENCIA.nombre} ({LICENCIA.siglas})
+      </p>
+    </div>
+
+    <div class="prosa mt-10">
+
+      <h2>Qué cubre la licencia</h2>
+
+      <p>
+        Todo lo que escribimos nosotros: las guías, los manuales, los artículos del
+        blog, los análisis, los resúmenes y las traducciones hechas por FIRSTHub,
+        junto con la documentación en <a href="/docs">firsthub.dev/docs</a>.
+      </p>
+
+      <p>
+        Está bajo la licencia
+        <a href={LICENCIA.url} target="_blank" rel="noopener noreferrer">
+          {LICENCIA.nombre}
+        </a>. En la práctica puedes:
+      </p>
+
+      <ul>
+        <li>Copiarlo y redistribuirlo en cualquier medio o formato.</li>
+        <li>Adaptarlo, remezclarlo y construir sobre él, incluso para tu equipo o tu evento.</li>
+      </ul>
+
+      <p>Con dos condiciones:</p>
+
+      <ul>
+        <li>
+          <strong>Atribución.</strong> Da crédito a FIRSTHub, enlaza a
+          <a href="https://firsthub.dev">firsthub.dev</a> e indica si hiciste
+          cambios.
+        </li>
+        <li>
+          <strong>Compartir igual.</strong> Si adaptas el material, distribuye tu
+          versión bajo esta misma licencia. Así el conocimiento sigue abierto para
+          el siguiente equipo, que es el punto de todo esto.
+        </li>
+      </ul>
+
+      <h2>Qué NO cubre</h2>
+
+      <p>
+        Esto importa y suele pasarse por alto:
+      </p>
+
+      <ul>
+        <li>
+          <strong>El material oficial de <em>FIRST</em>.</strong> Las reglas, los
+          manuales, los Team Updates y los documentos publicados por <em>FIRST</em>
+          son suyos. Cuando FIRSTHub traduce o cita un fragmento, ese fragmento
+          sigue perteneciendo a <em>FIRST</em> y no se relicencia: lo que está bajo
+          nuestra licencia es la explicación, el contexto y la organización que
+          añadimos alrededor. Si vas a reutilizar material oficial, acude a la
+          fuente y respeta sus condiciones.
+        </li>
+        <li>
+          <strong>Marcas y logotipos.</strong> Los nombres y logotipos de
+          <em>FIRST</em>, de sus programas, de los equipos y de los patrocinadores
+          no están cubiertos por ninguna licencia abierta.
+        </li>
+        <li>
+          <strong>Imágenes y recursos de terceros.</strong> Fotografías,
+          diagramas o materiales de otras personas que aparezcan citados conservan
+          la licencia de su autor, indicada junto al recurso.
+        </li>
+        <li>
+          <strong>El logotipo de FIRSTHub</strong> y la identidad visual del
+          proyecto.
+        </li>
+      </ul>
+
+      <h2>Cómo citarnos</h2>
+
+      <p>
+        Basta con algo así:
+      </p>
+
+      <blockquote>
+        Adaptado de FIRSTHub (firsthub.dev), bajo licencia {LICENCIA.siglas}.
+      </blockquote>
+
+      <p>
+        Si lo usas en una presentación, un taller o el material de tu equipo, nos
+        encantaría saberlo —no es obligatorio, pero saber a dónde llega esto nos
+        ayuda a decidir qué traducir después. Escríbenos a
+        <a href={`mailto:${CORREO_CONTACTO}`}>{CORREO_CONTACTO}</a>.
+      </p>
+
+      <h2>¿Necesitas otras condiciones?</h2>
+
+      <p>
+        Si quieres usar el contenido de una forma que la licencia no permite,
+        pregunta. La respuesta suele ser que sí.
+      </p>
+
+    </div>
+  </section>
+
+</MainLayout>
