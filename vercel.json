@@ -1,8 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/docs",        "destination": "https://firsthub-docs.vercel.app/docs" },
-    { "source": "/docs/",       "destination": "https://firsthub-docs.vercel.app/docs/" },
-    { "source": "/docs/:path*", "destination": "https://firsthub-docs.vercel.app/docs/:path*" }
+    { "source": "/docs",         "destination": "https://firsthub-docs.vercel.app/docs" },
+    { "source": "/docs/",        "destination": "https://firsthub-docs.vercel.app/docs/" },
+    { "source": "/docs/:path*/", "destination": "https://firsthub-docs.vercel.app/docs/:path*/" },
+    { "source": "/docs/:path*",  "destination": "https://firsthub-docs.vercel.app/docs/:path*" }
   ]
 }
