@@ -7,8 +7,10 @@
 /* lleva un contador por entrada: no sabe quién es    */
 /* nadie. Ver /privacidad.                            */
 /*                                                    */
-/* Si la API no está configurada o falla, el botón    */
-/* se esconde solo y la página queda intacta.         */
+/* Si todavía no hay almacén conectado (la API         */
+/* responde 503), el botón se esconde solo y la        */
+/* página queda intacta. Ante un fallo pasajero sí se  */
+/* muestra: el clic reintenta contra el servidor.      */
 /* ================================================= */
 
 interface Props {
@@ -124,23 +126,28 @@ const { slug, pregunta = "¿Te sirvió esta entrada?" } = Astro.props;
       boton?.setAttribute("aria-pressed", String(activo));
     }
 
-    /* Primero los contadores. Si la API no responde, los
-       botones se quedan ocultos y nadie nota nada. */
+    function mostrar(conteos: Record<string, number>) {
+      for (const contenedor of contenedores) {
+        const slug = contenedor.dataset.meGusta!;
+        pintar(contenedor, conteos?.[slug] ?? 0, guardados.includes(slug));
+        contenedor.hidden = false;
+      }
+    }
+
+    /* Primero los contadores.
+
+       503 = la función existe pero no hay almacén conectado
+       todavía: la funcionalidad está apagada, así que el
+       bloque no se muestra.
+
+       Cualquier otro fallo (red intermitente, un 500 suelto)
+       es temporal: el botón sí se muestra, empieza en 0 y
+       el clic vuelve a intentarlo contra el servidor. */
     fetch(`/api/likes?slugs=${encodeURIComponent(slugs.join(","))}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-      .then((datos) => {
-        for (const contenedor of contenedores) {
-          const slug = contenedor.dataset.meGusta!;
-          pintar(
-            contenedor,
-            datos.conteos?.[slug] ?? 0,
-            guardados.includes(slug)
-          );
-          contenedor.hidden = false;
-        }
-      })
-      .catch(() => {
-        /* silencio: el botón no aparece */
+      .then((datos) => mostrar(datos.conteos ?? {}))
+      .catch((estado) => {
+        if (estado !== 503) mostrar({});
       });
 
     for (const contenedor of contenedores) {
