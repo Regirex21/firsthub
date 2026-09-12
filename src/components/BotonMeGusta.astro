@@ -1,0 +1,176 @@
+---
+/* ================================================= */
+/* BOTÓN DE "ME GUSTA"                               */
+/*                                                   */
+/* Quién votó se guarda solo en el navegador de cada  */
+/* persona (localStorage). El servidor únicamente     */
+/* lleva un contador por entrada: no sabe quién es    */
+/* nadie. Ver /privacidad.                            */
+/*                                                    */
+/* Si la API no está configurada o falla, el botón    */
+/* se esconde solo y la página queda intacta.         */
+/* ================================================= */
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+---
+
+<div
+  class="boton-me-gusta"
+  data-me-gusta={slug}
+  hidden
+>
+  <button
+    type="button"
+    aria-pressed="false"
+    class="group inline-flex items-center gap-2.5 rounded-full border border-white/15 px-5 py-2.5 text-sm text-white/60 transition duration-300 hover:border-[#ff8c42]/60 hover:text-[#ff8c42]"
+  >
+    <svg
+      class="h-4 w-4 transition duration-300"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path
+        d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"
+      ></path>
+    </svg>
+
+    <span class="etiqueta">Me gusta</span>
+    <span
+      class="conteo rounded-full bg-white/10 px-2 py-0.5 text-xs tabular-nums"
+    >0</span>
+  </button>
+</div>
+
+<style>
+  /* Cuando está marcado, el corazón se rellena */
+  .boton-me-gusta[data-activo="si"] button {
+    border-color: rgba(255, 140, 66, 0.6);
+    color: #ff8c42;
+  }
+
+  .boton-me-gusta[data-activo="si"] svg {
+    fill: #ff8c42;
+  }
+
+  .boton-me-gusta button:active svg {
+    transform: scale(0.85);
+  }
+</style>
+
+<script>
+  /* ================================================= */
+  /* Se ejecuta una vez por página y atiende a todos   */
+  /* los botones que encuentre.                        */
+  /* ================================================= */
+  const CLAVE = "firsthub:me-gusta";
+
+  function leerGuardados(): string[] {
+    try {
+      const crudo = localStorage.getItem(CLAVE);
+      const lista = crudo ? JSON.parse(crudo) : [];
+      return Array.isArray(lista) ? lista : [];
+    } catch {
+      /* Navegación privada o almacenamiento bloqueado:
+         el botón sigue funcionando, solo no recuerda. */
+      return [];
+    }
+  }
+
+  function guardar(lista: string[]) {
+    try {
+      localStorage.setItem(CLAVE, JSON.stringify(lista));
+    } catch {
+      /* sin almacenamiento, no pasa nada */
+    }
+  }
+
+  const contenedores = Array.from(
+    document.querySelectorAll<HTMLElement>("[data-me-gusta]")
+  );
+
+  if (contenedores.length > 0) {
+    const slugs = contenedores
+      .map((c) => c.dataset.meGusta)
+      .filter((s): s is string => Boolean(s));
+
+    let guardados = leerGuardados();
+
+    function pintar(contenedor: HTMLElement, conteo: number, activo: boolean) {
+      const conteoEl = contenedor.querySelector<HTMLElement>(".conteo");
+      const etiquetaEl = contenedor.querySelector<HTMLElement>(".etiqueta");
+      const boton = contenedor.querySelector("button");
+      if (conteoEl) conteoEl.textContent = String(conteo);
+      if (etiquetaEl) etiquetaEl.textContent = activo ? "Te gusta" : "Me gusta";
+      contenedor.dataset.activo = activo ? "si" : "no";
+      boton?.setAttribute("aria-pressed", String(activo));
+    }
+
+    /* Primero los contadores. Si la API no responde, los
+       botones se quedan ocultos y nadie nota nada. */
+    fetch(`/api/likes?slugs=${encodeURIComponent(slugs.join(","))}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((datos) => {
+        for (const contenedor of contenedores) {
+          const slug = contenedor.dataset.meGusta!;
+          pintar(
+            contenedor,
+            datos.conteos?.[slug] ?? 0,
+            guardados.includes(slug)
+          );
+          contenedor.hidden = false;
+        }
+      })
+      .catch(() => {
+        /* silencio: el botón no aparece */
+      });
+
+    for (const contenedor of contenedores) {
+      const boton = contenedor.querySelector("button");
+      const slug = contenedor.dataset.meGusta!;
+
+      boton?.addEventListener("click", async () => {
+        const estabaActivo = guardados.includes(slug);
+        const conteoEl = contenedor.querySelector<HTMLElement>(".conteo");
+        const antes = Number(conteoEl?.textContent) || 0;
+        const despues = Math.max(0, antes + (estabaActivo ? -1 : 1));
+
+        /* Respuesta inmediata: se pinta antes de que el
+           servidor conteste, y se revierte si falla. */
+        guardados = estabaActivo
+          ? guardados.filter((s) => s !== slug)
+          : [...guardados, slug];
+        guardar(guardados);
+        pintar(contenedor, despues, !estabaActivo);
+
+        try {
+          const r = await fetch("/api/likes", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              slug,
+              accion: estabaActivo ? "quitar" : "dar",
+            }),
+          });
+          if (!r.ok) throw new Error(String(r.status));
+          const datos = await r.json();
+          pintar(contenedor, datos.conteo ?? despues, !estabaActivo);
+        } catch {
+          guardados = estabaActivo
+            ? [...guardados, slug]
+            : guardados.filter((s) => s !== slug);
+          guardar(guardados);
+          pintar(contenedor, antes, estabaActivo);
+        }
+      });
+    }
+  }
+</script>

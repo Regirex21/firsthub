@@ -5,6 +5,7 @@
 import { render } from "astro:content";
 import MainLayout from "../../layouts/MainLayout.astro";
 import CategoriaBadge from "../../components/CategoriaBadge.astro";
+import BotonMeGusta from "../../components/BotonMeGusta.astro";
 import PostCard from "../../components/PostCard.astro";
 import {
   getPosts,
@@ -129,6 +130,14 @@ const c = CATEGORIAS[categoria];
       <!-- CUERPO -->
       <div class="prosa">
         <Content />
+      </div>
+
+      <!-- ME GUSTA -->
+      <div class="mt-12 flex items-center justify-between gap-4 border-t border-white/10 pt-8">
+        <p class="text-sm text-white/40">
+          ¿Te sirvió esta entrada?
+        </p>
+        <BotonMeGusta slug={post.id} />
       </div>
 
       <!-- ETIQUETAS -->
