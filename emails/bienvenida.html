@@ -3,6 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<style>
+  /* Ver el comentario del logo: el PNG va con fondo transparente para que
+     el modo oscuro de Outlook no dibuje una caja alrededor. Estas reglas
+     mantienen la cabecera oscura en los clientes que respetan CSS. */
+  @media (prefers-color-scheme: dark) {
+    .cabecera, .cabecera td { background-color:#2a2d43 !important; }
+  }
+  [data-ogsc] .cabecera, [data-ogsc] .cabecera td,
+  [data-ogsb] .cabecera, [data-ogsb] .cabecera td { background-color:#2a2d43 !important; }
+</style>
 <title>Bienvenido al boletín de FIRSTHub</title>
 </head>
 <body style="margin:0; padding:0; background-color:#f2f3f7;">
@@ -20,15 +32,18 @@
 
         <!-- CABECERA -->
         <tr>
-          <td align="center" style="background-color:#2a2d43; padding:28px 24px;">
+          <td align="center" bgcolor="#2a2d43" class="cabecera" style="background-color:#2a2d43; padding:28px 24px;">
             <!-- LOGO: para cambiarlo, sustituye solo esta URL.
-                 Tiene que ser PNG o JPG: los clientes de correo no
-                 renderizan SVG. El fondo oscuro va incluido en la
-                 imagen porque el logotipo es blanco. -->
+                 Tiene que ser PNG: los clientes de correo no renderizan
+                 SVG. El PNG va con FONDO TRANSPARENTE a proposito. Si se
+                 vuelve a hornear el fondo oscuro dentro de la imagen, en
+                 el modo oscuro de Outlook se ve una caja mas oscura que
+                 la cabecera, porque el cliente aclara el fondo de la
+                 celda pero no puede tocar los pixeles del PNG. -->
             <img src="https://www.firsthub.dev/images/firsthub_logo_email.png"
                  alt="FIRSTHub"
-                 width="260"
-                 style="display:block; width:260px; max-width:80%; height:auto; border:0;">
+                 width="240"
+                 style="display:block; width:240px; max-width:80%; height:auto; border:0;">
           </td>
         </tr>
 
