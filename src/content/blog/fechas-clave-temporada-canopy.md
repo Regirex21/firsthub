@@ -1,7 +1,7 @@
 ---
 titulo: "Todas las fechas de la temporada FIRST CANOPY: BIOBUZZ y BIOCORE en un solo calendario"
 resumen: "FTC ya arrancó y FRC todavía no. Las dos temporadas corren en relojes distintos y comparten campeonato. Aquí están las fechas oficiales de BIOBUZZ y BIOCORE, qué significa cada una para tu equipo y cuáles no dependen de ti."
-fecha: 2026-09-17
+fecha: 2026-09-18
 categoria: general
 autor:
   nombre: Rex
