@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<style>
+  /* Ver el comentario del logo: el PNG va con fondo transparente para que
+     el modo oscuro de Outlook no dibuje una caja alrededor. Estas reglas
+     mantienen la cabecera oscura en los clientes que respetan CSS. */
+  @media (prefers-color-scheme: dark) {
+    .cabecera, .cabecera td { background-color:#2a2d43 !important; }
+  }
+  [data-ogsc] .cabecera, [data-ogsc] .cabecera td,
+  [data-ogsb] .cabecera, [data-ogsb] .cabecera td { background-color:#2a2d43 !important; }
+</style>
+<title>Confirma tu suscripción al boletín de FIRSTHub</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f2f3f7;">
+
+<!-- Texto de vista previa: lo que se ve en la bandeja antes de abrir -->
+<div style="display:none; max-height:0; overflow:hidden; opacity:0;">
+  Un clic y quedas dentro. Sin confirmar, no te escribimos.
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f3f7;">
+  <tr>
+    <td align="center" style="padding:24px 12px;">
+
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:100%; background-color:#ffffff; border-radius:16px; overflow:hidden;">
+
+        <!-- CABECERA -->
+        <tr>
+          <td align="center" bgcolor="#2a2d43" class="cabecera" style="background-color:#2a2d43; padding:28px 24px;">
+            <!-- LOGO: para cambiarlo, sustituye solo esta URL.
+                 Tiene que ser PNG: los clientes de correo no renderizan
+                 SVG. El PNG va con FONDO TRANSPARENTE a proposito. Si se
+                 vuelve a hornear el fondo oscuro dentro de la imagen, en
+                 el modo oscuro de Outlook se ve una caja mas oscura que
+                 la cabecera, porque el cliente aclara el fondo de la
+                 celda pero no puede tocar los pixeles del PNG. -->
+            <img src="https://www.firsthub.dev/images/firsthub_logo_email.png"
+                 alt="FIRSTHub"
+                 width="240"
+                 style="display:block; width:240px; max-width:80%; height:auto; border:0;">
+          </td>
+        </tr>
+
+        <!-- FRANJA DE COLOR -->
+        <tr>
+          <td style="height:4px; background-color:#ff8c42; font-size:0; line-height:0;">&nbsp;</td>
+        </tr>
+
+        <!-- CUERPO -->
+        <tr>
+          <td style="padding:40px 40px 8px 40px; font-family:Helvetica,Arial,sans-serif;">
+
+            <p style="margin:0 0 8px 0; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#48a9a6; font-weight:bold;">
+              Bolet&iacute;n de FIRSTHub
+            </p>
+
+            <h1 style="margin:0 0 20px 0; font-size:28px; line-height:1.25; color:#2a2d43; font-weight:bold;">
+              Solo falta un clic
+            </h1>
+
+            <p style="margin:0 0 28px 0; font-size:16px; line-height:1.7; color:#3d4258;">
+              Pediste recibir el bolet&iacute;n de FIRSTHub en este correo. Confirma
+              que fuiste t&uacute; y a partir de la semana que viene te llega lo que
+              pasa en FIRST, en espa&ntilde;ol.
+            </p>
+
+            <!-- BOTON: el enlace es la etiqueta de doble opt-in de Brevo.
+                 {{ doubleoptin }} es la que usa la plantilla predeterminada
+                 (#4) y es la unica que funciona aqui. Si se cambia, el
+                 correo deja de confirmar suscripciones. -->
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 20px 0;">
+              <tr>
+                <td align="center" bgcolor="#ff8c42" style="border-radius:12px;">
+                  <a href="{{ doubleoptin }}"
+                     style="display:inline-block; padding:16px 32px; font-family:Helvetica,Arial,sans-serif; font-size:17px; font-weight:bold; color:#2a2d43; text-decoration:none; border-radius:12px;">
+                    Confirmar mi suscripci&oacute;n
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:0 0 32px 0; font-size:14px; line-height:1.6; color:#8a8fa6;">
+              &iquest;No funciona el bot&oacute;n?
+              <a href="{{ doubleoptin }}" style="color:#48a9a6; text-decoration:underline;">Abre este enlace</a>.
+            </p>
+
+            <hr style="border:0; border-top:1px solid #e4e6ef; margin:0 0 24px 0;">
+
+            <p style="margin:0 0 14px 0; font-size:15px; line-height:1.7; color:#3d4258;">
+              <strong style="color:#2a2d43;">Lo que vas a recibir:</strong>
+            </p>
+
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px 0;">
+              <tr>
+                <td style="padding:5px 0; font-family:Helvetica,Arial,sans-serif; font-size:15px; line-height:1.6; color:#3d4258;">
+                  <span style="color:#ff8c42; font-weight:bold;">&#8250;</span>&nbsp;&nbsp;Noticias y newsletters oficiales traducidos
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:5px 0; font-family:Helvetica,Arial,sans-serif; font-size:15px; line-height:1.6; color:#3d4258;">
+                  <span style="color:#ff8c42; font-weight:bold;">&#8250;</span>&nbsp;&nbsp;Cambios de reglas de FTC y FRC, explicados
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:5px 0; font-family:Helvetica,Arial,sans-serif; font-size:15px; line-height:1.6; color:#3d4258;">
+                  <span style="color:#ff8c42; font-weight:bold;">&#8250;</span>&nbsp;&nbsp;Lo que va aprendiendo la comunidad
+                </td>
+              </tr>
+            </table>
+
+            <!-- AVISO DE ENTREGABILIDAD: aqui va en una linea, no en caja,
+                 para no competir con el boton de confirmar, que es la unica
+                 accion que importa en este correo. La version completa esta
+                 en bienvenida.html. -->
+            <p style="margin:0 0 20px 0; font-size:15px; line-height:1.7; color:#6b7089;">
+              Ya que est&aacute;s: guarda
+              <strong style="color:#3d4258;">noticias@mail.firsthub.dev</strong>
+              en tus contactos, para que el bolet&iacute;n no se te pierda en la
+              carpeta de spam.
+            </p>
+
+            <p style="margin:0 0 24px 0; font-size:15px; line-height:1.7; color:#6b7089;">
+              <strong style="color:#3d4258;">&iquest;No fuiste t&uacute;?</strong>
+              Ignora este correo y no pasa nada. Sin ese clic no te escribimos, y
+              tu direcci&oacute;n no entra a ninguna lista.
+            </p>
+
+          </td>
+        </tr>
+
+        <!-- PIE -->
+        <tr>
+          <td style="padding:24px 40px 32px 40px; font-family:Helvetica,Arial,sans-serif; font-size:12px; line-height:1.7; color:#8a8fa6; border-top:1px solid #e4e6ef;">
+
+            <p style="margin:0 0 12px 0;">
+              Recibes este correo porque alguien pidi&oacute; el bolet&iacute;n con esta
+              direcci&oacute;n en
+              <a href="https://www.firsthub.dev" style="color:#48a9a6; text-decoration:underline;">firsthub.dev</a>.
+              Este buz&oacute;n no recibe respuestas; si necesitas algo, escr&iacute;benos por
+              Instagram a
+              <a href="https://www.instagram.com/_firsthub/" style="color:#48a9a6; text-decoration:underline;">@_firsthub</a>.
+            </p>
+
+            <p style="margin:0 0 12px 0;">
+              FIRSTHub es un proyecto no oficial de un coach, mentor y voluntario
+              de <em>FIRST</em>. No est&aacute; afiliado, patrocinado ni respaldado
+              por <em>FIRST</em>, ni representa a ning&uacute;n equipo. Las
+              traducciones no sustituyen a la documentaci&oacute;n oficial.
+            </p>
+
+            <p style="margin:0;">
+              <a href="https://www.firsthub.dev/privacidad" style="color:#8a8fa6; text-decoration:underline;">Aviso de privacidad</a>
+              &nbsp;&middot;&nbsp;
+              <a href="https://www.firsthub.dev/terminos" style="color:#8a8fa6; text-decoration:underline;">T&eacute;rminos</a>
+              &nbsp;&middot;&nbsp;
+              <a href="https://www.firsthub.dev/licencia" style="color:#8a8fa6; text-decoration:underline;">Licencia</a>
+            </p>
+
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
