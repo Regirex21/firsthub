@@ -1,6 +1,6 @@
 ---
 titulo: "Systemcore ya tiene precio y fecha: 550 dólares y sale el 18 de noviembre"
-resumen: "FIRST por fin confirmó lo que faltaba. Dos versiones, 550 y 450 dólares, a la venta el 18 de noviembre de 2026 y con un límite de una por equipo. Qué incluye, quién puede comprarla al principio y qué significa el precio para tu equipo."
+resumen: "FIRST por fin confirmó lo que faltaba. Dos versiones, 550 y 450 dólares, a la venta el 18 de noviembre de 2026 y con un límite de una por equipo. Y si tu equipo está registrado, la primera te llega gratis en la caja de temporada del Kickoff Kit."
 fecha: 2026-10-02
 categoria: frc
 autor:
@@ -37,7 +37,9 @@ Si tu equipo es de FTC y estaba haciendo cuentas para adelantarse, esa puerta es
 
 Y aquí la parte buena, que es fácil pasar por alto entre los números:
 
-**Todos los equipos de FRC reciben una Systemcore de 4 GB en el Kickoff Kit de la temporada 2027**, dentro de la caja específica de temporada. Gratis, con el kit.
+**Si tu equipo está registrado en la temporada 2027, tu Systemcore de 4 GB llega sola: viene en la caja específica de temporada (Season Specific Box) del Kickoff Kit.** No hay que comprarla, no hay que apartarla y no hay que hacer nada el 18 de noviembre. Viene en la caja, gratis, igual que el resto del kit.
+
+FIRST lo dice sin rodeos: todos los equipos de FRC reciben una. El registro de temporada es lo único que hay de por medio, porque el Kickoff Kit solo llega a los equipos inscritos.
 
 O sea: la venta del 18 de noviembre no es para conseguir tu primera Systemcore — es para conseguir la **segunda**. La que usas para programar en paralelo, para el robot de práctica, o para no tener que desarmar el de competencia cada vez que alguien quiere probar algo.
 
@@ -69,7 +71,7 @@ También queda pendiente la fecha exacta de la versión de 2 GB, y cuándo exact
 
 ## Qué hacer con esto
 
-- **Si tu equipo es de FRC y está registrado:** marca el 18 de noviembre. Si quieren una segunda unidad, ese día es la única vía por ahora, y con límite de una.
+- **Si tu equipo es de FRC y está registrado:** tu primera Systemcore ya está resuelta, llega en la caja de temporada del Kickoff Kit. Marca el 18 de noviembre solo si quieren una segunda unidad: ese día es la única vía por ahora, y con límite de una.
 - **Si están decidiendo entre 2 GB y 4 GB:** la que llega con el kit es la de 4 GB, así que la de 2 GB solo tiene sentido como unidad extra barata para desarrollo.
 - **Si tu equipo es de FTC:** no hay nada que hacer todavía más que esperar. Su temporada con Systemcore es la 2027-2028.
 - **Y lo que ya dijimos en la serie sigue en pie:** no inviertas en un roboRIO nuevo salvo que lo necesites para terminar una temporada o un proyecto concreto.
