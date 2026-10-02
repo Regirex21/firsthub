@@ -62,8 +62,6 @@ El Utah Regional y el Idaho Regional se juntaron en el **Intermountain West Regi
 
 ## La regla nueva del registro, que se presta a malentendidos
 
-Aquí hay que ir con cuidado, porque es fácil contarla mal.
-
 A partir de esta temporada, **en la primera ronda de preferencia cada equipo tiene que registrarse en un evento de su propio país**, siempre que su país tenga alguno. Los equipos de países sin eventos sí pueden elegir cualquier regional. FIRST lo plantea como una forma de darle prioridad a los equipos locales para entrar a sus propias sedes.
 
 Lo que la regla **no** dice: que no puedas competir fuera. Un equipo mexicano puede seguir yendo a un regional en Estados Unidos o a donde quiera. Lo que cambió es que su registro de la primera ronda tiene que ser un evento en México, y para eso hay tres opciones, no una. Los eventos de fuera se registran en las rondas siguientes.

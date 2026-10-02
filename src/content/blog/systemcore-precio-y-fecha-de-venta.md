@@ -25,7 +25,7 @@ La de 4 GB **sale a la venta el 18 de noviembre de 2026** por la FIRST Storefron
 
 ## Quién puede comprarla al principio
 
-La letra chica importa aquí:
+La letra chica:
 
 - **El primer lote es solo para equipos de FRC registrados y con lugar asegurado.** No es una venta abierta.
 - **Una Systemcore de 4 GB por equipo.** FIRST dice que el límite puede desaparecer una vez que baje la demanda inicial.
@@ -35,7 +35,7 @@ Si eres de FTC y estabas haciendo cuentas para adelantarte, esa puerta está cer
 
 ## Lo que no tienes que comprar
 
-Y aquí la parte que se pasa por alto entre tanto número.
+Entre tanto número hay algo que se pasa por alto.
 
 **Si tu equipo está registrado en la temporada 2027, tu Systemcore de 4 GB llega sola: viene en la caja específica de temporada (Season Specific Box) del Kickoff Kit.** No hay que comprarla, no hay que apartarla, no hay que hacer nada el 18 de noviembre. Viene en la caja, gratis, igual que el resto del kit.
 
@@ -47,7 +47,7 @@ Las unidades se envían con sus cables de entrada de alimentación, y el Black T
 
 ## ¿Es caro?
 
-Depende de con qué lo compares, y vale la pena ser honestos.
+Depende de con qué lo compares, y hay que ser honestos.
 
 Cuando FIRST habló de esto antes, dijo que la meta era que Systemcore **costara menos que un roboRIO nuevo**. Al 2 de octubre de 2026, el roboRIO 2.0 aparece en AndyMark en 399 USD, con 485 marcado como *Original price*, y además aparece agotado y sin fecha de reposición. Justo lo que esperarías de un producto que va de salida.
 
