@@ -1,200 +1,409 @@
 ---
 /* Importa el layout principal del sitio */
 import MainLayout from "../layouts/MainLayout.astro";
-import PostCard from "../components/PostCard.astro";
-import { getPosts } from "../lib/blog";
+import {
+  getPosts,
+  CATEGORIAS,
+  formatoFechaCorta,
+  tiempoLectura,
+} from "../lib/blog";
 
 /* Las tres entradas más recientes del blog */
 const ultimas = (await getPosts()).slice(0, 3);
+const [principal, ...otras] = ultimas;
+
+/* ================================================= */
+/* CALENDARIO DE LA TEMPORADA                        */
+/* Se actualiza UNA VEZ por temporada: cambia el     */
+/* rango y las fechas de abajo. Todas salen de las   */
+/* fuentes oficiales de FIRST (ver la entrada        */
+/* /blog/fechas-clave-temporada-canopy).             */
+/* ================================================= */
+const RANGO_INICIO = Date.UTC(2026, 8, 1); // 1 sep 2026
+const RANGO_FIN = Date.UTC(2027, 5, 1); // 1 jun 2027
+const MESES = ["sep", "oct", "nov", "dic", "ene 2027", "feb", "mar", "abr", "may"];
+
+/* Posición horizontal (en %) de una fecha dentro del rango */
+const pos = (anio: number, mes: number, dia: number) =>
+  ((Date.UTC(anio, mes - 1, dia) - RANGO_INICIO) / (RANGO_FIN - RANGO_INICIO)) * 100;
+
+/* FTC · BIOBUZZ — fuente: FTC Key Season Dates 2026-2027 */
+const FTC_INICIO = pos(2026, 9, 12); // Kickoff
+const FTC_ARRIBA = [
+  { en: pos(2026, 10, 19), fecha: "19 oct", texto: "Primeros league meets", ancho: 160 },
+  { en: pos(2026, 11, 30), fecha: "30 nov", texto: "Primeros regionales", ancho: 150 },
+  { en: pos(2027, 3, 21), fecha: "21 mar", texto: "Último regional con pase", ancho: 180 },
+];
+const FTC_ABAJO = [
+  { en: pos(2026, 12, 15), fecha: "15 dic", texto: "Cierran nominaciones al FIRST Leadership Award", ancho: 170 },
+];
+
+/* FRC · BIOCORE — fuentes: BIOCORE Game & Season, Submitted Awards */
+const FRC_KICKOFF = pos(2027, 1, 9);
+const FRC_HITOS = [
+  { en: pos(2026, 11, 17), fecha: "17–18 nov", texto: "Cierra el Kickoff Kit y sale Systemcore", ancho: 150, marca: "punto" },
+  { en: FRC_KICKOFF, fecha: "9 ene", texto: "Kickoff", ancho: 96, marca: "ninguna" },
+  { en: pos(2027, 2, 11), fecha: "11 feb", texto: "Cierra el Impact Award", ancho: 116, marca: "corte" },
+];
+
+/* FIRST Championship: el mismo para los dos programas */
+const CHAMPIONSHIP = pos(2027, 4, 28);
+
+/* Enlaces de cada programa en la documentación */
+const WHATSAPP = "https://chat.whatsapp.com/LmUwj6dra1pDLwkQvoD6vY";
+const INSTAGRAM = "https://www.instagram.com/_firsthub/";
 ---
 
-<!-- 
-  Página principal / Home
--->
-<MainLayout title="FIRSTHub">
+<MainLayout
+  title="FIRSTHub"
+  description="FRC y FTC explicados en español: guías traducidas de la documentación oficial, noticias de cada temporada y lo que aprendemos como coaches."
+>
 
   <!-- ================================================= -->
-  <!-- HERO PRINCIPAL                                    -->
+  <!-- HERO                                              -->
   <!-- ================================================= -->
-  <section class="max-w-6xl mx-auto px-6 pt-12 pb-12  text-center">
+  <section class="max-w-6xl mx-auto px-6 pt-16 md:pt-24 pb-14 md:pb-16">
 
-    <!-- Slogan de marca -->
-    <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+    <p class="font-display text-[17px] font-medium text-[#ff8c42]">
       &lt;/ Aprende • Construye • Compite /&gt;
     </p>
 
-    <!-- Título principal -->
-    <h1 class="text-5xl md:text-7xl font-bold mt-4 text-[#fbfff1]">
-      FIRSTHub
+    <h1 class="mt-5 mb-0 max-w-[13ch] text-[44px] md:text-[64px] font-bold leading-[1.02] tracking-[-0.035em] text-[#fbfff1]">
+      FRC y FTC, explicados en español.
     </h1>
 
-    <!-- Descripción corta -->
-    <p class="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mt-6 leading-relaxed">
-      Democratizando el acceso a recursos de FTC y FRC para estudiantes,
-      mentores y voluntarios. Creado por FIRST Alumni para impulsar
-      crecimiento técnico, liderazgo y comunidad.
-    </p>
-
-    <!-- Botones principales -->
-    <div class="mt-10 flex flex-col md:flex-row gap-4 justify-center">
-
-     <!-- CTA principal Docs -->
-	<a
-  		href="/docs"
-  		class="border border-[#ff8c42] text-[#ff8c42] px-6 py-3 rounded-xl font-semibold transition duration-300 ease-in-out hover:bg-[#ff8c42] hover:text-[#2a2d43]">
-  		Explorar Docs
-	</a>
-
-	<!-- CTA secundario Projects -->
-	<a
-  		href="/proyectos"
-  		class="border border-[#48a9a6] text-[#fbfff1] px-6 py-3 rounded-xl transition duration-300 hover:bg-[#48a9a6] hover:text-[#2a2d43]">
-  		Ver Proyectos
-	</a>
-
-  <a
-  		href="/blog"
-  		class="border border-[#B2ABBF] text-[#B2ABBF] px-6 py-3 rounded-xl font-semibold transition duration-300 ease-in-out hover:bg-[#B2ABBF] hover:text-[#2a2d43]">
-  		Ver blog
-	</a>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================================================= -->
-  <!-- MISIÓN Y VISIÓN                                   -->
-  <!-- Refuerza propósito de la organización             -->
-  <!-- ================================================= -->
-  <section class="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-12">
-
-    <!-- MISIÓN -->
-    <div>
-
-      <p class="text-[#ff8c42] font-semibold uppercase tracking-widest">
-        Nuestra Misión
+    <div class="mt-9 flex flex-wrap items-end justify-between gap-x-14 gap-y-8">
+      <p class="max-w-[32em] flex-[1_1_420px] text-[17px] leading-relaxed text-[#bfc0c6]">
+        Guías traducidas de la documentación oficial, las noticias de cada
+        temporada y lo que aprendemos como coaches. Hecho por FIRST alumni para
+        equipos de Latinoamérica.
       </p>
 
-      <h2 class="text-4xl font-bold mt-4 text-[#fbfff1]">
-        Democratizar el acceso al conocimiento en FIRST.
-      </h2>
-
-      <p class="text-white/70 mt-6 text-lg leading-relaxed">
-        Queremos que cualquier estudiante, mentor o voluntario pueda acceder
-        a recursos de calidad, guía técnica y apoyo comunitario sin importar
-        su contexto.
-      </p>
-
-    </div>
-
-    <!-- VISIÓN -->
-    <div>
-
-      <p class="text-[#ff8c42] font-semibold uppercase tracking-widest">
-        Nuestra Visión
-      </p>
-
-      <h2 class="text-4xl font-bold mt-4 text-[#fbfff1]">
-        Construir una comunidad más fuerte y preparada.
-      </h2>
-
-      <p class="text-white/70 mt-6 text-lg leading-relaxed">
-        Aspiramos a elevar el nivel técnico, humano y competitivo de los equipos
-        mediante colaboración, mentoría y aprendizaje continuo.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================================================= -->
-  <!-- TARJETAS DE VALOR                                 -->
-  <!-- Qué ofrece FIRSTHub                              -->
-  <!-- ================================================= -->
-  <section class="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-6">
-
-    <!-- Card 1 -->
-    <div class="p-6 rounded-2xl bg-[#313553] border border-white/10">
-
-      <h3 class="text-xl font-semibold text-[#fbfff1]">
-        Capacitación
-      </h3>
-
-      <p class="mt-3 text-white/70 leading-relaxed">
-        Manuales, sistemas de entrenamiento y rutas de aprendizaje.
-      </p>
-
-    </div>
-
-    <!-- Card 2 -->
-    <div class="p-6 rounded-2xl bg-[#313553] border border-white/10">
-
-      <h3 class="text-xl font-semibold text-[#fbfff1]">
-        Competencia
-      </h3>
-
-      <p class="mt-3 text-white/70 leading-relaxed">
-        Recursos reales para FRC y FTC orientados a rendimiento.
-      </p>
-
-    </div>
-
-    <!-- Card 3 -->
-    <div class="p-6 rounded-2xl bg-[#313553] border border-white/10">
-
-      <h3 class="text-xl font-semibold text-[#fbfff1]">
-        Proyectos
-      </h3>
-
-      <p class="mt-3 text-white/70 leading-relaxed">
-        Software, herramientas y mejoras construidas por el equipo.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================================================= -->
-  <!-- ÚLTIMAS DEL BLOG                                  -->
-  <!-- Noticias, traducciones e insights recientes       -->
-  <!-- ================================================= -->
-  {ultimas.length > 0 && (
-    <section class="max-w-6xl mx-auto px-6 py-12">
-
-      <div class="flex flex-wrap items-end justify-between gap-4">
-
-        <div>
-          <p class="text-[#ff8c42] font-semibold uppercase tracking-widest">
-            Del blog
-          </p>
-
-          <h2 class="text-4xl font-bold mt-4 text-[#fbfff1]">
-            Lo último de la comunidad.
-          </h2>
-
-          <p class="text-white/70 mt-4 text-lg leading-relaxed max-w-2xl">
-            Newsletters traducidos al español, cambios de reglas y aprendizajes
-            de equipos, en FTC, FRC y todo lo que cruza los dos programas.
-          </p>
-        </div>
-
+      <div class="flex flex-wrap gap-3.5">
+        <a
+          href="/docs"
+          class="rounded-xl border-2 border-[#ff8c42] bg-[#ff8c42] px-6 py-3 font-semibold text-[#2a2d43] transition duration-200 hover:bg-transparent hover:text-[#ff8c42]"
+        >
+          Abrir la documentación
+        </a>
         <a
           href="/blog"
-          class="border border-[#ff8c42] text-[#ff8c42] px-5 py-2.5 rounded-xl font-semibold transition duration-300 hover:bg-[#ff8c42] hover:text-[#2a2d43]"
+          class="rounded-xl border-2 border-[#48a9a6] px-5 py-3 font-semibold text-[#fbfff1] transition duration-200 hover:bg-[#48a9a6] hover:text-[#2a2d43]"
         >
-          Ver todo el blog
+          Leer el blog
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- CALENDARIO DE LA TEMPORADA                        -->
+  <!-- Dos carriles: FTC ya corriendo, FRC antes del     -->
+  <!-- kickoff. Los dos terminan en el Championship.     -->
+  <!-- La marca de "hoy" la coloca el script de abajo.   -->
+  <!-- ================================================= -->
+  <section aria-labelledby="canopy" class="border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-6 pt-16 md:pt-20 pb-20 md:pb-24">
+
+      <div class="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 id="canopy" class="mb-0 text-[22px] md:text-2xl font-bold tracking-[-0.02em] text-[#fbfff1]">
+          FIRST CANOPY: dos temporadas, un mismo campeonato
+        </h2>
+        <a href="/blog/fechas-clave-temporada-canopy" class="text-[15px] font-semibold text-[#ff8c42] transition hover:text-[#fbfff1]">
+          Calendario completo
+        </a>
+      </div>
+      <p class="mt-2 mb-9 text-[15px] text-[#bfc0c6]">
+        Fechas oficiales de FIRST. Las de tu región las publica tu socio regional.
+      </p>
+
+      <div class="overflow-x-auto">
+        <div class="min-w-[920px]">
+
+          <div class="mb-[18px] grid grid-cols-9 border-b border-white/[0.12] pb-2.5 text-[13px] text-[#9a9caa]">
+            {MESES.map((mes) => <span>{mes}</span>)}
+          </div>
+
+          <div class="relative h-[312px] text-[13px] leading-[1.35] text-[#bfc0c6]">
+
+            <!-- Hoy -->
+            <div id="marca-hoy" class="hidden" aria-hidden="true">
+              <div class="absolute top-0 bottom-[18px] w-0.5 bg-[#fbfff1]/85" data-marca></div>
+              <span class="absolute bottom-0 -translate-x-1/2 text-xs font-semibold text-[#fbfff1]" data-marca>hoy</span>
+            </div>
+
+            <!-- Championship -->
+            <div class="absolute top-0 h-[232px] w-0.5 -ml-px bg-[#fbfff1]/45" style={`left:${CHAMPIONSHIP}%`} aria-hidden="true"></div>
+
+            <!-- Carril FTC -->
+            <p class="absolute left-0 top-0 text-sm font-semibold text-[#ff8c42]">FTC · BIOBUZZ</p>
+
+            {FTC_ARRIBA.map((h) => (
+              <span class="absolute top-[30px] z-10 -translate-x-1/2 bg-[#2a2d43] text-center" style={`left:${h.en}%;width:${h.ancho}px`}>
+                <b class="font-semibold text-[#fbfff1]">{h.fecha}</b><br />{h.texto}
+              </span>
+            ))}
+
+            <div
+              class="absolute top-[74px] h-3.5 rounded-full bg-[#ff8c42]"
+              style={`left:${FTC_INICIO}%;width:${CHAMPIONSHIP - FTC_INICIO}%`}
+            ></div>
+            {[...FTC_ARRIBA, ...FTC_ABAJO].map((h) => (
+              <div class="absolute top-[74px] h-3.5 w-0.5 bg-[#2a2d43]" style={`left:${h.en}%`} aria-hidden="true"></div>
+            ))}
+
+            <span class="absolute top-[98px] z-10 w-24 bg-[#2a2d43]" style={`left:${FTC_INICIO}%`}>
+              <b class="font-semibold text-[#fbfff1]">12 sep</b><br />Kickoff
+            </span>
+            {FTC_ABAJO.map((h) => (
+              <span class="absolute top-[98px] z-10 -translate-x-1/2 bg-[#2a2d43] text-center" style={`left:${h.en}%;width:${h.ancho}px`}>
+                <b class="font-semibold text-[#fbfff1]">{h.fecha}</b><br />{h.texto}
+              </span>
+            ))}
+
+            <!-- Carril FRC -->
+            <p class="absolute left-0 top-[172px] text-sm font-semibold text-[#48a9a6]">FRC · BIOCORE</p>
+
+            <div
+              class="absolute left-0 top-[209px] border-t-[3px] border-dashed border-[#48a9a6] opacity-55"
+              style={`width:${FRC_KICKOFF}%`}
+            ></div>
+            <div
+              class="absolute top-[203px] h-3.5 rounded-full bg-[#48a9a6]"
+              style={`left:${FRC_KICKOFF}%;width:${CHAMPIONSHIP - FRC_KICKOFF}%`}
+            ></div>
+
+            {FRC_HITOS.map((h) => (
+              <>
+                {h.marca === "punto" && (
+                  <div class="absolute top-[203px] -ml-[7px] h-3.5 w-3.5 rounded-full border-[3px] border-[#48a9a6] bg-[#2a2d43]" style={`left:${h.en}%`} aria-hidden="true"></div>
+                )}
+                {h.marca === "corte" && (
+                  <div class="absolute top-[203px] h-3.5 w-0.5 bg-[#2a2d43]" style={`left:${h.en}%`} aria-hidden="true"></div>
+                )}
+                <span class="absolute top-[228px] z-10 -translate-x-1/2 bg-[#2a2d43] text-center" style={`left:${h.en}%;width:${h.ancho}px`}>
+                  <b class="font-semibold text-[#fbfff1]">{h.fecha}</b><br />{h.texto}
+                </span>
+              </>
+            ))}
+
+            <!-- Etiqueta del Championship -->
+            <span class="absolute top-[240px] w-[150px] -translate-x-1/2 text-center font-display text-[15px] font-semibold leading-[1.3] text-[#fbfff1]" style={`left:${CHAMPIONSHIP}%`}>
+              28 abr – 1 may<br />
+              <span class="font-sans text-[13px] font-normal text-[#bfc0c6]">Championship, Houston</span>
+            </span>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- ¿CUÁL ES TU PROGRAMA?                             -->
+  <!-- Las páginas más consultadas de cada programa      -->
+  <!-- ================================================= -->
+  <section aria-labelledby="programas" class="border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-6 pt-16 md:pt-20 pb-20 md:pb-24">
+
+      <h2 id="programas" class="mb-0 text-[26px] md:text-[32px] font-bold tracking-[-0.02em] text-[#fbfff1]">
+        ¿Cuál es tu programa?
+      </h2>
+      <p class="mt-2 mb-8 max-w-[40em] text-[17px] text-[#bfc0c6]">
+        Cada uno tiene su propia sección en la documentación. Estas son las
+        páginas que más se consultan.
+      </p>
+
+      <div class="grid gap-6 lg:grid-cols-2">
+        {[
+          {
+            sigla: "FRC",
+            nombre: "FIRST Robotics Competition",
+            color: CATEGORIAS.frc.color,
+            texto: "Robots de tamaño industrial, roboRIO y WPILib. Seis semanas de construcción después del kickoff.",
+            hub: "/docs/frc/",
+            enlaces: [
+              { href: "/docs/frc/programming/installation-tools/wpilib-setup/", texto: "Instalar WPILib y las herramientas" },
+              { href: "/docs/frc/robot-preparation/", texto: "Preparar el robot: roboRIO, radio y Driver Station" },
+              { href: "/docs/frc/premios/", texto: "Los premios de FRC y qué reconoce cada uno" },
+            ],
+          },
+          {
+            sigla: "FTC",
+            nombre: "FIRST Tech Challenge",
+            color: CATEGORIAS.ftc.color,
+            texto: "Control Hub, Driver Hub y OpModes en Java o Blocks. La temporada corre de septiembre a abril.",
+            hub: "/docs/ftc/",
+            enlaces: [
+              { href: "/docs/ftc/robot-preparation/control-hub-setup/", texto: "Configurar el Control Hub por primera vez" },
+              { href: "/docs/ftc/programming/robot-programming/", texto: "Programar tu primer drivetrain" },
+              { href: "/docs/ftc/portafolio-de-equipo/", texto: "Cómo armar el Engineering Portfolio" },
+            ],
+          },
+        ].map((p) => (
+          <div
+            class="rounded-[20px] border border-white/10 border-t-4 bg-[#313553]/55 p-7 md:px-10 md:pt-9 md:pb-8"
+            style={`border-top-color:${p.color}`}
+          >
+            <p class="text-base text-[#bfc0c6]">{p.nombre}</p>
+            <h3 class="mt-1 mb-2.5 text-[40px] md:text-[44px] font-bold leading-none tracking-[-0.03em]" style={`color:${p.color}`}>
+              {p.sigla}
+            </h3>
+            <p class="mb-5 text-base leading-relaxed text-[#e6e8dc]">{p.texto}</p>
+            <ul class="mb-6">
+              {p.enlaces.map((e, i) => (
+                <li class:list={["border-t border-white/[0.08]", i === p.enlaces.length - 1 && "border-b"]}>
+                  <a href={e.href} class="block py-3 text-base font-medium text-[#fbfff1] transition hover:text-[#ff8c42]">
+                    {e.texto}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a href={p.hub} class="text-[15px] font-semibold transition hover:text-[#fbfff1]" style={`color:${p.color}`}>
+              Toda la sección de {p.sigla}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-7 text-base text-[#bfc0c6]">
+        ¿Apenas vas llegando? Empieza por
+        <a href="/docs/first/que-es-first/" class="font-semibold text-[#fbfff1] underline underline-offset-[3px] transition hover:text-[#ff8c42]">qué es FIRST</a>.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- LO ÚLTIMO DEL BLOG                                -->
+  <!-- La más reciente en grande, las otras dos en fila  -->
+  <!-- ================================================= -->
+  {principal && (
+    <section aria-labelledby="blog" class="bg-[#252839]">
+      <div class="max-w-6xl mx-auto px-6 py-20 md:py-[88px]">
+
+        <div class="mb-10 flex flex-wrap items-baseline justify-between gap-4">
+          <h2 id="blog" class="mb-0 text-[22px] md:text-2xl font-bold tracking-[-0.02em] text-[#fbfff1]">
+            Lo último del blog
+          </h2>
+          <a href="/blog" class="text-[15px] font-semibold text-[#ff8c42] transition hover:text-[#fbfff1]">
+            Ver todo el blog
+          </a>
+        </div>
+
+        <a href={`/blog/${principal.id}`} class="group flex flex-wrap gap-x-12 gap-y-3 pb-10">
+          <span class="flex-[0_0_160px] pt-2.5 text-sm text-[#bfc0c6]">
+            {formatoFechaCorta(principal.data.fecha)}<br />
+            <span class="font-semibold" style={`color:${CATEGORIAS[principal.data.categoria].color}`}>
+              {CATEGORIAS[principal.data.categoria].etiqueta}
+            </span>
+          </span>
+          <span class="min-w-0 flex-[1_1_520px]">
+            <span class="block font-display text-[26px] md:text-[32px] font-bold leading-[1.12] tracking-[-0.025em] text-[#fbfff1] transition group-hover:text-[#ff8c42]">
+              {principal.data.titulo}
+            </span>
+            <span class="mt-3 block max-w-[38em] text-base leading-relaxed text-[#bfc0c6]">
+              {principal.data.resumen}
+            </span>
+            <span class="mt-4 block text-[13px] text-[#bfc0c6]">
+              {principal.data.autor.nombre}, {tiempoLectura(principal.body)} min de lectura
+            </span>
+          </span>
         </a>
 
-      </div>
+        {otras.map((post, i) => (
+          <a
+            href={`/blog/${post.id}`}
+            class:list={[
+              "group flex flex-wrap gap-x-12 gap-y-1.5 border-t border-white/10 py-[22px]",
+              i === otras.length - 1 && "border-b",
+            ]}
+          >
+            <span class="flex-[0_0_160px] text-sm text-[#bfc0c6]">
+              {formatoFechaCorta(post.data.fecha)}
+              <span class="ml-2 font-semibold" style={`color:${CATEGORIAS[post.data.categoria].color}`}>
+                {CATEGORIAS[post.data.categoria].etiqueta}
+              </span>
+            </span>
+            <span class="min-w-0 flex-[1_1_520px] font-display text-lg md:text-xl font-semibold leading-snug text-[#fbfff1] transition group-hover:text-[#ff8c42]">
+              {post.data.titulo}
+            </span>
+          </a>
+        ))}
 
-      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {ultimas.map((post) => <PostCard post={post} />)}
       </div>
-
     </section>
   )}
+
+  <!-- ================================================= -->
+  <!-- POR QUÉ EXISTE + CÓMO ENTERARTE DE LO NUEVO       -->
+  <!-- ================================================= -->
+  <section aria-labelledby="por-que" class="max-w-6xl mx-auto px-6 pt-20 md:pt-24 pb-0">
+
+    <div class="flex flex-wrap items-end justify-between gap-x-16 gap-y-6">
+      <h2 id="por-que" class="mb-0 max-w-[15ch] text-[30px] md:text-[40px] font-bold leading-[1.08] tracking-[-0.03em] text-[#fbfff1]">
+        Para que cada temporada no empiece
+        <span class="text-[#ff8c42]">desde cero.</span>
+      </h2>
+      <div class="min-w-0 flex-[0_1_520px]">
+        <p class="text-[17px] leading-relaxed text-[#e6e8dc]">
+          Casi todo lo que necesita un equipo de FIRST está en inglés y repartido
+          entre manuales, foros y el Discord de alguien más. Cuando se gradúa quien
+          sabía, mucho se pierde.
+        </p>
+        <p class="mt-4 text-[17px] leading-relaxed text-[#bfc0c6]">
+          Juntamos ese conocimiento en un solo lugar, lo traducimos con cuidado y lo
+          verificamos contra la fuente oficial. Si algo no cuadra, avísanos y lo
+          corregimos.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="mt-14 mb-4 font-sans text-[15px] font-semibold text-[#bfc0c6]">
+      Para enterarte de lo nuevo
+    </h3>
+    <div class="grid gap-4 md:grid-cols-3">
+      {[
+        { href: WHATSAPP, externo: true, etiqueta: "WhatsApp", titulo: "Comunidad de FIRSTHub", texto: "Avisos de la temporada y dudas entre equipos.", color: "#25D366" },
+        { href: "/blog#boletin", externo: false, etiqueta: "Correo", titulo: "Boletín semanal", texto: "Un correo a la semana, sin relleno.", color: "#ff8c42" },
+        { href: INSTAGRAM, externo: true, etiqueta: "Instagram", titulo: "@_firsthub", texto: "Tips, tutoriales y noticias en corto.", color: "#48a9a6" },
+      ].map((c) => (
+        <a
+          href={c.href}
+          {...(c.externo ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          class="group block rounded-2xl border border-white/10 bg-[#313553] p-6 transition duration-300 hover:-translate-y-1"
+          style={`--c:${c.color}`}
+        >
+          <span class="block text-sm font-semibold uppercase tracking-widest" style={`color:${c.color}`}>{c.etiqueta}</span>
+          <span class="mt-2 block font-display text-xl font-bold text-[#fbfff1] transition group-hover:text-[var(--c)]">{c.titulo}</span>
+          <span class="mt-2 block text-[15px] leading-relaxed text-[#bfc0c6]">{c.texto}</span>
+        </a>
+      ))}
+    </div>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- MARCA DE "HOY" EN EL CALENDARIO                   -->
+  <!-- La calcula el navegador de quien visita con la    -->
+  <!-- fecha del día, así que se mueve sola sin volver   -->
+  <!-- a desplegar. Fuera del rango, no se muestra.      -->
+  <!-- ================================================= -->
+  <script define:vars={{ inicio: RANGO_INICIO, fin: RANGO_FIN }}>
+    const marca = document.getElementById("marca-hoy");
+    if (marca) {
+      const ahora = new Date();
+      const hoy = Date.UTC(ahora.getFullYear(), ahora.getMonth(), ahora.getDate());
+      const porcentaje = ((hoy - inicio) / (fin - inicio)) * 100;
+      if (porcentaje >= 0 && porcentaje <= 100) {
+        for (const el of marca.querySelectorAll("[data-marca]")) {
+          el.style.left = porcentaje + "%";
+        }
+        marca.classList.remove("hidden");
+      }
+    }
+  </script>
 
 </MainLayout>

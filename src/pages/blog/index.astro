@@ -6,7 +6,6 @@
 /* ================================================= */
 import MainLayout from "../../layouts/MainLayout.astro";
 import PostCard from "../../components/PostCard.astro";
-import CategoriaBadge from "../../components/CategoriaBadge.astro";
 import {
   getPosts,
   tagsDe,
@@ -28,6 +27,8 @@ const destacado = posts.find((p) => p.data.destacado) ?? posts[0];
 const resto = posts.filter((p) => p.id !== destacado?.id);
 
 const tags = tagsDe(posts);
+/* Cuántos temas se ven antes de "Ver los N temas" (los más usados primero) */
+const TAGS_VISIBLES = 9;
 const conteo = Object.fromEntries(
   CATEGORIAS_LISTA.map((c) => [c, posts.filter((p) => p.data.categoria === c).length])
 );
@@ -41,17 +42,17 @@ const conteo = Object.fromEntries(
   <!-- ================================================= -->
   <!-- HERO                                              -->
   <!-- ================================================= -->
-  <section class="max-w-6xl mx-auto px-6 pt-12 pb-10 text-center">
+  <section class="max-w-6xl mx-auto px-6 pt-16 md:pt-20 pb-12">
 
-    <p class="text-sm uppercase tracking-widest text-[#ff8c42] font-semibold">
+    <p class="font-display text-[17px] font-medium text-[#ff8c42]">
       Noticias • Traducciones • Insights
     </p>
 
-    <h1 class="text-5xl md:text-7xl font-bold mt-4 text-[#fbfff1]">
+    <h1 class="mt-[18px] mb-0 text-[44px] md:text-[60px] font-bold leading-none tracking-[-0.035em] text-[#fbfff1]">
       Blog
     </h1>
 
-    <p class="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mt-6 leading-relaxed">
+    <p class="mt-[22px] max-w-[34em] text-[17px] leading-relaxed text-[#bfc0c6]">
       Newsletters de FIRST traducidos al español, análisis de reglas,
       anuncios de temporada y aprendizajes de la comunidad. Todo en un solo lugar.
     </p>
@@ -91,27 +92,31 @@ const conteo = Object.fromEntries(
 
         <a
           href={`/blog/${destacado.id}`}
-          class="group block rounded-2xl border border-white/10 bg-[#313553] p-8 md:p-12 transition duration-300 hover:-translate-y-1 hover:border-[#ff8c42]/50"
+          class="group block rounded-[22px] border border-white/[0.08] bg-[#313553] p-8 md:px-12 md:pt-12 md:pb-11 transition duration-200 hover:border-[#ff8c42]/55"
         >
 
-          <div class="flex flex-wrap items-center gap-3">
-            <CategoriaBadge categoria={destacado.data.categoria} tamano="md" />
-            <span class="text-xs uppercase tracking-widest text-white/40">
-              Destacado
+          <div class="flex flex-wrap items-center gap-x-3.5 gap-y-2.5 text-sm">
+            <span
+              class="rounded-full px-3 py-1 font-semibold text-[#2a2d43]"
+              style={`background-color:${CATEGORIAS[destacado.data.categoria].color}`}
+            >
+              {CATEGORIAS[destacado.data.categoria].etiqueta}
             </span>
+            <span class="font-semibold text-[#ff8c42]">Destacada</span>
           </div>
 
-          <h2 class="mt-6 text-3xl md:text-5xl font-bold leading-tight text-[#fbfff1] transition duration-300 group-hover:text-[#ff8c42]">
+          <h2 class="mt-5 mb-0 max-w-[22em] text-[26px] md:text-[34px] font-bold leading-[1.12] tracking-[-0.025em] text-[#fbfff1] transition duration-200 group-hover:text-[#ff8c42]">
             {destacado.data.titulo}
           </h2>
 
-          <p class="mt-5 max-w-3xl text-lg leading-relaxed text-white/70">
+          <p class="mt-4 max-w-[40em] text-base leading-relaxed text-[#bfc0c6]">
             {destacado.data.resumen}
           </p>
 
-          <p class="mt-8 text-sm text-white/40">
-            {destacado.data.autor.nombre} · {formatoFecha(destacado.data.fecha)} ·
-            {" "}{tiempoLectura(destacado.body)} min de lectura
+          <p class="mt-[26px] flex flex-wrap gap-x-6 gap-y-1.5 text-sm text-[#bfc0c6]">
+            <span class="font-semibold text-[#fbfff1]">{destacado.data.autor.nombre}</span>
+            <span>{formatoFecha(destacado.data.fecha)}</span>
+            <span>{tiempoLectura(destacado.body)} min de lectura</span>
           </p>
 
         </a>
@@ -122,52 +127,67 @@ const conteo = Object.fromEntries(
       <!-- ================================================= -->
       <!-- FILTROS                                           -->
       <!-- ================================================= -->
-      <section class="max-w-6xl mx-auto px-6 pb-8">
+      <section class="max-w-6xl mx-auto px-6 pt-4 pb-10">
 
         <!-- POR PROGRAMA -->
-        <div class="flex flex-wrap items-center gap-3" id="filtros-categoria">
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3.5 pb-[22px]">
+          <span class="min-w-[72px] text-sm font-semibold text-[#bfc0c6]">Programa</span>
 
-          <button
-            type="button"
-            data-filtro="todas"
-            aria-pressed="true"
-            class="filtro-cat rounded-full border border-[#fbfff1]/60 bg-[#fbfff1]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#fbfff1] transition duration-300"
-          >
-            Todas
-            <span class="ml-1 text-white/40">{posts.length}</span>
-          </button>
-
-          {CATEGORIAS_LISTA.map((cat) => (
+          <div class="flex flex-wrap gap-2.5" id="filtros-categoria">
             <button
               type="button"
-              data-filtro={cat}
-              aria-pressed="false"
-              class="filtro-cat rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/60 transition duration-300 hover:text-white"
-              style={`--c:${CATEGORIAS[cat].color}`}
+              data-filtro="todas"
+              aria-pressed="true"
+              class="filtro-cat rounded-full border border-[#ff8c42] bg-[#ff8c42] px-[18px] py-[9px] text-[15px] font-semibold text-[#2a2d43] transition duration-200"
             >
-              {CATEGORIAS[cat].etiqueta}
-              <span class="ml-1 text-white/30">{conteo[cat]}</span>
+              Todas
+              <span class="ml-1 opacity-70">{posts.length}</span>
             </button>
-          ))}
 
-        </div>
-
-        <!-- POR ETIQUETA -->
-        {tags.length > 0 && (
-          <div class="mt-4 flex flex-wrap items-center gap-2" id="filtros-tag">
-            <span class="text-xs uppercase tracking-widest text-white/30 mr-1">
-              Temas
-            </span>
-            {tags.map((tag) => (
+            {CATEGORIAS_LISTA.map((cat) => (
               <button
                 type="button"
-                data-tag={tag}
+                data-filtro={cat}
                 aria-pressed="false"
-                class="filtro-tag rounded-md border border-transparent bg-white/5 px-2.5 py-1 text-[11px] text-white/50 transition duration-300 hover:text-white"
+                class="filtro-cat rounded-full border border-white/[0.22] px-[18px] py-[9px] text-[15px] font-semibold text-[#e6e8dc] transition duration-200 hover:border-[#ff8c42]"
               >
-                #{tag}
+                {CATEGORIAS[cat].etiqueta}
+                <span class="ml-1 opacity-60">{conteo[cat]}</span>
               </button>
             ))}
+          </div>
+        </div>
+
+        <!-- POR ETIQUETA: se ven las más usadas y el resto se despliega -->
+        {tags.length > 0 && (
+          <div class="flex flex-wrap items-start gap-x-6 gap-y-3.5 border-t border-white/[0.08] pt-[22px]">
+            <span class="min-w-[72px] pt-[7px] text-sm font-semibold text-[#bfc0c6]">Temas</span>
+
+            <div class="flex min-w-0 flex-1 flex-wrap gap-2" id="filtros-tag">
+              {tags.map((tag, i) => (
+                <button
+                  type="button"
+                  data-tag={tag}
+                  aria-pressed="false"
+                  class:list={[
+                    "filtro-tag rounded-full border border-white/[0.16] px-[13px] py-1.5 text-sm text-[#bfc0c6] transition duration-200 hover:border-[#ff8c42]",
+                    i >= TAGS_VISIBLES && "tag-extra hidden",
+                  ]}
+                >
+                  #{tag}
+                </button>
+              ))}
+              {tags.length > TAGS_VISIBLES && (
+                <button
+                  type="button"
+                  id="ver-temas"
+                  aria-expanded="false"
+                  class="px-1 py-1.5 text-sm font-semibold text-[#ff8c42] transition hover:text-[#fbfff1]"
+                >
+                  Ver los {tags.length} temas
+                </button>
+              )}
+            </div>
           </div>
         )}
 
@@ -179,7 +199,7 @@ const conteo = Object.fromEntries(
       <!-- ================================================= -->
       <section
         id="grid-posts"
-        class="max-w-6xl mx-auto px-6 pb-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        class="max-w-6xl mx-auto px-6 pb-6 grid md:grid-cols-2 gap-7"
       >
         {resto.map((post) => <PostCard post={post} />)}
       </section>
@@ -202,30 +222,33 @@ const conteo = Object.fromEntries(
       <!-- El campo email_address_check es una trampa para   -->
       <!-- bots: va oculto y tiene que llegar vacío.         -->
       <!-- ================================================= -->
-      <section class="max-w-6xl mx-auto px-6 pb-20">
+      <section id="boletin" aria-labelledby="boletin-titulo" class="mt-20 bg-[#252839] scroll-mt-8">
 
-        <div class="rounded-2xl border border-white/10 bg-[#313553] p-8 md:p-10 text-center">
+        <div class="max-w-6xl mx-auto px-6 pt-20 pb-[88px] flex flex-wrap items-start gap-x-20 gap-y-10">
 
-          <p class="text-xs uppercase tracking-widest text-[#48a9a6]">
-            Boletín semanal
-          </p>
+          <div class="min-w-0 flex-[1_1_420px]">
+            <p class="text-[15px] font-semibold text-[#48a9a6]">
+              Boletín semanal
+            </p>
 
-          <h2 class="mt-4 text-2xl md:text-3xl font-bold text-[#fbfff1]">
-            No te pierdas ninguna noticia
-          </h2>
+            <h2 id="boletin-titulo" class="mt-2.5 text-3xl md:text-[40px] font-bold leading-[1.1] tracking-[-0.03em] text-[#fbfff1]">
+              No te pierdas ninguna noticia.
+            </h2>
 
-          <p class="mt-4 max-w-2xl mx-auto text-white/70 leading-relaxed">
-            Cada semana: noticias de FTC y FRC traducidas al español, cambios de
-            reglas y lo que va aprendiendo la comunidad. Un correo, sin relleno.
-          </p>
+            <p class="mt-4 max-w-[32em] text-[17px] leading-relaxed text-[#bfc0c6]">
+              Cada semana: noticias de FTC y FRC traducidas al español, cambios de
+              reglas y lo que va aprendiendo la comunidad. Un correo, sin relleno.
+            </p>
+          </div>
 
+          <div class="min-w-0 flex-[1_1_400px]">
           <form
             action="https://a5c737a2.sibforms.com/serve/MUIFALc7ZX8v_6tv_P0RLIPdWaUL5FMg6ZweTP-PBK9Bg2Psyv-taXoNx8uzu1DpYgCcbTTL3cVj-d9fIRPJudK6xm9HGEkXpWLbp_j_o2552JArJrJkN0r9lfr6VhVETI-ECyZsrZ1YWxBXR5MVY1v-1nhagIvmvwfJj0Z8YqOPodk3TYnIjo6GSLjZi4xo8ZwaRrXqLez90Xycow=="
             method="POST"
-            class="mt-8 flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto"
+            class="flex flex-wrap gap-2.5"
           >
 
-            <label for="boletin-email" class="sr-only">
+            <label for="boletin-email" class="w-full text-sm font-semibold text-[#fbfff1]">
               Tu correo electrónico
             </label>
 
@@ -236,7 +259,7 @@ const conteo = Object.fromEntries(
               required
               autocomplete="email"
               placeholder="tu@correo.com"
-              class="flex-1 rounded-xl border border-white/15 bg-[#2a2d43] px-4 py-3 text-[#fbfff1] placeholder-white/30 transition duration-300 focus:border-[#ff8c42] focus:outline-none"
+              class="min-w-0 flex-[1_1_240px] rounded-xl border border-white/25 bg-[#2a2d43] px-4 py-3 text-[#fbfff1] placeholder-white/30 transition duration-300 focus:border-[#ff8c42] focus:outline-none"
             />
 
             <!-- Trampa para bots: invisible para las personas -->
@@ -255,33 +278,36 @@ const conteo = Object.fromEntries(
 
             <button
               type="submit"
-              class="rounded-xl border border-[#ff8c42] bg-[#ff8c42] px-6 py-3 font-semibold text-[#2a2d43] transition duration-300 hover:bg-transparent hover:text-[#ff8c42]"
+              class="rounded-xl border-2 border-[#ff8c42] bg-[#ff8c42] px-[22px] py-3 font-semibold text-[#2a2d43] transition duration-200 hover:bg-transparent hover:text-[#ff8c42]"
             >
               Suscribirme
             </button>
 
           </form>
 
-          <p class="mt-4 text-xs text-white/40">
+          <p class="mt-4 text-[13px] leading-relaxed text-[#9a9caa]">
             Te llegará un correo para confirmar. Puedes darte de baja cuando
             quieras. Solo guardamos tu correo, y solo para esto:
             <a
               href="/privacidad"
-              class="underline decoration-white/20 underline-offset-4 transition hover:text-[#ff8c42]"
+              class="text-[#bfc0c6] underline underline-offset-[3px] transition hover:text-[#ff8c42]"
             >
               aviso de privacidad
             </a>.
           </p>
 
-          <p class="mt-6 text-sm text-white/50">
+          <p class="mt-2 text-sm text-[#bfc0c6]">
             ¿Prefieres el chat?
             <a
-              href="/contacto"
-              class="text-[#48a9a6] underline decoration-white/20 underline-offset-4 transition hover:text-[#ff8c42]"
+              href="https://chat.whatsapp.com/LmUwj6dra1pDLwkQvoD6vY"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-[#fbfff1] underline underline-offset-[3px] transition hover:text-[#ff8c42]"
             >
               Únete a la comunidad de WhatsApp
             </a>
           </p>
+          </div>
 
         </div>
 
@@ -318,10 +344,17 @@ const conteo = Object.fromEntries(
       let categoria = "todas";
       let tag: string | null = null;
 
-      const ACTIVO_CAT = ["border-[#fbfff1]/60", "bg-[#fbfff1]/10", "text-[#fbfff1]"];
-      const INACTIVO_CAT = ["border-white/15", "text-white/60"];
-      const ACTIVO_TAG = ["bg-white/15", "text-white"];
-      const INACTIVO_TAG = ["bg-white/5", "text-white/50"];
+      const ACTIVO_CAT = ["border-[#ff8c42]", "bg-[#ff8c42]", "text-[#2a2d43]"];
+      const INACTIVO_CAT = ["border-white/[0.22]", "bg-transparent", "text-[#e6e8dc]", "hover:border-[#ff8c42]"];
+      const ACTIVO_TAG = ["border-[#ff8c42]", "bg-[#ff8c42]/15", "text-[#fbfff1]"];
+      const INACTIVO_TAG = ["border-white/[0.16]", "text-[#bfc0c6]", "hover:border-[#ff8c42]"];
+
+      /* "Ver los N temas" despliega los temas menos usados */
+      const verTemas = document.getElementById("ver-temas");
+      verTemas?.addEventListener("click", () => {
+        document.querySelectorAll(".tag-extra").forEach((el) => el.classList.remove("hidden"));
+        verTemas.remove();
+      });
 
       function pintar() {
         for (const boton of botonesCat) {

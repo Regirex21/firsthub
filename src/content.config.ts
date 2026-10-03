@@ -44,6 +44,16 @@ const blog = defineCollection({
       })
       .optional(),
 
+    /* Si la entrada es parte de una serie que se lee en orden.
+       La tarjeta muestra "Serie <nombre>, parte X de Y". */
+    serie: z
+      .object({
+        nombre: z.string(),
+        parte: z.number().int().positive(),
+        total: z.number().int().positive(),
+      })
+      .optional(),
+
     /* Una entrada destacada encabeza el índice del blog */
     destacado: z.boolean().default(false),
 

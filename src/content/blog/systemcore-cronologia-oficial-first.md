@@ -8,6 +8,10 @@ autor:
 tags: ["systemcore", "serie-systemcore", "frc", "temporada-2027", "control-system"]
 destacado: false
 borrador: false
+serie:
+  nombre: Systemcore
+  parte: 2
+  total: 3
 ---
 
 Esta es la segunda nota de nuestra serie sobre Systemcore. Si no has leído la primera, empieza por [Systemcore: la historia completa de por qué el roboRIO desaparece](/blog/systemcore-historia-completa-roborio) — ahí explicamos qué es el dispositivo y por qué existe. Aquí nos enfocamos en la cronología: cada anuncio oficial de FIRST, en orden, con lo que aportó cada uno.

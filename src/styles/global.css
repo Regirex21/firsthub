@@ -93,26 +93,31 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Encabezados */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 1rem 0;
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
+/* Encabezados y enlaces por defecto.
+   Van dentro de @layer base para que las clases de Tailwind
+   (text-[84px], mt-6, leading-*, transition...) puedan
+   sobreescribirlos. Fuera de una capa ganaban siempre y los
+   títulos se quedaban en 2.5rem / 2rem / 1.5rem. */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 1rem 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
 
-/* Enlaces */
-a {
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-a:hover {
-  opacity: 0.8;
+  a {
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  a:hover {
+    opacity: 0.8;
+  }
 }
 
 /* Contenedor principal */

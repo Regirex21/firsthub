@@ -1,63 +1,77 @@
 ---
-/* Tarjeta de entrada usada en el índice del blog,
-   en las páginas de categoría y en el home */
-import CategoriaBadge from "./CategoriaBadge.astro";
-import { formatoFechaCorta, tiempoLectura, type Post } from "../lib/blog";
+/* Tarjeta de entrada usada en el índice del blog
+   y en las páginas de categoría */
+import {
+  CATEGORIAS,
+  formatoFechaCorta,
+  tiempoLectura,
+  type Post,
+} from "../lib/blog";
 
 interface Props {
   post: Post;
 }
 
 const { post } = Astro.props;
-const { titulo, resumen, fecha, categoria, tags, autor, fuente, borrador } =
+const { titulo, resumen, fecha, categoria, tags, autor, fuente, borrador, serie } =
   post.data;
 const minutos = tiempoLectura(post.body);
+const color = CATEGORIAS[categoria].color;
+
+/* En una serie, la parte ya va en su propia etiqueta:
+   se quita el "(1/3)" del final del título para no repetirlo */
+const tituloTarjeta = serie ? titulo.replace(/\s*\(\d+\/\d+\)\s*$/, "") : titulo;
 ---
 
 <article
-  class="group flex h-full flex-col rounded-2xl border border-white/10 bg-[#313553] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/25"
+  class="group relative flex h-full flex-col gap-3.5 rounded-[20px] border border-white/[0.08] bg-[#313553] p-7 md:p-[34px] transition duration-200 hover:border-[#ff8c42]/55"
   data-categoria={categoria}
   data-tags={tags.join("|")}
 >
 
-  <!-- CABECERA: categoría + fecha -->
-  <div class="flex items-center justify-between gap-3">
-    <div class="flex items-center gap-2">
-      <CategoriaBadge categoria={categoria} />
-      {/* Solo puede verse en `npm run dev`: en producción las entradas con
-          borrador: true ni siquiera llegan al build */}
-      {borrador && (
-        <span class="rounded-full border border-[#ffcd00]/50 bg-[#ffcd00]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-[#ffcd00]">
-          Borrador
-        </span>
-      )}
-    </div>
-    <time
-      datetime={fecha.toISOString()}
-      class="text-xs text-white/40 whitespace-nowrap"
+  <!-- CABECERA: programa, fecha y serie -->
+  <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px]">
+    <span
+      class="rounded-full px-[11px] py-[3px] font-semibold text-[#2a2d43]"
+      style={`background-color:${color}`}
     >
+      {CATEGORIAS[categoria].etiqueta}
+    </span>
+    <time datetime={fecha.toISOString()} class="text-[#bfc0c6]">
       {formatoFechaCorta(fecha)}
     </time>
+    {serie && (
+      <span class="font-semibold" style={`color:${color}`}>
+        Serie {serie.nombre}, parte {serie.parte} de {serie.total}
+      </span>
+    )}
+    {/* Solo puede verse en `npm run dev`: en producción las entradas con
+        borrador: true ni siquiera llegan al build */}
+    {borrador && (
+      <span class="rounded-full border border-[#ffcd00]/50 bg-[#ffcd00]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-[#ffcd00]">
+        Borrador
+      </span>
+    )}
   </div>
 
-  <!-- TÍTULO -->
-  <h3 class="mt-4 text-xl font-semibold leading-snug text-[#fbfff1]">
+  <!-- TÍTULO: el enlace cubre toda la tarjeta -->
+  <h3 class="text-xl md:text-[25px] font-semibold leading-tight tracking-[-0.015em] text-[#fbfff1]">
     <a
       href={`/blog/${post.id}`}
-      class="transition duration-300 group-hover:text-[#ff8c42]"
+      class="transition duration-200 group-hover:text-[#ff8c42] after:absolute after:inset-0 after:content-['']"
     >
-      {titulo}
+      {tituloTarjeta}
     </a>
   </h3>
 
   <!-- RESUMEN -->
-  <p class="mt-3 flex-1 leading-relaxed text-white/70">
+  <p class="flex-1 text-base leading-[1.65] text-[#bfc0c6]">
     {resumen}
   </p>
 
   <!-- ETIQUETAS -->
   {tags.length > 0 && (
-    <div class="mt-5 flex flex-wrap gap-2">
+    <div class="flex flex-wrap gap-2">
       {tags.map((tag) => (
         <span class="rounded-md bg-white/5 px-2 py-1 text-[11px] text-white/50">
           #{tag}
@@ -67,16 +81,11 @@ const minutos = tiempoLectura(post.body);
   )}
 
   <!-- PIE: autor, lectura y aviso de traducción -->
-  <div
-    class="mt-5 flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs text-white/40"
-  >
-    <span class="truncate">{autor.nombre}</span>
-    <span class="flex items-center gap-2 whitespace-nowrap">
-      {fuente?.traduccion && (
-        <span class="text-[#48a9a6]">Traducción</span>
-      )}
-      <span>{minutos} min</span>
-    </span>
-  </div>
+  <p class="pt-1.5 text-sm text-[#bfc0c6]">
+    {autor.nombre}, {minutos} min de lectura
+    {fuente?.traduccion && (
+      <span class="ml-2 text-[#48a9a6]">Traducción</span>
+    )}
+  </p>
 
 </article>

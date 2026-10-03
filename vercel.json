@@ -1,5 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/proyectos",          "destination": "/", "permanent": true },
+    { "source": "/proyectos/",         "destination": "/", "permanent": true },
+    { "source": "/equipo",             "destination": "/", "permanent": true },
+    { "source": "/equipo/:path*",      "destination": "/", "permanent": true },
+    { "source": "/Equipo",             "destination": "/", "permanent": true },
+    { "source": "/Equipo/:path*",      "destination": "/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/docs",         "destination": "https://firsthub-docs.vercel.app/docs" },
     { "source": "/docs/",        "destination": "https://firsthub-docs.vercel.app/docs/" },
