@@ -1,0 +1,63 @@
+---
+/* =================================================
+   /docs: ELEGIR DOCUMENTACIÓN
+   La documentación está dividida en dos sitios:
+   /docs-ftc y /docs-frc (repo firsthub-docs).
+   Esta página solo manda a cada uno.
+   ================================================= */
+import MainLayout from "../layouts/MainLayout.astro";
+
+const PROGRAMAS = [
+  {
+    sigla: "FTC",
+    nombre: "FIRST Tech Challenge",
+    color: "#ff8c42",
+    href: "/docs-ftc/",
+    texto: "Control Hub, Driver Hub, programación en Java o Blocks, premios y Engineering Portfolio.",
+  },
+  {
+    sigla: "FRC",
+    nombre: "FIRST Robotics Competition",
+    color: "#48a9a6",
+    href: "/docs-frc/",
+    texto: "WPILib, roboRIO, radio, Driver Station, programación del robot y premios.",
+  },
+];
+---
+
+<MainLayout
+  title="Documentación | FIRSTHub"
+  description="Documentación de FTC y FRC en español: elige tu programa."
+>
+  <section class="max-w-6xl mx-auto px-6 pt-16 md:pt-20 pb-6">
+    <p class="font-display text-[17px] font-medium text-[#ff8c42]">
+      Documentación
+    </p>
+    <h1 class="mt-[18px] mb-0 text-[44px] md:text-[60px] font-bold leading-none tracking-[-0.035em] text-[#fbfff1]">
+      ¿Cuál es tu programa?
+    </h1>
+    <p class="mt-[22px] max-w-[34em] text-[17px] leading-relaxed text-[#bfc0c6]">
+      Cada programa tiene su propia documentación, con su menú y su buscador.
+      Lo que es de los dos, como FIRST, voluntariado y Git, está en ambas.
+    </p>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 pt-8 pb-4 grid gap-6 md:grid-cols-2">
+    {PROGRAMAS.map((p) => (
+      <a
+        href={p.href}
+        class="group block rounded-[20px] border border-white/10 border-t-4 bg-[#313553]/55 p-7 md:px-10 md:pt-9 md:pb-8 transition duration-300 hover:-translate-y-1"
+        style={`border-top-color:${p.color}`}
+      >
+        <span class="block text-base text-[#bfc0c6]">{p.nombre}</span>
+        <span class="mt-1 block font-display text-[40px] md:text-[44px] font-bold leading-none tracking-[-0.03em]" style={`color:${p.color}`}>
+          {p.sigla}
+        </span>
+        <span class="mt-4 block text-base leading-relaxed text-[#e6e8dc]">{p.texto}</span>
+        <span class="mt-6 block text-[15px] font-semibold transition group-hover:text-[#fbfff1]" style={`color:${p.color}`}>
+          Abrir la documentación de {p.sigla}
+        </span>
+      </a>
+    ))}
+  </section>
+</MainLayout>

@@ -14,10 +14,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://firsthub.de
 
 /* Marca el enlace del menú que corresponde a la página actual */
 const ruta = Astro.url.pathname;
+/* "Docs" abre un submenú con las dos documentaciones */
+const DOCS = [
+  { href: "/docs-ftc/", texto: "Documentación FTC", color: "#ff8c42" },
+  { href: "/docs-frc/", texto: "Documentación FRC", color: "#48a9a6" },
+];
 const enlaces = [
   { href: "/", texto: "Inicio" },
   { href: "/blog", texto: "Blog" },
-  { href: "/docs", texto: "Docs" },
+  { href: "/docs", texto: "Docs", submenu: DOCS },
   { href: "/voluntarios", texto: "Voluntarios" },
   { href: "/contacto", texto: "Contacto" },
 ];
@@ -98,19 +103,47 @@ const esActivo = (href: string) =>
         </a>
 
         <!-- MENÚ DESKTOP -->
-        <div class="hidden md:flex gap-6 text-sm font-medium">
-          {enlaces.map((enlace) => (
-            <a
-              href={enlace.href}
-              aria-current={esActivo(enlace.href) ? "page" : undefined}
-              class:list={[
-                "transition hover:text-[#ff8c42]",
-                esActivo(enlace.href) ? "text-[#ff8c42]" : "",
-              ]}
-            >
-              {enlace.texto}
-            </a>
-          ))}
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+          {enlaces.map((enlace) =>
+            enlace.submenu ? (
+              /* Submenú: se abre al pasar el mouse o al enfocarlo con el teclado */
+              <div class="group relative">
+                <a
+                  href={enlace.href}
+                  aria-haspopup="true"
+                  aria-current={esActivo(enlace.href) ? "page" : undefined}
+                  class:list={[
+                    "inline-flex items-center gap-1 transition hover:text-[#ff8c42]",
+                    esActivo(enlace.href) ? "text-[#ff8c42]" : "",
+                  ]}
+                >
+                  {enlace.texto}
+                  <svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" class="mt-px transition group-hover:rotate-180 group-focus-within:rotate-180"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </a>
+                <div class="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  <div class="w-56 rounded-xl border border-white/10 bg-[#313553] p-2 shadow-xl shadow-black/30">
+                    {enlace.submenu.map((s) => (
+                      <a href={s.href} class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[#fbfff1] transition hover:bg-white/[0.06]">
+                        <span class="h-2.5 w-2.5 rounded-full" style={`background:${s.color}`}></span>
+                        {s.texto}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a
+                href={enlace.href}
+                aria-current={esActivo(enlace.href) ? "page" : undefined}
+                class:list={[
+                  "transition hover:text-[#ff8c42]",
+                  esActivo(enlace.href) ? "text-[#ff8c42]" : "",
+                ]}
+              >
+                {enlace.texto}
+              </a>
+            )
+          )}
         </div>
 
         <!-- BOTÓN HAMBURGUESA -->
@@ -129,13 +162,16 @@ const esActivo = (href: string) =>
         id="mobile-menu"
         class="hidden md:hidden mt-4 flex flex-col gap-3 text-sm font-medium"
       >
-        {enlaces.map((enlace, i) => (
+        {enlaces.flatMap((enlace) =>
+          /* En celular el submenú se muestra como dos opciones */
+          enlace.submenu ? enlace.submenu.map((s) => ({ href: s.href, texto: s.texto })) : [enlace]
+        ).map((enlace, i, todos) => (
           <a
             href={enlace.href}
             aria-current={esActivo(enlace.href) ? "page" : undefined}
             class:list={[
               "py-2",
-              i < enlaces.length - 1 ? "border-b border-white/10" : "",
+              i < todos.length - 1 ? "border-b border-white/10" : "",
               esActivo(enlace.href) ? "text-[#ff8c42]" : "",
             ]}
           >

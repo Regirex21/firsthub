@@ -6,12 +6,23 @@
     { "source": "/equipo",             "destination": "/", "permanent": true },
     { "source": "/equipo/:path*",      "destination": "/", "permanent": true },
     { "source": "/Equipo",             "destination": "/", "permanent": true },
-    { "source": "/Equipo/:path*",      "destination": "/", "permanent": true }
+    { "source": "/Equipo/:path*",      "destination": "/", "permanent": true },
+
+    { "source": "/docs/ftc",           "destination": "/docs-ftc/", "permanent": true },
+    { "source": "/docs/ftc/:path*",    "destination": "/docs-ftc/:path*", "permanent": true },
+    { "source": "/docs/frc",           "destination": "/docs-frc/", "permanent": true },
+    { "source": "/docs/frc/:path*",    "destination": "/docs-frc/:path*", "permanent": true },
+    { "source": "/docs/:seccion(first|voluntarios|herramientas)",        "destination": "/docs-frc/:seccion/", "permanent": true },
+    { "source": "/docs/:seccion(first|voluntarios|herramientas)/:path*", "destination": "/docs-frc/:seccion/:path*", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/docs",         "destination": "https://firsthub-docs.vercel.app/docs" },
-    { "source": "/docs/",        "destination": "https://firsthub-docs.vercel.app/docs/" },
-    { "source": "/docs/:path*/", "destination": "https://firsthub-docs.vercel.app/docs/:path*/" },
-    { "source": "/docs/:path*",  "destination": "https://firsthub-docs.vercel.app/docs/:path*" }
+    { "source": "/docs-ftc",           "destination": "https://firsthub-docs.vercel.app/docs-ftc/" },
+    { "source": "/docs-ftc/",          "destination": "https://firsthub-docs.vercel.app/docs-ftc/" },
+    { "source": "/docs-ftc/:path*/",   "destination": "https://firsthub-docs.vercel.app/docs-ftc/:path*/" },
+    { "source": "/docs-ftc/:path*",    "destination": "https://firsthub-docs.vercel.app/docs-ftc/:path*" },
+    { "source": "/docs-frc",           "destination": "https://firsthub-docs.vercel.app/docs-frc/" },
+    { "source": "/docs-frc/",          "destination": "https://firsthub-docs.vercel.app/docs-frc/" },
+    { "source": "/docs-frc/:path*/",   "destination": "https://firsthub-docs.vercel.app/docs-frc/:path*/" },
+    { "source": "/docs-frc/:path*",    "destination": "https://firsthub-docs.vercel.app/docs-frc/:path*" }
   ]
 }
