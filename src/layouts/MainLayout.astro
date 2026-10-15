@@ -67,6 +67,35 @@ const esActivo = (href: string) =>
   <meta property="og:url" content={canonical} />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- DATOS ESTRUCTURADOS PARA GOOGLE (solo en Inicio)
+       Le dicen a Google qué es FIRSTHub, cuál es su logo y cuáles son
+       sus perfiles oficiales; es lo que usa para armar la ficha del
+       sitio en los resultados. -->
+  {ruta === "/" && (
+    <script type="application/ld+json" set:html={JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "FIRSTHub",
+        url: "https://www.firsthub.dev/",
+        logo: "https://www.firsthub.dev/images/firsthub_logo.svg",
+        description: "Documentación, noticias y tutoriales de FIRST Robotics Competition y FIRST Tech Challenge en español.",
+        email: "firsthubofficial@gmail.com",
+        sameAs: ["https://www.instagram.com/_firsthub/"],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "FIRSTHub",
+        url: "https://www.firsthub.dev/",
+        inLanguage: "es",
+      },
+    ])} />
+  )}
+
+  <!-- Etiquetas extra por página (por ejemplo, noindex en el 404) -->
+  <slot name="head" />
+
   <!-- RSS DEL BLOG -->
   <link
     rel="alternate"

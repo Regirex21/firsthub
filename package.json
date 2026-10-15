@@ -12,11 +12,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.38.3",
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.2.4",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "astro": "^6.1.8",
+    "astro-expressive-code": "^0.44.2",
     "tailwindcss": "^4.2.4"
   }
 }

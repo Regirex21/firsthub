@@ -1,0 +1,10 @@
+# FIRSTHub: todo el sitio se puede indexar, salvo las páginas
+# de confirmación del boletín, que no le sirven a nadie en Google.
+User-agent: *
+Allow: /
+Disallow: /boletin/
+
+# Mapas del sitio: el principal y uno por documentación
+Sitemap: https://www.firsthub.dev/sitemap-index.xml
+Sitemap: https://www.firsthub.dev/docs-ftc/sitemap-index.xml
+Sitemap: https://www.firsthub.dev/docs-frc/sitemap-index.xml
