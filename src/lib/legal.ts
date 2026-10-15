@@ -18,10 +18,13 @@ export const RESPONSABLE = "RS";
    hace alguien de la comunidad, no una empresa. */
 export const ROL_RESPONSABLE = "coach, mentor y voluntario de FIRST";
 
-export const CORREO_CONTACTO = "info@firsthub.dev";
+/* Buzón que se revisa: aquí llegan las solicitudes ARCO y las
+   quejas sobre el aviso de privacidad. Debe ser un correo que
+   alguien lea; si cambia, se cambia solo aquí. */
+export const CORREO_CONTACTO = "firsthubofficial@gmail.com";
 
 /* Fecha de la última revisión de los textos legales */
-export const ACTUALIZADO = "12 de septiembre de 2026";
+export const ACTUALIZADO = "14 de octubre de 2026";
 
 export const LICENCIA = {
   nombre: "Creative Commons Atribución-CompartirIgual 4.0 Internacional",

@@ -283,17 +283,35 @@ const conteo = Object.fromEntries(
               Suscribirme
             </button>
 
+            <!-- Consentimiento: obligatorio y sin marcar de inicio.
+                 El navegador no deja enviar el formulario sin él.
+                 No lleva "name" a propósito: no se manda a Brevo
+                 (un campo que el formulario no espera puede romper
+                 la suscripción). El registro del consentimiento es
+                 la doble confirmación por correo. -->
+            <label for="boletin-consentimiento" class="mt-2 flex w-full cursor-pointer items-start gap-3 text-sm leading-relaxed text-[#bfc0c6]">
+              <input
+                id="boletin-consentimiento"
+                type="checkbox"
+                required
+                class="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-[#ff8c42]"
+              />
+              <span>
+                Acepto recibir el boletín y que FIRSTHub trate mi correo según el
+                <a
+                  href="/privacidad#boletin"
+                  target="_blank"
+                  class="text-[#fbfff1] underline underline-offset-[3px] transition hover:text-[#ff8c42]"
+                >aviso de privacidad</a>.
+                Si eres menor de edad, suscríbete con el conocimiento de tu madre, padre o tutor.
+              </span>
+            </label>
+
           </form>
 
           <p class="mt-4 text-[13px] leading-relaxed text-[#9a9caa]">
             Te llegará un correo para confirmar. Puedes darte de baja cuando
-            quieras. Solo guardamos tu correo, y solo para esto:
-            <a
-              href="/privacidad"
-              class="text-[#bfc0c6] underline underline-offset-[3px] transition hover:text-[#ff8c42]"
-            >
-              aviso de privacidad
-            </a>.
+            quieras desde cualquier boletín. Solo guardamos tu correo, y solo para esto.
           </p>
 
           <p class="mt-2 text-sm text-[#bfc0c6]">

@@ -1,0 +1,118 @@
+---
+/* ================================================= */
+/* CONSENTIMIENTO PARA LA ANALÍTICA                  */
+/*                                                   */
+/* Vercel Web Analytics y Speed Insights solo se     */
+/* cargan si la persona acepta. Si rechaza o no      */
+/* contesta, no se carga ningún script de medición.  */
+/*                                                   */
+/* La decisión se guarda en localStorage con la      */
+/* clave "fh-consentimiento". La documentación       */
+/* (/docs-ftc, /docs-frc) se sirve desde el mismo    */
+/* dominio, así que lee la misma decisión: hay una   */
+/* copia de este componente en el repo firsthub-docs */
+/* (src/components/Consentimiento.astro). Si cambias */
+/* la clave o la versión, cámbiala en los dos.       */
+/*                                                   */
+/* Cualquier elemento con data-fh-preferencias       */
+/* vuelve a abrir el aviso (está en el pie).         */
+/* ================================================= */
+---
+
+<div
+  id="fh-consentimiento"
+  role="dialog"
+  aria-labelledby="fh-consentimiento-titulo"
+  aria-describedby="fh-consentimiento-texto"
+  hidden
+  class="fixed inset-x-4 bottom-4 z-[100] mx-auto max-w-[620px] rounded-2xl border border-white/15 bg-[#313553] p-5 text-[#fbfff1] shadow-2xl shadow-black/40 md:left-6 md:right-auto md:mx-0 md:p-6"
+>
+  <p id="fh-consentimiento-titulo" class="font-display text-lg font-bold">
+    ¿Podemos contar tu visita?
+  </p>
+  <p id="fh-consentimiento-texto" class="mt-2 text-[15px] leading-relaxed text-[#bfc0c6]">
+    Medimos qué páginas se leen con Vercel Analytics. No usa cookies ni guarda
+    datos que te identifiquen, pero solo lo activamos si aceptas. Puedes cambiar
+    tu decisión cuando quieras desde el pie de página.
+    <a href="/privacidad#analitica" class="text-[#fbfff1] underline underline-offset-[3px] hover:text-[#ff8c42]">Aviso de privacidad</a>
+  </p>
+  <div class="mt-4 flex flex-wrap gap-3">
+    <button
+      type="button"
+      data-fh-decision="rechazado"
+      class="flex-1 rounded-xl border-2 border-[#fbfff1]/70 px-5 py-2.5 font-semibold transition hover:border-[#fbfff1] hover:bg-[#fbfff1] hover:text-[#2a2d43]"
+    >
+      Rechazar
+    </button>
+    <button
+      type="button"
+      data-fh-decision="aceptado"
+      class="flex-1 rounded-xl border-2 border-[#fbfff1]/70 px-5 py-2.5 font-semibold transition hover:border-[#fbfff1] hover:bg-[#fbfff1] hover:text-[#2a2d43]"
+    >
+      Aceptar
+    </button>
+  </div>
+</div>
+
+<script>
+  import { inject } from "@vercel/analytics";
+  import { injectSpeedInsights } from "@vercel/speed-insights";
+
+  const CLAVE = "fh-consentimiento";
+  const VERSION = 1; // súbela si cambia lo que se mide: vuelve a preguntar
+
+  type Decision = "aceptado" | "rechazado";
+
+  function leer(): Decision | null {
+    try {
+      const d = JSON.parse(localStorage.getItem(CLAVE) ?? "null");
+      if (d && d.v === VERSION && (d.decision === "aceptado" || d.decision === "rechazado")) {
+        return d.decision;
+      }
+    } catch {}
+    return null;
+  }
+
+  function guardar(decision: Decision) {
+    try {
+      localStorage.setItem(CLAVE, JSON.stringify({ v: VERSION, decision, fecha: new Date().toISOString() }));
+    } catch {}
+  }
+
+  let cargada = false;
+  function cargarAnalitica() {
+    if (cargada) return;
+    cargada = true;
+    inject({ framework: "astro" });
+    injectSpeedInsights({ framework: "astro" });
+  }
+
+  const aviso = document.getElementById("fh-consentimiento");
+  const mostrar = () => aviso && (aviso.hidden = false);
+  const ocultar = () => aviso && (aviso.hidden = true);
+
+  const actual = leer();
+  if (actual === "aceptado") cargarAnalitica();
+  else if (actual === null) mostrar();
+
+  aviso?.querySelectorAll<HTMLButtonElement>("[data-fh-decision]").forEach((b) =>
+    b.addEventListener("click", () => {
+      const decision = b.dataset.fhDecision as Decision;
+      const antes = leer();
+      guardar(decision);
+      ocultar();
+      if (decision === "aceptado") cargarAnalitica();
+      // Si antes había aceptado, el script ya cargó en esta página:
+      // recargar garantiza que deje de medir desde ahora.
+      else if (antes === "aceptado") location.reload();
+    }),
+  );
+
+  document.querySelectorAll("[data-fh-preferencias]").forEach((el) =>
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      mostrar();
+      aviso?.querySelector<HTMLButtonElement>("[data-fh-decision]")?.focus();
+    }),
+  );
+</script>

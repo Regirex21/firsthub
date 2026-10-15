@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
-import SpeedInsights from "@vercel/speed-insights/astro"
-import Analytics from '@vercel/analytics/astro'
+/* La analítica de Vercel la carga Consentimiento solo si la persona acepta */
+import Consentimiento from "../components/Consentimiento.astro";
 
 const {
   title = "FIRSTHub",
@@ -77,8 +77,6 @@ const esActivo = (href: string) =>
 </head>
 
 <body class="bg-[#2a2d43] text-white min-h-screen flex flex-col">
-  <Analytics />
-  <SpeedInsights />
 
   <!-- ================================================= -->
   <!-- HEADER / NAVBAR                                   -->
@@ -201,7 +199,7 @@ const esActivo = (href: string) =>
           Privacidad
         </a>
         <a href="/terminos" class="hover:text-[#ff8c42] transition">
-          Términos
+          Aviso legal
         </a>
         <a href="/licencia" class="hover:text-[#ff8c42] transition">
           Licencia
@@ -209,6 +207,9 @@ const esActivo = (href: string) =>
         <a href="/blog/rss.xml" class="hover:text-[#ff8c42] transition">
           RSS del blog
         </a>
+        <button type="button" data-fh-preferencias class="hover:text-[#ff8c42] transition">
+          Preferencias de privacidad
+        </button>
       </nav>
     </div>
 
@@ -230,6 +231,8 @@ const esActivo = (href: string) =>
       </span>
     </div>
   </footer>
+
+  <Consentimiento />
 
   <!-- SCRIPT MENU -->
   <script>

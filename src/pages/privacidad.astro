@@ -37,8 +37,11 @@ import { RESPONSABLE, CORREO_CONTACTO, ACTUALIZADO } from "../lib/legal";
       <h2>Quién es responsable de tus datos</h2>
 
       <p>
-        {RESPONSABLE}, responsable del proyecto FIRSTHub (<a href="https://firsthub.dev">firsthub.dev</a>),
-        es quien trata los datos personales que se describen aquí. FIRSTHub es un
+        {RESPONSABLE}, responsable del proyecto FIRSTHub, es quien trata los datos
+        personales que se describen aquí. Este aviso cubre el sitio
+        <a href="https://www.firsthub.dev">firsthub.dev</a> y sus dos
+        documentaciones, <a href="/docs-ftc/">Docs FTC</a> y
+        <a href="/docs-frc/">Docs FRC</a>. Quien trata los datos personales que se describen aquí. FIRSTHub es un
         proyecto personal, no una empresa ni una organización constituida. Para
         cualquier asunto relacionado con este aviso, el contacto es
         <a href={`mailto:${CORREO_CONTACTO}`}>{CORREO_CONTACTO}</a>.
@@ -73,13 +76,20 @@ import { RESPONSABLE, CORREO_CONTACTO, ACTUALIZADO } from "../lib/legal";
         FIRSTHub recoge lo mínimo para funcionar. Esto es todo, sin excepciones:
       </p>
 
-      <h3>Si te suscribes al boletín</h3>
+      <h3 id="boletin">Si te suscribes al boletín</h3>
 
       <p>
         Guardamos <strong>tu dirección de correo electrónico</strong>, y solo eso.
         La usamos para mandarte el boletín del blog: noticias, traducciones y
         anuncios relacionados con FIRST. No la usamos para nada más, no la
         vendemos y no la compartimos con terceros con fines comerciales.
+      </p>
+
+      <p>
+        Para suscribirte tienes que marcar la casilla en la que aceptas recibir el
+        boletín y este aviso; sin ella el formulario no se envía. Ese es tu
+        consentimiento, y lo confirmas otra vez con el enlace que te llega por
+        correo.
       </p>
 
       <p>
@@ -96,7 +106,7 @@ import { RESPONSABLE, CORREO_CONTACTO, ACTUALIZADO } from "../lib/legal";
         si el boletín le sirve a alguien.
       </p>
 
-      <h3>Cuando navegas el sitio</h3>
+      <h3 id="analitica">Cuando navegas el sitio</h3>
 
       <p>
         Usamos <strong>Vercel Web Analytics</strong> y <strong>Speed Insights</strong>
@@ -106,6 +116,14 @@ import { RESPONSABLE, CORREO_CONTACTO, ACTUALIZADO } from "../lib/legal";
         valor derivado de la petición que se descarta a las 24 horas. Los datos
         que vemos son agregados —páginas vistas, país, tipo de dispositivo,
         navegador— y no se pueden asociar a una persona.
+      </p>
+
+      <p>
+        Aun así, <strong>solo las activamos si aceptas</strong> en el aviso que
+        aparece la primera vez que entras. Si rechazas o no contestas, no se carga
+        ningún script de medición. Puedes cambiar tu decisión cuando quieras con
+        el botón <strong>Preferencias de privacidad</strong> del pie de página, en
+        el sitio y en la documentación.
       </p>
 
       <p>
@@ -123,6 +141,24 @@ import { RESPONSABLE, CORREO_CONTACTO, ACTUALIZADO } from "../lib/legal";
         identificador no se asocia a tu nombre, tu correo ni tu dirección IP, no
         permite identificarte y no se comparte con nadie. Lo único que se guarda
         del lado del servidor es un contador por entrada.
+      </p>
+
+      <h3 id="cookies">Cookies y almacenamiento en tu navegador</h3>
+
+      <p>
+        No usamos cookies para medir, anunciar ni seguirte. Lo único que el sitio
+        guarda en tu navegador, con su almacenamiento local, es:
+      </p>
+
+      <ul>
+        <li>Tu decisión sobre la analítica (aceptada o rechazada), para no volver a preguntarte en cada página.</li>
+        <li>El identificador aleatorio de los "me gusta", descrito en la sección anterior.</li>
+      </ul>
+
+      <p>
+        Ninguno de los dos sale de tu navegador con datos que te identifiquen, y
+        puedes borrarlos cuando quieras desde la configuración de tu navegador.
+        Si lo haces, el aviso de analítica vuelve a aparecer.
       </p>
 
       <h3>Lo que no hacemos</h3>

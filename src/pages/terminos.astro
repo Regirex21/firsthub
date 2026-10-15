@@ -1,9 +1,10 @@
 ---
 /* ================================================= */
-/* TÉRMINOS DE USO                                   */
+/* AVISO LEGAL Y TÉRMINOS DE USO                     */
 /* ================================================= */
 import MainLayout from "../layouts/MainLayout.astro";
 import {
+  RESPONSABLE,
   CORREO_CONTACTO,
   ACTUALIZADO,
   LICENCIA,
@@ -12,8 +13,8 @@ import {
 ---
 
 <MainLayout
-  title="Términos de uso | FIRSTHub"
-  description="Condiciones de uso del contenido de FIRSTHub y su relación con la documentación oficial de FIRST."
+  title="Aviso legal y términos de uso | FIRSTHub"
+  description="Quién está detrás de FIRSTHub, condiciones de uso del contenido y su relación con la documentación oficial de FIRST."
 >
 
   <section class="max-w-3xl mx-auto px-6 pt-12 pb-10">
@@ -23,7 +24,7 @@ import {
     </p>
 
     <h1 class="text-4xl md:text-5xl font-bold mt-4 text-[#fbfff1]">
-      Términos de uso
+      Aviso legal y términos de uso
     </h1>
 
     <p class="mt-4 text-sm text-white/40">
@@ -35,11 +36,21 @@ import {
   <section class="max-w-3xl mx-auto px-6 pb-20">
     <div class="prosa">
 
+      <h2>Titular del sitio</h2>
+
+      <ul>
+        <li><strong>Sitio:</strong> firsthub.dev y su documentación en firsthub.dev/docs-ftc y firsthub.dev/docs-frc.</li>
+        <li><strong>Responsable:</strong> {RESPONSABLE}, {ROL_RESPONSABLE}. FIRSTHub es un proyecto personal, no una empresa ni una organización constituida, y no tiene fines de lucro.</li>
+        <li><strong>Contacto:</strong> <a href={`mailto:${CORREO_CONTACTO}`}>{CORREO_CONTACTO}</a>. Los datos completos de identificación se proporcionan a quien los solicite por ese medio.</li>
+        <li><strong>País y legislación:</strong> se opera desde México y se rige por las leyes de los Estados Unidos Mexicanos.</li>
+        <li><strong>Alojamiento:</strong> Vercel Inc. Todas las páginas se sirven cifradas por HTTPS.</li>
+      </ul>
+
       <h2>Aceptación de estos términos</h2>
 
       <p>
-        <strong>Al acceder o usar firsthub.dev —incluida la documentación en
-        firsthub.dev/docs— aceptas estos términos de uso y el
+        <strong>Al acceder o usar firsthub.dev, incluida su documentación (Docs
+        FTC y Docs FRC), aceptas estos términos de uso y el
         <a href="/privacidad">aviso de privacidad</a>.</strong> No hace falta
         registrarse ni marcar ninguna casilla: el solo uso del sitio implica la
         aceptación. Si no estás de acuerdo con alguno de estos puntos, lo que
