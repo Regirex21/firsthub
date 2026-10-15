@@ -82,13 +82,13 @@ const INSTAGRAM = "https://www.instagram.com/_firsthub/";
       <div class="flex flex-wrap gap-3.5">
         <a
           href="/docs"
-          class="rounded-xl border-2 border-[#ff8c42] bg-[#ff8c42] px-6 py-3 font-semibold text-[#2a2d43] transition duration-200 hover:bg-transparent hover:text-[#ff8c42]"
+          class="fh-clay rounded-2xl px-6 py-3 font-semibold"
         >
           Abrir la documentación
         </a>
         <a
           href="/blog"
-          class="rounded-xl border-2 border-[#48a9a6] px-5 py-3 font-semibold text-[#fbfff1] transition duration-200 hover:bg-[#48a9a6] hover:text-[#2a2d43]"
+          class="fh-clay-neutro rounded-2xl px-5 py-3 font-semibold"
         >
           Leer el blog
         </a>
@@ -244,7 +244,7 @@ const INSTAGRAM = "https://www.instagram.com/_firsthub/";
           },
         ].map((p) => (
           <div
-            class="rounded-[20px] border border-white/10 border-t-4 bg-[#313553]/55 p-7 md:px-10 md:pt-9 md:pb-8"
+            class="fh-relieve rounded-[24px] border-t-4 bg-[#313553]/55 p-7 md:px-10 md:pt-9 md:pb-8"
             style={`border-top-color:${p.color}`}
           >
             <p class="text-base text-[#bfc0c6]">{p.nombre}</p>
@@ -373,7 +373,7 @@ const INSTAGRAM = "https://www.instagram.com/_firsthub/";
         <a
           href={c.href}
           {...(c.externo ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          class="group block rounded-2xl border border-white/10 bg-[#313553] p-6 transition duration-300 hover:-translate-y-1"
+          class="group block fh-relieve rounded-2xl bg-[#313553] p-6 transition duration-300 hover:-translate-y-1"
           style={`--c:${c.color}`}
         >
           <span class="block text-sm font-semibold uppercase tracking-widest" style={`color:${c.color}`}>{c.etiqueta}</span>

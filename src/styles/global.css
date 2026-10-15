@@ -285,3 +285,99 @@ body {
   color: #fbfff1;
   font-weight: 600;
 }
+
+
+/* =================================================
+   VOLUMEN: UN TOQUE DE CLAY Y NEUMORFISMO
+   Aprobado el 14 de octubre de 2026 (intensidad "sutil").
+   - fh-clay / fh-clay-neutro: botones con volumen suave.
+     Al pasar el mouse suben 1px; al presionar se hunden.
+   - fh-pastilla: etiquetas de programa (FRC, FTC, General).
+   - fh-relieve: tarjetas que sobresalen del fondo.
+   - fh-hundido / fh-casilla: solo campos de formulario.
+   Los enlaces dentro de las tarjetas siguen planos a
+   propósito: así se decidió al revisar el borrador.
+   En @layer components para que una clase de Tailwind
+   puesta en el mismo elemento pueda ganarle si hace falta.
+   ================================================= */
+@layer components {
+  .fh-relieve {
+    box-shadow: 10px 10px 24px rgba(10, 11, 22, 0.55), -8px -8px 20px rgba(255, 255, 255, 0.035);
+  }
+
+  .fh-hundido {
+    box-shadow: inset 4px 4px 10px rgba(8, 9, 18, 0.6), inset -4px -4px 10px rgba(255, 255, 255, 0.04);
+  }
+
+  .fh-pastilla {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.18);
+  }
+
+  .fh-clay,
+  .fh-clay-neutro {
+    display: inline-block;
+    border: 0;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  }
+  .fh-clay {
+    background: #ff8c42;
+    color: #2a2d43;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.45), inset 0 -4px 0 rgba(150, 60, 10, 0.35), 0 8px 16px rgba(8, 9, 18, 0.45);
+  }
+  .fh-clay-neutro {
+    background: #343858;
+    color: #fbfff1;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -3px 0 rgba(0, 0, 0, 0.28), 0 6px 14px rgba(8, 9, 18, 0.45);
+  }
+  .fh-clay:hover,
+  .fh-clay-neutro:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+  }
+  .fh-clay:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.3), inset 0 -2px 0 rgba(150, 60, 10, 0.3), 0 3px 8px rgba(8, 9, 18, 0.4);
+  }
+  .fh-clay-neutro:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.25), 0 3px 8px rgba(8, 9, 18, 0.4);
+  }
+  .fh-clay:focus-visible,
+  .fh-clay-neutro:focus-visible {
+    outline: 2px solid #fbfff1;
+    outline-offset: 3px;
+  }
+
+  /* Casilla hundida con palomita naranja */
+  .fh-casilla {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    border-radius: 7px;
+    background: #2a2d43 no-repeat center / 14px 14px;
+    box-shadow: inset 4px 4px 10px rgba(8, 9, 18, 0.6), inset -4px -4px 10px rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+  }
+  .fh-casilla:checked {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3 7.5 6 10.5 11 4' fill='none' stroke='%23ff8c42' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+  .fh-casilla:focus-visible {
+    outline: 2px solid #ff8c42;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fh-clay,
+    .fh-clay-neutro {
+      transition: none;
+    }
+    .fh-clay:hover,
+    .fh-clay-neutro:hover,
+    .fh-clay:active,
+    .fh-clay-neutro:active {
+      transform: none;
+    }
+  }
+}

@@ -92,12 +92,12 @@ const conteo = Object.fromEntries(
 
         <a
           href={`/blog/${destacado.id}`}
-          class="group block rounded-[22px] border border-white/[0.08] bg-[#313553] p-8 md:px-12 md:pt-12 md:pb-11 transition duration-200 hover:border-[#ff8c42]/55"
+          class="group block fh-relieve rounded-[24px] bg-[#313553] p-8 md:px-12 md:pt-12 md:pb-11 transition duration-200 hover:-translate-y-1"
         >
 
           <div class="flex flex-wrap items-center gap-x-3.5 gap-y-2.5 text-sm">
             <span
-              class="rounded-full px-3 py-1 font-semibold text-[#2a2d43]"
+              class="fh-pastilla rounded-full px-3 py-1 font-semibold text-[#2a2d43]"
               style={`background-color:${CATEGORIAS[destacado.data.categoria].color}`}
             >
               {CATEGORIAS[destacado.data.categoria].etiqueta}
@@ -259,7 +259,7 @@ const conteo = Object.fromEntries(
               required
               autocomplete="email"
               placeholder="tu@correo.com"
-              class="min-w-0 flex-[1_1_240px] rounded-xl border border-white/25 bg-[#2a2d43] px-4 py-3 text-[#fbfff1] placeholder-white/30 transition duration-300 focus:border-[#ff8c42] focus:outline-none"
+              class="fh-hundido min-w-0 flex-[1_1_240px] rounded-xl border-0 bg-[#2a2d43] px-4 py-3 text-[#fbfff1] placeholder-white/30 focus:outline-2 focus:outline-offset-2 focus:outline-[#ff8c42]"
             />
 
             <!-- Trampa para bots: invisible para las personas -->
@@ -278,7 +278,7 @@ const conteo = Object.fromEntries(
 
             <button
               type="submit"
-              class="rounded-xl border-2 border-[#ff8c42] bg-[#ff8c42] px-[22px] py-3 font-semibold text-[#2a2d43] transition duration-200 hover:bg-transparent hover:text-[#ff8c42]"
+              class="fh-clay rounded-2xl px-[22px] py-3 font-semibold"
             >
               Suscribirme
             </button>
@@ -294,7 +294,7 @@ const conteo = Object.fromEntries(
                 id="boletin-consentimiento"
                 type="checkbox"
                 required
-                class="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-[#ff8c42]"
+                class="fh-casilla mt-0.5 shrink-0"
               />
               <span>
                 Acepto recibir el boletín y que FIRSTHub trate mi correo según el

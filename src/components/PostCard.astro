@@ -24,7 +24,7 @@ const tituloTarjeta = serie ? titulo.replace(/\s*\(\d+\/\d+\)\s*$/, "") : titulo
 ---
 
 <article
-  class="group relative flex h-full flex-col gap-3.5 rounded-[20px] border border-white/[0.08] bg-[#313553] p-7 md:p-[34px] transition duration-200 hover:border-[#ff8c42]/55"
+  class="group relative flex h-full flex-col gap-3.5 fh-relieve rounded-[24px] bg-[#313553] p-7 md:p-[34px] transition duration-200 hover:-translate-y-1"
   data-categoria={categoria}
   data-tags={tags.join("|")}
 >
@@ -32,7 +32,7 @@ const tituloTarjeta = serie ? titulo.replace(/\s*\(\d+\/\d+\)\s*$/, "") : titulo
   <!-- CABECERA: programa, fecha y serie -->
   <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px]">
     <span
-      class="rounded-full px-[11px] py-[3px] font-semibold text-[#2a2d43]"
+      class="fh-pastilla rounded-full px-[11px] py-[3px] font-semibold text-[#2a2d43]"
       style={`background-color:${color}`}
     >
       {CATEGORIAS[categoria].etiqueta}

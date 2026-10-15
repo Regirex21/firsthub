@@ -105,7 +105,7 @@ const c = CATEGORIAS[categoria];
       <!-- AVISO DE FUENTE ORIGINAL -->
       {fuente && (
         <aside
-          class="mb-10 rounded-2xl border border-white/10 bg-[#313553] p-5"
+          class="mb-10 fh-relieve rounded-2xl bg-[#313553] p-5"
         >
           <p class="text-xs uppercase tracking-widest text-[#48a9a6]">
             {fuente.traduccion ? "Traducción · Fuente original" : "Fuente original"}
@@ -155,7 +155,7 @@ const c = CATEGORIAS[categoria];
         {anterior ? (
           <a
             href={`/blog/${anterior.id}`}
-            class="rounded-2xl border border-white/10 bg-[#313553] p-5 transition duration-300 hover:-translate-y-1 hover:border-white/25"
+            class="fh-relieve rounded-2xl bg-[#313553] p-5 transition duration-300 hover:-translate-y-1"
           >
             <p class="text-xs uppercase tracking-widest text-white/40">
               Entrada anterior
@@ -167,7 +167,7 @@ const c = CATEGORIAS[categoria];
         {siguiente && (
           <a
             href={`/blog/${siguiente.id}`}
-            class="rounded-2xl border border-white/10 bg-[#313553] p-5 text-right transition duration-300 hover:-translate-y-1 hover:border-white/25"
+            class="fh-relieve rounded-2xl bg-[#313553] p-5 text-right transition duration-300 hover:-translate-y-1"
           >
             <p class="text-xs uppercase tracking-widest text-white/40">
               Entrada siguiente
